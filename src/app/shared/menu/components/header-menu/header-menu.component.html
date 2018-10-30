@@ -1,0 +1,19 @@
+<div class="Header">
+  <div class="Header-headerLogo">
+    <a href="/">
+      <img src="/src/assets/images/mke-logo.png" alt="Competition Manager" height="50px" width="80px">
+    </a>
+  </div>
+  <div class="Header-headerLogo">
+    <p>Competitions Manager</p>
+  </div>
+  <div class="Header-headerMenuItemsContainer">
+    <div
+      *ngFor="let menuItem of menuItems"
+      class="Header-headerMenuItem">
+        <a [href]="menuItem.link">
+          {{menuItem.label}}
+        </a>
+    </div>
+  </div>
+</div>

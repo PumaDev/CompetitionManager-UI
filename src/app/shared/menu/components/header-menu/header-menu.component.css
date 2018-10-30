@@ -1,0 +1,33 @@
+.Header {
+  width: 100%;
+  height: 60px;
+  background-color: #3b3f4a;
+  margin: 0;
+}
+
+.Header-headerLogo {
+  float: left;
+  margin: 5px 20px;
+}
+
+.Header-headerMenuItemsContainer {
+  margin: 10px;
+  float: left;
+  padding: 4px;
+
+}
+
+.Header-headerMenuItem {
+  margin: 2px 20px;
+  display: inline-block;
+}
+
+.Header-headerMenuItem a {
+  text-decoration: none;
+}
+
+.Header-headerMenuItem a {
+  color: #ffffff;
+  font-size: 22px;
+  text-align: center;
+}

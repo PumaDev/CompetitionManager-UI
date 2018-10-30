@@ -1,0 +1,10 @@
+<mat-tab-group>
+  <mat-tab label="Предстоящие">
+    <app-competitions-list
+      [competitions]="futureCompetitions$ | async"></app-competitions-list>
+  </mat-tab>
+  <mat-tab label="Прошедшие">
+    <app-competitions-list
+    [competitions]="lastCompetitions$ | async"></app-competitions-list>
+  </mat-tab>
+</mat-tab-group>
