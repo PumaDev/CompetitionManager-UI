@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm">
+  <div>
+    <label>Login
+      <input id="login" type="text" formControlName="login" />
+    </label>
+  </div>
+  <div>
+    <label>Password
+      <input id="password" type="password" formControlName="password"/>
+    </label>
+  </div>
+  <div>
+    <button id="sign-in-button"
+            mat-raised-button
+            [disabled]="!loginForm.valid"
+            color="primary"
+            (click)="login()"
+    >Sign In</button>
+  </div>
+</form>

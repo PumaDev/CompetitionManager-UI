@@ -23,29 +23,33 @@ export function competitionsReducer(
   action: ActionWithPayload<ICompetitionPayload>
 ): ICompetitionsState {
   let loadCount;
- switch (action.type) {
-   case CompetitionsActions.LOAD_COMPETITIONS:
-     return deepCloneMerge(state, {
-       loadCount: 0,
-       state: ActionState.IN_PROGRESS
-     });
-   case CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS:
-     loadCount = state.loadCount + 1;
-     return deepCloneMerge(state, {
-       futureCompetitions: action.payload.competitions,
-       loadCount: loadCount,
-       state: getNextStatus(loadCount)
-     });
-   case CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS:
-     loadCount = state.loadCount + 1;
-     return deepCloneMerge(state, {
-       lastCompetitions: action.payload.competitions,
-       loadCount: loadCount,
-       state: getNextStatus(loadCount)
-     });
-   default:
-     return state;
- }
+  switch (action.type) {
+
+    case CompetitionsActions.LOAD_COMPETITIONS:
+      return deepCloneMerge(state, {
+        loadCount: 0,
+        state: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS:
+      loadCount = state.loadCount + 1;
+      return deepCloneMerge(state, {
+        futureCompetitions: action.payload.competitions,
+        loadCount: loadCount,
+        state: getNextStatus(loadCount)
+      });
+
+    case CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS:
+      loadCount = state.loadCount + 1;
+      return deepCloneMerge(state, {
+        lastCompetitions: action.payload.competitions,
+        loadCount: loadCount,
+        state: getNextStatus(loadCount)
+      });
+
+      default:
+      return state;
+  }
 }
 
 function getNextStatus(loadCount): ActionState {
