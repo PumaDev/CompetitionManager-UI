@@ -1,3 +1,12 @@
-<div>
+<div mat-dialog-title>
   <h3>Select Categories:</h3>
 </div>
+<mat-dialog-content>
+  <ng-container *ngFor="let checkedCategory of allCheckableCategories">
+    <mat-checkbox [(ngModel)]="checkedCategory.isChecked">{{checkedCategory.category.displayName}}</mat-checkbox>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions class="AddCategories-actionButtons">
+  <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+  <button mat-raised-button (click)="cancel()">Отмена</button>
+</mat-dialog-actions>

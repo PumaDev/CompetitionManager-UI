@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CompetitionsPageComponent } from './components/competitions-page/competitions-page.component';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
@@ -22,9 +22,10 @@ import { CompetitionsService } from './service/competitions.service';
 import { NewCompetitionsComponent } from './components/new-competition/new-competitions.component';
 import { NewCompetitionCanActivate } from './security/new-competition.can-activate';
 import { NewCompetitionSmartComponent } from './components/new-competition/new-competition.smart.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddCategoriesModalComponent } from './components/new-competition/add-categories-modal/add-categories.modal.component';
 import { AddCategoriesModalSmartComponent } from './components/new-competition/add-categories-modal/add-categories.modal.smart.component';
+import { CompetitionCategoriesService } from './service/categories.service';
 
 @NgModule({
   imports: [
@@ -44,7 +45,9 @@ import { AddCategoriesModalSmartComponent } from './components/new-competition/a
     MatButtonModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   exports: [
     CompetitionsListComponent,
@@ -62,7 +65,11 @@ import { AddCategoriesModalSmartComponent } from './components/new-competition/a
   ],
   providers: [
     CompetitionsService,
+    CompetitionCategoriesService,
     NewCompetitionCanActivate
+  ],
+  entryComponents: [
+    AddCategoriesModalSmartComponent
   ]
 })
 export class CompetitionModule {

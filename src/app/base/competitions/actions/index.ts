@@ -1,9 +1,12 @@
 import { CompetitionsActions } from './competitions.actions';
+import { CompetitionCategoriesActions } from './categories.actions';
 
 export {
-  CompetitionsActions
+  CompetitionsActions,
+  CompetitionCategoriesActions
 };
 
 export const competitionActions = [
-  CompetitionsActions
+  CompetitionsActions,
+  CompetitionCategoriesActions
 ];

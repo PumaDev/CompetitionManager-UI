@@ -1,3 +1,5 @@
+import { ICompetitionCategory } from './category.model';
+
 export enum RegistrationStatus {
   OPEN = 'OPEN',
   CLOSED = 'CLOSED',
@@ -11,4 +13,5 @@ export interface ICompetition {
   registrationStatus?: RegistrationStatus;
   startDate: Date | string;
   endDate: Date | string;
+  categories: ICompetitionCategory[];
 }
