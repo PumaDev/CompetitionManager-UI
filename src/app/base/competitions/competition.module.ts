@@ -4,9 +4,27 @@ import { CompetitionItemComponent } from './components/competitions-list/competi
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { CompetitionsPageComponent } from './components/competitions-page/competitions-page.component';
-import { MatCardModule, MatChipsModule, MatGridListModule, MatTabsModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatProgressSpinnerModule,
+  MatTabsModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompetitionsService } from './service/competitions.service';
+import { NewCompetitionsComponent } from './components/new-competition/new-competitions.component';
+import { NewCompetitionCanActivate } from './security/new-competition.can-activate';
+import { NewCompetitionSmartComponent } from './components/new-competition/new-competition.smart.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddCategoriesModalComponent } from './components/new-competition/add-categories-modal/add-categories.modal.component';
+import { AddCategoriesModalSmartComponent } from './components/new-competition/add-categories-modal/add-categories.modal.smart.component';
 
 @NgModule({
   imports: [
@@ -17,19 +35,34 @@ import { CompetitionsService } from './service/competitions.service';
     MatTabsModule,
     MatCardModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [
     CompetitionsListComponent,
-    CompetitionsPageComponent
+    CompetitionsPageComponent,
+    NewCompetitionSmartComponent
   ],
   declarations: [
     CompetitionsListComponent,
     CompetitionItemComponent,
-    CompetitionsPageComponent
+    CompetitionsPageComponent,
+    NewCompetitionsComponent,
+    NewCompetitionSmartComponent,
+    AddCategoriesModalComponent,
+    AddCategoriesModalSmartComponent
   ],
   providers: [
-    CompetitionsService
+    CompetitionsService,
+    NewCompetitionCanActivate
   ]
 })
 export class CompetitionModule {

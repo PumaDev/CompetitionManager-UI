@@ -1,0 +1,89 @@
+<form [formGroup]="createCompetitionForm">
+  <p>
+    <mat-form-field class="example-full-width">
+      <input id="new-competition-name"
+             formControlName="name"
+             matInput
+             placeholder="Название"
+             [disabled]="isUploadInProgress()">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input id="new-competition-start-date"
+             formControlName="startDate"
+             matInput [matDatepicker]="startDatePicker"
+             placeholder="Дата первого дня соревнований"
+             [disabled]="isUploadInProgress()">
+      <mat-datepicker-toggle matSuffix
+                             [for]="startDatePicker"
+                             [disabled]="isUploadInProgress()"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker [disabled]="isUploadInProgress()"></mat-datepicker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input id="new-competition-end-date"
+             formControlName="endDate"
+             matInput
+             [matDatepicker]="endDatePicker"
+             placeholder="Дата послднего дня соревнований"
+             [disabled]="isUploadInProgress()">
+      <mat-datepicker-toggle matSuffix
+                             [for]="endDatePicker"
+                             [disabled]="isUploadInProgress()"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker [disabled]="isUploadInProgress()"></mat-datepicker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <textarea id="new-competition-description"
+                formControlName="description"
+                matInput
+                placeholder="Описание"
+                [disabled]="isUploadInProgress()"></textarea>
+    </mat-form-field>
+  </p>
+  <div>
+    <p>Категории</p>
+    <button mat-button
+            id="new-competition-add-category-button"
+            [disabled]="isUploadInProgress()"
+            (click)="openAddCategoriesDialogModal()"
+            color="primary">Добавить категории
+    </button>
+  </div>
+  <button mat-raised-button
+          id="new-competition-save-button"
+          color="primary"
+          [disabled]="!createCompetitionForm.valid"
+          (click)="save()">Создать
+  </button>
+  <button mat-raised-button
+          id="new-competition-cancel-button"
+          (click)="cancel()">Сбросить все поля
+  </button>
+</form>
+<!-- Messages -->
+
+<!-- IN_PROGRESS -->
+<div *ngIf="isUploadInProgress()">
+  <p>Соревнование сохраняется</p>
+  <mat-progress-spinner
+    *ngIf="isUploadInProgress()"
+    class="example-margin"
+    color="primary"
+    mode="indeterminate"
+    [value]="25">
+  </mat-progress-spinner>
+</div>
+
+<!-- SUCCESS -->
+<div *ngIf="isUploadSuccess()">
+  <p>Соревнование сохранено успешно</p>
+</div>
+
+<!-- FAILED -->
+<div *ngIf="isUploadFailed()">
+  <p>Соревнование сохранено успешно</p>
+</div>

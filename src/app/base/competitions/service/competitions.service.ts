@@ -22,4 +22,8 @@ export class CompetitionsService {
 
     return this.http.get<ICompetition[]>(competitionsConfig.lastCompetitionsEndpoint, { params: params });
   }
+
+  createCompetition(competition: ICompetition): Observable<ICompetition> {
+    return this.http.post<ICompetition>(competitionsConfig.createCompetitionEndpoint, competition);
+  }
 }

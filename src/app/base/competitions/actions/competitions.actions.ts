@@ -10,6 +10,10 @@ export class CompetitionsActions {
   static LOAD_LAST_COMPETITIONS_SUCCESS = '[Competition] Load Last Competitions';
   static LOAD_COMPETITIONS_FAILURE = '[Competition] Load Competitions Failure';
 
+  static CREATE_COMPETITION = '[Competition] Create Competition';
+  static CREATE_COMPETITION_SUCCESS = '[Competition] Create Competition Success';
+  static CREATE_COMPETITION_FAILURE = '[Competition] Create Competition Failure';
+
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITIONS, {
@@ -28,6 +32,18 @@ export class CompetitionsActions {
 
   loadCompetitionsFailure(): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITIONS_FAILURE, {});
+  }
+
+  createCompetition(competition: ICompetition): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.CREATE_COMPETITION, {competition: competition});
+  }
+
+  createCompetitionSuccess(): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.CREATE_COMPETITION_SUCCESS, {});
+  }
+
+  createCompetitionFailure(): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.CREATE_COMPETITION_FAILURE, {});
   }
 }
 

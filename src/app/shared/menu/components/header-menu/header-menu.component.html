@@ -8,12 +8,18 @@
     <p>Competitions Manager</p>
   </div>
   <div class="Header-headerMenuItemsContainer">
-    <div
-      *ngFor="let menuItem of menuItems"
-      class="Header-headerMenuItem">
+    <ng-container
+      *ngFor="let menuItem of menuItems">
+      <div
+        *ngIf="canShowMenuItem(menuItem)"
+        class="Header-headerMenuItem">
         <a [href]="menuItem.link">
           {{menuItem.label}}
         </a>
+      </div>
+    </ng-container>
+    <div class="Header-headerMenuItem">
+      <button mat-flat-button color="primary" size="small" (click)="exit()">Logout</button>
     </div>
   </div>
 </div>

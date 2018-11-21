@@ -9,6 +9,8 @@ import { AuthActions } from './actions/auth.actions';
 import { CommonModule } from '@angular/common';
 import { LoginService } from './services/login.service';
 import { AuthEffects } from './actions/auth.effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AccessTokenHeaderInterceptor } from './access-token-header.interceptor';
 
 @NgModule({
   imports: [
@@ -31,7 +33,12 @@ import { AuthEffects } from './actions/auth.effects';
     LoginService,
     AuthEffects,
     AuthActions,
-    CanActivateLoginPage
+    CanActivateLoginPage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AccessTokenHeaderInterceptor,
+      multi: true,
+    }
   ]
 })
 export class AuthModule {

@@ -5,10 +5,10 @@ export enum RegistrationStatus {
 }
 
 export interface ICompetition {
-  id: number;
+  id?: number;
   name: string;
   description: string;
-  registrationStatus: RegistrationStatus;
-  startDate: Date;
-  endDate: Date;
+  registrationStatus?: RegistrationStatus;
+  startDate: Date | string;
+  endDate: Date | string;
 }

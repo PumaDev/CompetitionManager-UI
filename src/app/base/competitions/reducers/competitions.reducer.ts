@@ -5,6 +5,7 @@ import { ICompetitionPayload } from '../actions/competitions.actions';
 import { ActionState } from '../../../shared/general/general.models';
 
 export interface ICompetitionsState {
+  competition: ICompetition;
   futureCompetitions: ICompetition[];
   lastCompetitions: ICompetition[];
   state: ActionState;
@@ -12,6 +13,7 @@ export interface ICompetitionsState {
 }
 
 export const competitionsInitState: ICompetitionsState = {
+  competition: null,
   futureCompetitions: [],
   lastCompetitions: [],
   state: ActionState.INITIAL,
@@ -45,6 +47,22 @@ export function competitionsReducer(
         lastCompetitions: action.payload.competitions,
         loadCount: loadCount,
         state: getNextStatus(loadCount)
+      });
+
+    case CompetitionsActions.CREATE_COMPETITION:
+      return deepCloneMerge(state, {
+        competition: action.payload.competition,
+        state: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.CREATE_COMPETITION_SUCCESS:
+      return deepCloneMerge(state, {
+        state: ActionState.SUCCEEDED
+      });
+
+    case CompetitionsActions.CREATE_COMPETITION_FAILURE:
+      return deepCloneMerge(state, {
+        state: ActionState.FAILED
       });
 
       default:

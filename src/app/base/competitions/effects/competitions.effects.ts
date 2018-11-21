@@ -13,6 +13,7 @@ import { PageRequest } from '../../../shared/general/general.models';
 export class CompetitionsEffects {
   @Effect() loadFutureCompetitions$;
   @Effect() loadLastCompetitions$;
+  @Effect() createCompetition$;
 
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
@@ -27,9 +28,9 @@ export class CompetitionsEffects {
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
       switchMap(({futureCompetitionsPage}: { futureCompetitionsPage: number }) =>
         this.competitionsService.getFutureCompetitions(new PageRequest(futureCompetitionsPage))
-        .pipe(
-          map((futureCompetitions: ICompetition[]) => this.competitionsActions.loadFutureCompetitionsSuccess(futureCompetitions))
-        )
+          .pipe(
+            map((futureCompetitions: ICompetition[]) => this.competitionsActions.loadFutureCompetitionsSuccess(futureCompetitions))
+          )
       )
     );
 
@@ -39,11 +40,28 @@ export class CompetitionsEffects {
     this.loadLastCompetitions$ = this.actions$.pipe(
       ofType(CompetitionsActions.LOAD_COMPETITIONS),
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
-      switchMap(({lastCompetitionsPage}: { lastCompetitionsPage: number}) =>
+      switchMap(({lastCompetitionsPage}: { lastCompetitionsPage: number }) =>
         this.competitionsService.getLastCompetitions(new PageRequest(lastCompetitionsPage))
-        .pipe(
-          map((lastCompetitions: ICompetition[]) => this.competitionsActions.loadLastCompetitionsSuccess(lastCompetitions))
-        )
+          .pipe(
+            map((lastCompetitions: ICompetition[]) => this.competitionsActions.loadLastCompetitionsSuccess(lastCompetitions))
+          )
+      )
+    );
+
+    /************************************************************************************
+     * Create Competition
+     */
+    this.createCompetition$ = this.actions$.pipe(
+      ofType(CompetitionsActions.CREATE_COMPETITION),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competition}: { competition: ICompetition }) => {
+        competition.startDate = (competition.startDate as Date).toLocaleDateString();
+        competition.endDate = (competition.endDate as Date).toLocaleDateString();
+          return this.competitionsService.createCompetition(competition)
+            .pipe(
+              map((competition) => this.competitionsActions.createCompetitionSuccess())
+            );
+        }
       )
     );
   }

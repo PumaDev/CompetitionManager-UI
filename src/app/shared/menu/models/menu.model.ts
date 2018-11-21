@@ -10,6 +10,11 @@ export const ALL_ROLES = [UserRole.COACH, UserRole.ADMIN, UserRole.DEVELOPER];
 
 export const menuItems: MenuItem[] = [
   {
+    label: 'Новое соревнование',
+    link: '/competition/new',
+    forRoles: [UserRole.ADMIN]
+  },
+  {
     label: 'Соревнования',
     link: '/competitions',
     forRoles: [UserRole.COACH, UserRole.ADMIN, UserRole.DEVELOPER]
@@ -28,10 +33,5 @@ export const menuItems: MenuItem[] = [
     label: 'Профайл',
     link: '#',
     forRoles: ALL_ROLES
-  },
-  {
-    label: 'Help',
-    link: '#',
-    forRoles: ALL_ROLES
-  },
+  }
 ];
