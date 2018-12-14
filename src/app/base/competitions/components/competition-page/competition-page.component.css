@@ -6,7 +6,7 @@
 .CompetitionPage-competitionInfo,
 .CompetitionPage-competitionCategories,
 .CompetitionPage-sportsmen {
-  background-color: #eceeee;
+  background-color: #f4f6f6;
   margin: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
   padding: 5px;
