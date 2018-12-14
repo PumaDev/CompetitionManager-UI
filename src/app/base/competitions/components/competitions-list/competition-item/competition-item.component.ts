@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICompetition, RegistrationStatus } from '../../../models/competitions.models';
 
 @Component({
@@ -9,8 +9,10 @@ import { ICompetition, RegistrationStatus } from '../../../models/competitions.m
 export class CompetitionItemComponent implements OnInit {
 
   @Input() competition: ICompetition;
-  @Input() canReopen: boolean = false;
+  @Input() canManageRegistrationStatus: boolean = false;
   @Input() canInvitePeople: boolean = false;
+
+  @Output() onSetRegistrationStatus = new EventEmitter<ICompetition>();
 
   constructor() { }
 
@@ -26,10 +28,24 @@ export class CompetitionItemComponent implements OnInit {
   }
 
   canCloseRegistration(): boolean {
-    return true;
+    return this.canManageRegistrationStatus && this.competition.registrationStatus !== RegistrationStatus.CLOSED;
   }
 
   canReopenRegistration(): boolean {
-    return false;
+    return this.canManageRegistrationStatus && this.competition.registrationStatus === RegistrationStatus.CLOSED;
+  }
+
+  closeRegistration(competitionId: number) {
+    this.onSetRegistrationStatus.emit(<ICompetition> {
+      id: competitionId,
+      registrationStatus: RegistrationStatus.CLOSED
+    });
+  }
+
+  reopenRegistration(competitionId: number) {
+    this.onSetRegistrationStatus.emit(<ICompetition> {
+      id: competitionId,
+      registrationStatus: RegistrationStatus.REOPEN
+    });
   }
 }

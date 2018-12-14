@@ -13,7 +13,9 @@
   <ng-container *ngIf="competitions !== null && competitions.length > 0">
     <div *ngFor="let competition of competitions" class="Competitions-competitionView">
       <app-competition-item
-      [competition]="competition"></app-competition-item>
+      [competition]="competition"
+      [canManageRegistrationStatus]="canManageRegistrationStatus"
+      (onSetRegistrationStatus)="setRegistrationStatus($event)"></app-competition-item>
     </div>
   </ng-container>
 </div>

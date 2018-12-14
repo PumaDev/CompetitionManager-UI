@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ICompetition } from '../../models/competitions.models';
 import { select, Store } from '@ngrx/store';
 import { getFutureCompetitionsSelector, getLastCompetitionsSelector } from '../../reducers/competitions.selector';
+import { UserRole } from '../../../../shared/permissions/models/permission.models';
 
 @Component({
   selector: 'app-competitions-page',
@@ -16,6 +17,7 @@ export class CompetitionsPageComponent implements OnInit {
 
   futureCompetitions$: Observable<ICompetition[]>;
   lastCompetitions$: Observable<ICompetition[]>;
+  canManageRegistrationStatus: boolean = false;
 
   private _futureCompetitionsPage = 0;
   private _lastCompetitionsPage = 0;
@@ -25,6 +27,8 @@ export class CompetitionsPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.canManageRegistrationStatus = JSON.parse(sessionStorage.getItem('user')).userRole as UserRole === UserRole.ADMIN;
+
     this.futureCompetitions$ = this.store.pipe(select(getFutureCompetitionsSelector));
     this.lastCompetitions$ = this.store.pipe(select(getLastCompetitionsSelector));
 
@@ -33,6 +37,10 @@ export class CompetitionsPageComponent implements OnInit {
 
   private loadCompetitions() {
     this.store.dispatch(this.competitionsActions.loadCompetitions(this._futureCompetitionsPage, this._lastCompetitionsPage));
+  }
+
+  setCompetitionStatus(competition: ICompetition) {
+    this.store.dispatch(this.competitionsActions.setRegistrationStatus(competition.id, competition.registrationStatus));
   }
 
 }

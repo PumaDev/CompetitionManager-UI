@@ -10,3 +10,7 @@ export const accessTokenWithUserSelector: MemoizedSelector<State, AccessTokenWit
   (state: IAuthState) => state.accessTokenWithUser
 );
 
+export const getLoginErrorCodeSelector: MemoizedSelector<State, number> = createSelector(
+  authSelector,
+  (state: IAuthState) => state.errorCode
+);

@@ -5,8 +5,10 @@ import { State } from '../../app.reducers';
 import { AuthActions, AuthPayload } from './auth.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { ActionWithPayload } from '../../shared/utils/redux.utils';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { AccessTokenWithUser } from '../access-token.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -27,7 +29,10 @@ export class AuthEffects {
       switchMap(({login, password}: { login: string, password: string }) =>
         this.loginService.login(login, password)
           .pipe(
-            map((accessTokenWithUser: AccessTokenWithUser) => this.authActions.loginSuccess(accessTokenWithUser))
+            map((accessTokenWithUser: AccessTokenWithUser) => this.authActions.loginSuccess(accessTokenWithUser)),
+            catchError((errorResponse: HttpErrorResponse) =>
+              of(this.authActions.loginFailed(errorResponse.error.errorCode))
+            )
           )
       )
     );

@@ -1,0 +1,57 @@
+<div class="Users-listContainer">
+  <mat-card *ngFor="let user of users" class="Users-user">
+    <mat-grid-list cols="9" rowHeight="50px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <p>Логин: {{user.login}}</p>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1">
+        <p>Почта: {{user.mail}}</p>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1">
+        <p>Имя клуба: {{user.clubName}}</p>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="3" rowspan="1">
+        <mat-chip-list>
+          <mat-chip *ngIf="userIsActive(user)"
+                    [selected]="true"
+                    color="primary">Активирован</mat-chip>
+          <mat-chip *ngIf="userIsBanned(user)"
+                    [selected]="true"
+                    color="warn">Под Банном</mat-chip>
+          <mat-chip *ngIf="userIsWaitingApprove(user)"
+                    [selected]="true"
+                    color="accent">Новый (не активный)</mat-chip>
+          <mat-chip *ngIf="userIsBlocked(user)"
+                    [selected]="true"
+                     color="primary">Отказано</mat-chip>
+        </mat-chip-list>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1" class="Users-actions">
+        <button *ngIf="userIsWaitingApprove(user)"
+                mat-raised-button
+                (click)="activateUser(user)"
+                color="primary">Принять</button>
+        <button *ngIf="userIsBlocked(user)"
+                mat-raised-button
+                (click)="activateUser(user)"
+                color="primary">Принять</button>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1" class="Users-actions">
+        <button *ngIf="userIsWaitingApprove(user)"
+                mat-raised-button
+                (click)=" blockUser(user)"
+                color="warn">Отказать</button>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1" class="Users-actions">
+        <button *ngIf="userIsBanned(user)"
+                mat-raised-button
+                (click)="activateUser(user)"
+                color="primary">Активировать</button>
+        <button *ngIf="userIsActive(user)"
+                mat-raised-button
+                (click)="banUser(user)"
+                color="warn">Дать бан</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+</div>

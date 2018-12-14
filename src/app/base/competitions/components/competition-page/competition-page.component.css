@@ -9,6 +9,7 @@
   background-color: #eceeee;
   margin: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+  padding: 5px;
 }
 
 .CompetitionPage-competitionInfo {
@@ -18,7 +19,7 @@
 }
 
 .CompetitionPage-competitionCategories {
-  width: 22%;
+  width: 20%;
   height: 100%;
   float: right;
 }

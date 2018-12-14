@@ -13,3 +13,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.errorMessage {
+  border-radius: 10px;
+  border: #d6292c solid 1px;
+  text-align: center;
+  background-color: rgba(212, 83, 78, 0.2);
+  color: #292929;
+  width: max-content;
+  margin: auto;
+  padding: 5px;
+}

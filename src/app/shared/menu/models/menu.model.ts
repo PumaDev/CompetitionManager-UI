@@ -17,21 +17,16 @@ export const menuItems: MenuItem[] = [
   {
     label: 'Соревнования',
     link: '/competitions',
-    forRoles: [UserRole.COACH, UserRole.ADMIN, UserRole.DEVELOPER]
+    forRoles: ALL_ROLES
   },
   {
     label: 'Управление Категориями',
     link: '/competition-categories',
     forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
   },
-/*  {
-    label: 'История',
-    link: '#',
-    forRoles: ALL_ROLES
-  },
   {
-    label: 'Профайл',
-    link: '#',
-    forRoles: ALL_ROLES
-  }*/
+    label: 'Пользователи',
+    link: '/users',
+    forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
+  }
 ];

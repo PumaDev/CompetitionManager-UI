@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthActions } from '../../actions/auth.actions';
 import { State } from '../../../app.reducers';
 import { select, Store } from '@ngrx/store';
-import { accessTokenWithUserSelector } from '../../actions/auth.selectors';
+import { accessTokenWithUserSelector, getLoginErrorCodeSelector } from '../../actions/auth.selectors';
 import { AccessTokenWithUser } from '../../access-token.model';
 import { ActivateStatus, IAccessToken } from '../../../shared/permissions/models/permission.models';
 import { Router } from '@angular/router';
@@ -14,9 +14,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+// TODO: Create Smart Component
   loginForm: FormGroup;
   message: string;
+
+  errorCode: number = 0;
 
   constructor(private store: Store<State>,
               private authActions: AuthActions,
@@ -35,6 +37,9 @@ export class LoginComponent implements OnInit {
         this.message = 'Администротор отклонил вашу заявку на регистрацию';
       }
     });
+
+    this.store.pipe(select(getLoginErrorCodeSelector))
+      .subscribe( (errorCode: number) => this.errorCode = errorCode);
   }
 
   ngOnInit() {

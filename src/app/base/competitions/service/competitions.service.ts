@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICompetition } from '../models/competitions.models';
+import { ICompetition, RegistrationStatus } from '../models/competitions.models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { competitionsConfig } from './competitions.config';
 import { Observable } from 'rxjs';
@@ -31,5 +31,13 @@ export class CompetitionsService {
     const endpoint = competitionsConfig.competitionByIdEndpoint.replace('{id}', competitionId.toString());
 
     return this.http.get<ICompetition>(endpoint);
+  }
+
+  updateRegistrationStatus(competitionId: number, registrationStatus: RegistrationStatus): Observable<ICompetition> {
+    const endpoint = competitionsConfig.updateRegistrationStatusInCompetition
+      .replace('{competitionId}',competitionId.toString())
+      .replace('{registrationStatus}', registrationStatus.toString());
+
+    return this.http.put<ICompetition>(endpoint, {});
   }
 }

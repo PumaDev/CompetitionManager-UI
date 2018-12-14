@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActionWithPayload, createTypedAction } from '../../../shared/utils/redux.utils';
-import { ICompetition } from '../models/competitions.models';
+import { ICompetition, RegistrationStatus } from '../models/competitions.models';
 
 @Injectable()
 export class CompetitionsActions {
@@ -17,6 +17,10 @@ export class CompetitionsActions {
   static LOAD_COMPETITION = '[Competition] Load Competition';
   static LOAD_COMPETITION_SUCCESS = '[Competition] Load Competition Success';
   static LOAD_COMPETITION_FAILURE = '[Competition] Load Competition Failure';
+
+  static SET_REGISTRATION_STATUS = '[Competition] Set Registration Statue';
+  static SET_REGISTRATION_STATUS_FAILURE = '[Competition] Set Registration Statue Success';
+  static SET_REGISTRATION_STATUS_SUCCESS = '[Competition] Set Registration Statue Failure';
 
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
@@ -65,13 +69,33 @@ export class CompetitionsActions {
   loadCompetitionFailure(): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITION_FAILURE, {});
   }
+
+  setRegistrationStatus(competitionId: number, registrationStatus: RegistrationStatus): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.SET_REGISTRATION_STATUS, {
+      competitionId: competitionId,
+      registrationStatus: registrationStatus
+    });
+  }
+
+  setRegistrationStatusSuccess(competition: ICompetition) {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.SET_REGISTRATION_STATUS_SUCCESS, {
+      competition: competition
+    });
+  }
+
+  setRegistrationStatusFailed(errorCode: number) {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.SET_REGISTRATION_STATUS_FAILURE, {
+      errorCode: errorCode
+    });
+  }
 }
 
 export interface ICompetitionPayload {
+  registrationStatus?: RegistrationStatus;
   competitionId?: number;
   futureCompetitionsPage?: number;
   lastCompetitionsPage?: number;
   competition?: any;
   competitions?: any[];
-  error?: any;
+  errorCode?: number;
 }

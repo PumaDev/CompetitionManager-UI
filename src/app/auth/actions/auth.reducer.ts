@@ -6,13 +6,13 @@ import { AccessTokenWithUser } from '../access-token.model';
 
 export interface IAuthState {
   accessTokenWithUser: AccessTokenWithUser;
-  errorStatue: number;
+  errorCode: number;
   actionState: ActionState;
 }
 
 const initialAuthState: IAuthState = {
   accessTokenWithUser: null,
-  errorStatue: 0,
+  errorCode: 0,
   actionState: ActionState.INITIAL
 };
 
@@ -34,7 +34,7 @@ export function authReducer(
 
       case AuthActions.LOGIN_FAILED:
         return deepCloneMerge(state, {
-          errorStatus: action.payload.errorStatus,
+          errorCode: action.payload.errorCode,
           actionState: ActionState.FAILED
         });
 

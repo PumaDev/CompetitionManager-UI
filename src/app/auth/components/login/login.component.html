@@ -5,8 +5,11 @@
     <div>
       <p class="Login-message">Вход в систему</p>
     </div>
-    <div *ngIf="message">
+    <div *ngIf="message" class="errorMessage">
       {{message}}
+    </div>
+    <div *ngIf="errorCode === 10" class="errorMessage">
+      <p>Логин или пароль введены неверно. Повторите попытку</p>
     </div>
     <form [formGroup]="loginForm">
       <div>

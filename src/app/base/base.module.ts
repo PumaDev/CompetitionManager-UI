@@ -8,11 +8,13 @@ import { MatTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanActivateBasePage } from './base.can-activate';
 import { AuthModule } from '../auth/auth.module';
+import { UserModule } from './users/user.module';
 
 @NgModule({
   imports: [
     WelcomeModule,
     CompetitionModule,
+    UserModule,
     RouterModule,
     SharedModule,
     AuthModule,

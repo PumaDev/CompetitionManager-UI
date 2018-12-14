@@ -3,6 +3,7 @@ import { BaseComponent } from './base.component';
 import { welcomeRoutes } from './welcome/welcomeRoutes';
 import { competitionRoutes } from './competitions/competition.routes';
 import { CanActivateBasePage } from './base.can-activate';
+import { userRoutes } from './users/user.routes';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
         component: BaseComponent,
         children: [
           ...welcomeRoutes,
-          ...competitionRoutes
+          ...competitionRoutes,
+          ...userRoutes
         ]
       }
     ],

@@ -4,10 +4,12 @@ import { ActionWithPayload } from '../../../shared/utils/redux.utils';
 import { CompetitionsActions, ICompetitionPayload } from '../actions/competitions.actions';
 import { Store } from '@ngrx/store';
 import { State } from '../../../app.reducers';
-import { map, switchMap } from 'rxjs/operators';
-import { ICompetition } from '../models/competitions.models';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ICompetition, RegistrationStatus } from '../models/competitions.models';
 import { CompetitionsService } from '../service/competitions.service';
 import { PageRequest } from '../../../shared/general/general.models';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Injectable()
 export class CompetitionsEffects {
@@ -16,6 +18,7 @@ export class CompetitionsEffects {
   @Effect() loadLastCompetitions$;
   @Effect() createCompetition$;
   @Effect() loadCompetitionById$;
+  @Effect() setRegistrationStatus$;
 
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
@@ -77,6 +80,25 @@ export class CompetitionsEffects {
         this.competitionsService.getCompetition(competitionId)
           .pipe(
             map((competition: ICompetition) => this.competitionsActions.loadCompetitionSuccess(competition))
+          )
+      )
+    );
+
+    /************************************************************************************
+     * Set Registration Status
+     */
+    this.setRegistrationStatus$ = this.actions$.pipe(
+      ofType(CompetitionsActions.SET_REGISTRATION_STATUS),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competitionId, registrationStatus}: { competitionId: number, registrationStatus: RegistrationStatus }) =>
+        this.competitionsService.updateRegistrationStatus(competitionId, registrationStatus)
+          .pipe(
+            map((competition: ICompetition) =>
+              this.competitionsActions.setRegistrationStatusSuccess(competition)
+            ),
+            catchError((errorResponse: HttpErrorResponse) =>
+              of(this.competitionsActions.setRegistrationStatusFailed(errorResponse.error.errorCode))
+            )
           )
       )
     );

@@ -3,6 +3,7 @@ import { ActionWithPayload, deepCloneMerge } from '../../../shared/utils/redux.u
 import { CompetitionsActions } from '../actions';
 import { ICompetitionPayload } from '../actions/competitions.actions';
 import { ActionState } from '../../../shared/general/general.models';
+import { a, st } from '@angular/core/src/render3';
 
 export interface ICompetitionsState {
   competition: ICompetition;
@@ -81,11 +82,41 @@ export function competitionsReducer(
         state: ActionState.FAILED
       });
 
-      default:
+    case CompetitionsActions.SET_REGISTRATION_STATUS:
+      return deepCloneMerge(state, {
+        state: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.SET_REGISTRATION_STATUS_SUCCESS:
+      return deepCloneMerge(state, {
+        competition: action.payload.competition,
+        futureCompetitions: updateCompetitionInList(action.payload.competition, state.futureCompetitions),
+        lastCompetitions: updateCompetitionInList(action.payload.competition, state.lastCompetitions),
+        state: ActionState.SUCCEEDED
+      });
+
+    case CompetitionsActions.SET_REGISTRATION_STATUS_FAILURE:
+      return deepCloneMerge(state, {
+        errorCode: action.payload.errorCode,
+        status: ActionState.FAILED
+      });
+    default:
       return state;
   }
 }
 
 function getNextStatus(loadCount): ActionState {
   return loadCount === 2 ? ActionState.SUCCEEDED : ActionState.IN_PROGRESS;
+}
+
+function updateCompetitionInList(newCompetition: ICompetition, list: ICompetition[]): ICompetition[] {
+  const index = list.findIndex((c) => c.id == newCompetition.id);
+  if (index >= 0) {
+    const newList: ICompetition[] = deepCloneMerge(list);
+    newList[index] = newCompetition;
+
+    return newList;
+  } else {
+    return list;
+  }
 }

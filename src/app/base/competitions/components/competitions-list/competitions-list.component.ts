@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICompetition } from '../../models/competitions.models';
 
 @Component({
@@ -9,6 +9,12 @@ import { ICompetition } from '../../models/competitions.models';
 export class CompetitionsListComponent {
 
   @Input() competitions: ICompetition[] = null;
-  @Input() canReopen: boolean = false;
+  @Input() canManageRegistrationStatus: boolean = false;
   @Input() canInvitePeople: boolean = false;
+
+  @Output() onSetRegistrationStatus = new EventEmitter<ICompetition>();
+
+  setRegistrationStatus(competition: ICompetition) {
+    this.onSetRegistrationStatus.emit(competition);
+  }
 }

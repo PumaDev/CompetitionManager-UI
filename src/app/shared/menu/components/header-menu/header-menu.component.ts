@@ -27,6 +27,6 @@ export class HeaderMenuComponent implements OnInit {
   exit() {
     sessionStorage.removeItem('access-token');
     sessionStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
   }
 }

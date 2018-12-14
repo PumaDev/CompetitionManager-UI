@@ -21,11 +21,17 @@ export class AuthActions {
       accessTokenWithUser: accessToken
     });
   }
+
+  loginFailed(errorCode: number): ActionWithPayload<AuthPayload> {
+    return createTypedAction<AuthPayload>(AuthActions.LOGIN_FAILED, {
+      errorCode: errorCode
+    })
+  }
 }
 
 export interface AuthPayload {
   login?: string;
   password?: string;
   accessTokenWithUser?: AccessTokenWithUser;
-  errorStatus?: number;
+  errorCode?: number;
 }

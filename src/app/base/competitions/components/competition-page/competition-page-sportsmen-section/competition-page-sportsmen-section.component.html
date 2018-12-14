@@ -1,10 +1,10 @@
 <div class="SportsmenSection-container">
   <div class="SportsmenSection-newSportsmanSection">
-    <p *ngIf="isSportsmanSaveFailed()">
+    <div *ngIf="isSportsmanSaveFailed()" class="errorMessage">
       <ng-container *ngIf="errorCode === 4">
-        Ни одна категрия не подходит. К сожалению этот спорстмен не сможет принять участвие в данных соревнованиях
+        <p>Ни одна категрия не подходит. К сожалению этот спорстмен не сможет принять участвие в данных соревнованиях</p>
       </ng-container>
-    </p>
+    </div>
     <form [formGroup]="sportsmanForm" *ngIf="canRegistrateSportsman()">
       <mat-form-field class="SportsmanSection-input">
         <input id="new-sportsman-name"
