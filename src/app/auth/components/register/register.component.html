@@ -1,0 +1,80 @@
+<div class="Registration-background"></div>
+<div class="Registration-background">
+  <div class="Registration-container">
+    <div class="Register-messageContainer">
+      <p class="Register-message">Заявка на регистрацию</p>
+    </div>
+    <form [formGroup]="registrateForm">
+      <div>
+        <mat-form-field>
+          <input id="login"
+                 type="text"
+                 matInput
+                 formControlName="login"
+                 placeholder="Логин">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input id="password"
+                 type="password"
+                 matInput
+                 formControlName="password"
+                 placeholder="Пароль"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input id="clubName"
+                 type="text"
+                 matInput
+                 formControlName="clubName"
+                 placeholder="Клуб">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input id="mail"
+                 type="email"
+                 matInput
+                 formControlName="mail"
+                 placeholder="Почта">
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button id="register-button"
+              mat-raised-button
+              class="Registration-button"
+              [disabled]="isRegistrateButtonDisabled()"
+              color="primary"
+              (click)="register()">Регистрация
+      </button>
+      <a href="login" class="Registration-button">
+        <button id="link-to-login-button"
+                mat-button>Вход
+        </button>
+      </a>
+    </div>
+
+
+    <div *ngIf="isRegistrationInProgress()">
+      <p>Идёт создание заявки на регистрацию</p>
+      <mat-progress-spinner
+        class="example-margin"
+        color="primary"
+        mode="indeterminate"
+        [value]="25">
+      </mat-progress-spinner>
+    </div>
+    <div *ngIf="isRegistrationSuccess()">
+      Заявка на регистрацию принята успешно. Администротор просмотрит вашу заявку.
+    </div>
+    <div *ngIf="error === 1">
+      Пользователь с таким логином уже зарегестрирован
+    </div>
+    <div *ngIf="error === 2">
+      Пользователь с таким клубом уже зарегестрирован
+    </div>
+  </div>
+</div>

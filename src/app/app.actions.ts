@@ -1,5 +1,5 @@
-import { baseAtions } from './base/base.actions';
+import { baseActions } from './base/base.actions';
 
 export const appActions = [
-  ...baseAtions
+  ...baseActions
 ];

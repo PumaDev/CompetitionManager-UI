@@ -11,9 +11,11 @@ import { PageRequest } from '../../../shared/general/general.models';
 
 @Injectable()
 export class CompetitionsEffects {
+
   @Effect() loadFutureCompetitions$;
   @Effect() loadLastCompetitions$;
   @Effect() createCompetition$;
+  @Effect() loadCompetitionById$;
 
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
@@ -55,13 +57,27 @@ export class CompetitionsEffects {
       ofType(CompetitionsActions.CREATE_COMPETITION),
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
       switchMap(({competition}: { competition: ICompetition }) => {
-        competition.startDate = (competition.startDate as Date).toLocaleDateString();
-        competition.endDate = (competition.endDate as Date).toLocaleDateString();
+          competition.startDate = (competition.startDate as Date).toLocaleDateString();
+          competition.endDate = (competition.endDate as Date).toLocaleDateString();
           return this.competitionsService.createCompetition(competition)
             .pipe(
               map((competition) => this.competitionsActions.createCompetitionSuccess())
             );
         }
+      )
+    );
+
+    /************************************************************************************
+     * Load Competition By Id
+     */
+    this.loadCompetitionById$ = this.actions$.pipe(
+      ofType(CompetitionsActions.LOAD_COMPETITION),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competitionId}: { competitionId: number }) =>
+        this.competitionsService.getCompetition(competitionId)
+          .pipe(
+            map((competition: ICompetition) => this.competitionsActions.loadCompetitionSuccess(competition))
+          )
       )
     );
   }

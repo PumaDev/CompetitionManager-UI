@@ -12,3 +12,8 @@
 .CompetitionItem-competitionName {
   font-size: 28px;
 }
+
+a {
+  color: #434441;
+  text-decoration: none;
+}

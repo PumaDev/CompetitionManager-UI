@@ -1,0 +1,24 @@
+<div class="CompetitionCategories-container">
+  <!-- Categories loading IN_PROGRESS -->
+  <mat-progress-spinner
+    *ngIf="isLoadingInProcess()"
+    class="example-margin"
+    color="primary"
+    mode="indeterminate"
+    [value]="25">
+  </mat-progress-spinner>
+
+  <!-- Categories loading SUCCESS -->
+  <ng-container *ngIf="wasCategoriesSuccessfullyLoaded()">
+    <div *ngFor="let category of categories"
+         class="CategoriesList-categoryView">
+      <app-category-item [category]="category"></app-category-item>
+    </div>
+  </ng-container>
+
+  <!-- Categories loading FAILED -->
+  <div *ngIf="wasCategoriesFailuryLoaded()"
+       class="CompetitionCategories-ErrorMessage">
+    При загрузке категорий произошла ошибка. Пожалуйста, обратитесь к админу приложения.
+  </div>
+</div>

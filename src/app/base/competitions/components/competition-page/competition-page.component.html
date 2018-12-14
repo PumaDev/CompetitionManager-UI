@@ -1,0 +1,16 @@
+<div class="CompetitionPage-container">
+  <div class="CompetitionPage-competitionCategories">
+    <app-competition-page-categories-list>
+    </app-competition-page-categories-list>
+  </div>
+  <div class="CompetitionPage-competitionInfo">
+    <app-competition-details-smart
+      [competitionId]="competitionId">
+    </app-competition-details-smart>
+  </div>
+  <div class="CompetitionPage-sportsmen">
+    <app-competition-page-sportsmen-section-smart
+      [competitionId]="competitionId">
+    </app-competition-page-sportsmen-section-smart>
+  </div>
+</div>

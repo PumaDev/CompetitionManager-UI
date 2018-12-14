@@ -1,6 +1,6 @@
 <mat-card class="CompetitionItem-container">
   <!-- Dates -->
-  <mat-grid-list cols="10" rowHeight="60px">
+  <mat-grid-list cols="12" rowHeight="60px">
     <mat-grid-tile [colspan]="1" class="CompetitionItem-competitionDates">
       <ng-container *ngIf="isOneDateCompetition(); else severalDaysCompetition">
         <p>{{competition.startDate}}</p>
@@ -9,7 +9,9 @@
         <p>{{competition.startDate}} - {{competition.endDate}}</p>
       </ng-template>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" class="CompetitionItem-competitionName"><p>{{ competition.name }}</p></mat-grid-tile>
+    <mat-grid-tile [colspan]="3" class="CompetitionItem-competitionName">
+      <a [href]="'competition/' + competition.id"><p>{{ competition.name }}</p></a>
+    </mat-grid-tile>
     <mat-grid-tile [colspan]="2" class="CompetitionItem-registrationStatus">
       <mat-chip-list>
         <ng-container *ngIf="isRegistrationOpen(); else closedRegistration">
@@ -20,7 +22,31 @@
         </ng-template>
       </mat-chip-list>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalInfo"></mat-grid-tile>
-    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalClubInfo"></mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+      <button *ngIf="canCloseRegistration()"
+              mat-raised-button
+              color="primary">Закрыть регистрацию
+      </button>
+      <button *ngIf="canReopenRegistration()"
+              mat-raised-button
+              color="primary">Переоткрыть регистрацию
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalInfo">
+      <ul>
+        <li>Всего категорий: {{competition.competitionMeta.totalCategoriesSize}}</li>
+        <li *ngIf="competition.competitionMeta.minAgeCategory !== null">Минимальный
+          возраст: {{competition.competitionMeta.minAgeCategory}}</li>
+        <li *ngIf="competition.competitionMeta.maxAgeCategory !== null">Максимальный
+          возраст: {{competition.competitionMeta.maxAgeCategory}}</li>
+      </ul>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalClubInfo">
+      <ul>
+        <li>Участников: {{competition.competitionMeta.totalSportsmenCount}}</li>
+        <li *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount !== null">Вашего
+          клуба: {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}</li>
+      </ul>
+    </mat-grid-tile>
   </mat-grid-list>
 </mat-card>

@@ -7,7 +7,7 @@ import { UserRole } from '../../../shared/permissions/models/permission.models';
 export class NewCompetitionCanActivate implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const userRole = JSON.parse(sessionStorage.getItem('user')).userRole;
-    return userRole === UserRole.ADMIN || userRole === UserRole.DEVELOPER;
+    return userRole === UserRole.ADMIN;
   }
 
 }

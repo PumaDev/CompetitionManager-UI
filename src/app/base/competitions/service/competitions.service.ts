@@ -26,4 +26,10 @@ export class CompetitionsService {
   createCompetition(competition: ICompetition): Observable<ICompetition> {
     return this.http.post<ICompetition>(competitionsConfig.createCompetitionEndpoint, competition);
   }
+
+  getCompetition(competitionId: number): Observable<ICompetition> {
+    const endpoint = competitionsConfig.competitionByIdEndpoint.replace('{id}', competitionId.toString());
+
+    return this.http.get<ICompetition>(endpoint);
+  }
 }

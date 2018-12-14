@@ -13,7 +13,8 @@
       <mat-form-field>
         <input id="new-competition-start-date"
                formControlName="startDate"
-               matInput [matDatepicker]="startDatePicker"
+               matInput
+               [matDatepicker]="startDatePicker"
                placeholder="Дата первого дня соревнований"
                [disabled]="isUploadInProgress()">
         <mat-datepicker-toggle matSuffix

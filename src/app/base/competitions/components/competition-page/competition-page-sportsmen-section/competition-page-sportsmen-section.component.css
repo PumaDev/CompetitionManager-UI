@@ -1,0 +1,26 @@
+.SportsmanSection-input {
+  margin: 2px 5px;
+}
+
+.SportsmanSection-ageInput {
+  width: 70px;
+}
+
+.SportsmanSection-weightInput {
+  width: 50px;
+}
+
+.SportsmanSection-deleteButton {
+  border-radius: 10px;
+}
+
+.SportsmanSection-sportsmanInfo {
+  margin: 5px;
+  background-color: #f4f6f6;
+}
+
+.SportsmanSection-registrationIsClose,
+.SportsmenSection-registratedSportsmenSection,
+.SportsmenSection-emptySportsmenList {
+ text-align: center;
+}

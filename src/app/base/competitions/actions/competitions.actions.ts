@@ -14,6 +14,10 @@ export class CompetitionsActions {
   static CREATE_COMPETITION_SUCCESS = '[Competition] Create Competition Success';
   static CREATE_COMPETITION_FAILURE = '[Competition] Create Competition Failure';
 
+  static LOAD_COMPETITION = '[Competition] Load Competition';
+  static LOAD_COMPETITION_SUCCESS = '[Competition] Load Competition Success';
+  static LOAD_COMPETITION_FAILURE = '[Competition] Load Competition Failure';
+
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITIONS, {
@@ -45,9 +49,26 @@ export class CompetitionsActions {
   createCompetitionFailure(): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.CREATE_COMPETITION_FAILURE, {});
   }
+
+  loadCompetition(competitionId: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITION, {
+      competitionId: competitionId
+    });
+  }
+
+  loadCompetitionSuccess(competition: ICompetition): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITION_SUCCESS, {
+      competition: competition
+    });
+  }
+
+  loadCompetitionFailure(): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITION_FAILURE, {});
+  }
 }
 
 export interface ICompetitionPayload {
+  competitionId?: number;
   futureCompetitionsPage?: number;
   lastCompetitionsPage?: number;
   competition?: any;

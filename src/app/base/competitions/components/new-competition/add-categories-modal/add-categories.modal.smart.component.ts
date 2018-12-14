@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { IAddCategoriesDialogData } from './add-categories.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Observable } from 'rxjs';
@@ -14,12 +14,14 @@ import { CompetitionCategoriesActions } from '../../../actions';
 })
 export class AddCategoriesModalSmartComponent implements OnInit {
 
+  selectedCompetitionCategories: ICompetitionCategory[] = [];
   allCompetitionCategories$: Observable<ICompetitionCategory[]> = this.store.pipe(select(getCompetitionCategoriesSelector));
 
   constructor(public dialogRef: MatDialogRef<AddCategoriesModalSmartComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IAddCategoriesDialogData,
               private store: Store<State>,
               private categoriesActions: CompetitionCategoriesActions) {
+    this.selectedCompetitionCategories = data.selectedCategories;
   }
 
   ngOnInit() {

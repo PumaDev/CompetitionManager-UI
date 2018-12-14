@@ -9,6 +9,8 @@ import { ICompetition, RegistrationStatus } from '../../../models/competitions.m
 export class CompetitionItemComponent implements OnInit {
 
   @Input() competition: ICompetition;
+  @Input() canReopen: boolean = false;
+  @Input() canInvitePeople: boolean = false;
 
   constructor() { }
 
@@ -21,5 +23,13 @@ export class CompetitionItemComponent implements OnInit {
 
   isRegistrationOpen(): boolean {
     return [RegistrationStatus.OPEN, RegistrationStatus.REOPEN].indexOf(this.competition.registrationStatus) >= 0;
+  }
+
+  canCloseRegistration(): boolean {
+    return true;
+  }
+
+  canReopenRegistration(): boolean {
+    return false;
   }
 }

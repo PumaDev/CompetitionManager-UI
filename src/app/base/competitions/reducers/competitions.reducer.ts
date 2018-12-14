@@ -65,6 +65,22 @@ export function competitionsReducer(
         state: ActionState.FAILED
       });
 
+    case CompetitionsActions.LOAD_COMPETITION:
+      return deepCloneMerge(state, {
+        state: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.LOAD_COMPETITION_SUCCESS:
+      return deepCloneMerge(state, {
+        competition: action.payload.competition,
+        state: ActionState.SUCCEEDED
+      });
+
+    case CompetitionsActions.LOAD_COMPETITION_FAILURE:
+      return deepCloneMerge(state, {
+        state: ActionState.FAILED
+      });
+
       default:
       return state;
   }

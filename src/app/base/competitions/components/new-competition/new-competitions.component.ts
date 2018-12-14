@@ -19,7 +19,7 @@ export class NewCompetitionsComponent implements OnInit {
 
   createCompetitionForm: FormGroup;
 
-  categories: ICompetitionCategory[];
+  categories: ICompetitionCategory[] = [];
 
   constructor(private dialog: MatDialog) {
   }
@@ -43,7 +43,7 @@ export class NewCompetitionsComponent implements OnInit {
   openAddCategoriesDialogModal() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {selectedCategories: []};
+    dialogConfig.data = {selectedCategories: this.categories};
 
     const dialogRef = this.dialog.open(AddCategoriesModalSmartComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((result: ICompetitionCategory[]) => {
@@ -75,5 +75,6 @@ export class NewCompetitionsComponent implements OnInit {
       endDate: new FormControl(null, [Validators.required]),
       description: new FormControl(null)
     });
+    this.categories = [];
   }
 }

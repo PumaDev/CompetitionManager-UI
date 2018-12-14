@@ -13,12 +13,18 @@ export class AddCategoriesModalComponent implements OnInit {
     this.updateCheckedCategories();
   }
 
+  @Input() set selectedCategories(selectedCategories: ICompetitionCategory[]) {
+    this._selectedCategories = selectedCategories;
+    this.updateCheckedCategories();
+  }
+
   @Output() onCancel = new EventEmitter<void>();
   @Output() onSave = new EventEmitter<ICompetitionCategory[]>();
 
   allCheckableCategories: CheckableCategory[];
 
   private _allCategories: ICompetitionCategory[];
+  private _selectedCategories: ICompetitionCategory[];
 
   constructor() { }
 
@@ -38,7 +44,16 @@ export class AddCategoriesModalComponent implements OnInit {
   }
 
   updateCheckedCategories() {
-    this.allCheckableCategories = this._allCategories.map((category: ICompetitionCategory) => new CheckableCategory(false, category));
+    let selectedByCategoryId = {};
+
+    if (this._selectedCategories) {
+      this._selectedCategories.forEach((selectedCategory) => {
+        selectedByCategoryId[selectedCategory.id] = true;
+      });
+    }
+
+    this.allCheckableCategories = this._allCategories.map((category: ICompetitionCategory) =>
+      new CheckableCategory(!!selectedByCategoryId[category.id], category));
   }
 }
 

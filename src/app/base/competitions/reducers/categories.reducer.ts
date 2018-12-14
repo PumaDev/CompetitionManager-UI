@@ -29,11 +29,23 @@ export function competitionCategoriesReducer(
         state: ActionState.SUCCEEDED
       });
 
+    case CompetitionCategoriesActions.CREATE_COMPETITION_CATEGORY_FAILURE:
     case CompetitionCategoriesActions.LOAD_COMPETITION_CATEGORIES_FAILURE:
       return deepCloneMerge(state, {
         state: ActionState.FAILED
       });
-      
+
+    case CompetitionCategoriesActions.CREATE_COMPETITION_CATEGORY:
+      return deepCloneMerge(state, {
+        state: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionCategoriesActions.CREATE_COMPETITION_CATEGORY_SUCCESS:
+      return deepCloneMerge(state, {
+        categories: [...state.categories, action.payload.category],
+        state: ActionState.SUCCEEDED
+      });
+
     default:
       return state;
   }

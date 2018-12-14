@@ -13,4 +13,8 @@ export class CompetitionCategoriesService {
   getAllCompetitionCategories(): Observable<ICompetitionCategory[]> {
     return this.http.get<ICompetitionCategory[]>(competitionsConfig.categoriesEndpoint);
   }
+
+  createCompetitionCategory(category: ICompetitionCategory): Observable<ICompetitionCategory> {
+    return this.http.post<ICompetitionCategory>(competitionsConfig.categoriesEndpoint, category);
+  };
 }

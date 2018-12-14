@@ -1,5 +1,5 @@
 import { competitionActions } from './competitions/actions';
 
-export const baseAtions = [
+export const baseActions = [
   ...competitionActions
 ];

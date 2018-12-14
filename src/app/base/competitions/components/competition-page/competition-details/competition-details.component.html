@@ -1,0 +1,42 @@
+<mat-grid-list cols="4" rowHeight="100px" *ngIf="competition">
+  <!-- Dates -->
+  <mat-grid-tile colspan="1" rowspan="1">
+    <div class="CompetitionDetails-competitionInfoItem">
+      <p>Даты проведения: {{competition.startDate}} - {{competition.endDate}}</p>
+    </div>
+  </mat-grid-tile>
+
+  <!-- Name -->
+  <mat-grid-tile colspan="2" rowspan="1">
+    <div class="CompetitionDetails-competitionInfoItem">
+      <p>{{competition.name}}</p>
+    </div>
+  </mat-grid-tile>
+
+  <!-- Additional Info -->
+  <mat-grid-tile colspan="1" rowspan="2">
+    <div class="CompetitionDetails-competitionInfoItem">
+      <p>{{competition.description}}</p>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="1" rowspan="1">
+    <ng-container *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount !== null">
+      <div class="CompetitionDetails-competitionInfoItem">
+        <p>От вашего клуба заявлено {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}</p>
+      </div>
+    </ng-container>
+  </mat-grid-tile>
+
+  <!-- Total -->
+  <mat-grid-tile colspan="1" rowspan="1">
+    <ng-container *ngIf="competition.competitionMeta.totalSportsmenCount !== null">
+      <div class="CompetitionDetails-competitionInfoItem">
+        <p>Всего заявлено {{competition.competitionMeta.totalSportsmenCount}}</p>
+      </div>
+    </ng-container>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="1" rowspan="1">
+  </mat-grid-tile>
+</mat-grid-list>

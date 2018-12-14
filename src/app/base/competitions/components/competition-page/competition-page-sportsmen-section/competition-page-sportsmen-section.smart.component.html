@@ -1,0 +1,11 @@
+<app-competition-page-sportsmen-section
+  [sportsmen]="sportsmen$ | async"
+  [loadState]="loadSportsmanState$ | async"
+  [addState]="addSportsmanState$ | async"
+  [deleteState]="deleteSportsmanState$ | async"
+  [errorCode]="errorCode$ | async"
+  [userRole]="userRole"
+  [competitionRegistrationStatus]="competitionRegistrationStatus$ | async"
+  (onAddSportsman)="addSportsman($event)"
+  (onDeleteSportsman)="deleteSportsman($event)">
+</app-competition-page-sportsmen-section>

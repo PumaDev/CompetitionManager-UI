@@ -1,4 +1,3 @@
-import { IAccessToken, IUser } from '../../shared/permissions/models/permission.models';
 import { ActionWithPayload, createTypedAction } from '../../shared/utils/redux.utils';
 import { Injectable } from '@angular/core';
 import { AccessTokenWithUser } from '../access-token.model';

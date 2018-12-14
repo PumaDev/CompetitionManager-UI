@@ -1,20 +1,47 @@
-<form [formGroup]="loginForm">
-  <div>
-    <label>Login
-      <input id="login" type="text" formControlName="login" />
-    </label>
+<div class="Login-background"></div>
+
+<div class="Login-background">
+  <div class="Login-container">
+    <div>
+      <p class="Login-message">Вход в систему</p>
+    </div>
+    <div *ngIf="message">
+      {{message}}
+    </div>
+    <form [formGroup]="loginForm">
+      <div>
+        <mat-form-field>
+          <input id="login"
+                 type="text"
+                 matInput
+                 formControlName="login"
+                 placeholder="Логин"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input id="password"
+                 type="password"
+                 matInput
+                 formControlName="password"
+                 placeholder="Пароль"/>
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button id="sign-in-button"
+              class="Login-button"
+              mat-raised-button
+              [disabled]="!loginForm.valid"
+              color="primary"
+              (click)="login()">Вход
+      </button>
+      <a href="/registration"
+         class="Login-button">
+        <button id="link-to-registrate-button"
+                mat-button>Регистрация
+        </button>
+      </a>
+    </div>
   </div>
-  <div>
-    <label>Password
-      <input id="password" type="password" formControlName="password"/>
-    </label>
-  </div>
-  <div>
-    <button id="sign-in-button"
-            mat-raised-button
-            [disabled]="!loginForm.valid"
-            color="primary"
-            (click)="login()"
-    >Sign In</button>
-  </div>
-</form>
+</div>

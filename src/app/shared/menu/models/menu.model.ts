@@ -21,10 +21,10 @@ export const menuItems: MenuItem[] = [
   },
   {
     label: 'Управление Категориями',
-    link: '#',
+    link: '/competition-categories',
     forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
   },
-  {
+/*  {
     label: 'История',
     link: '#',
     forRoles: ALL_ROLES
@@ -33,5 +33,5 @@ export const menuItems: MenuItem[] = [
     label: 'Профайл',
     link: '#',
     forRoles: ALL_ROLES
-  }
+  }*/
 ];

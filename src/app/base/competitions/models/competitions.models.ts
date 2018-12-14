@@ -14,4 +14,13 @@ export interface ICompetition {
   startDate: Date | string;
   endDate: Date | string;
   categories: ICompetitionCategory[];
+  competitionMeta?: CompetitionMeta;
+}
+
+export interface CompetitionMeta {
+  totalCategoriesSize: number;
+  minAgeCategory: number;
+  maxAgeCategory: number;
+  totalSportsmenCount: number;
+  totalSportsmenOfCoachClubCount: number;
 }

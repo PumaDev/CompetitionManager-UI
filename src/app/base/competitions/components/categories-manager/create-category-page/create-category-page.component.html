@@ -1,0 +1,54 @@
+<div matDialogTitle="">
+  Создание катеогрии
+</div>
+<mat-dialog-content>
+  <form [formGroup]="categoryForm">
+    <input id="new-competition-category-display-name"
+              type="text"
+              formControlName="displayName"
+              placeholder="Название">
+       <input id="new-competition-category-lower-age"
+              type="text"
+              size="5"
+              formControlName="minAge"
+              placeholder="Минимальный возраст">
+       <input id="new-competition-category-upper-age"
+              type="text"
+              size="5"
+              formControlName="maxAge"
+              placeholder="Максимальный возраст">
+       <input id="new-competition-category-lower-weight"
+              type="text"
+              size="5"
+              formControlName="minWeight"
+              placeholder="Минимальный вес">
+       <input id="new-competition-category-upper-weight"
+              type="text"
+              size="5"
+              formControlName="maxWeight"
+              placeholder="Максимальный вес">
+       <input id="new-competition-category-lower-experience"
+              type="text"
+              size="5"
+              formControlName="minExperience"
+              placeholder="Минимальный опыт">
+    <p>
+      <input id="new-competition-category-upper-experience"
+                 formControlName="maxExperience"
+                 matInput
+                 type="text"
+                 size="5"
+                 placeholder="Максимальный опыт" />
+    </p>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button
+          color="primary"
+          id="save-new-competition-category-button">Сохранить
+  </button>
+  <button mat-raised-button
+          (click)="close()"
+          id="cancel-new-competition-category-button">Закрыть
+  </button>
+</mat-dialog-actions>

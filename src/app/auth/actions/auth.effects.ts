@@ -20,7 +20,7 @@ export class AuthEffects {
 
     /*************************************************************
      * Login
-     */
+     ************************************************************/
     this.login$ = this.actions$.pipe(
       ofType(AuthActions.LOGIN),
       map((action: ActionWithPayload<AuthPayload>) => ({...action.payload})),

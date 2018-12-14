@@ -9,4 +9,6 @@ import { ICompetition } from '../../models/competitions.models';
 export class CompetitionsListComponent {
 
   @Input() competitions: ICompetition[] = null;
+  @Input() canReopen: boolean = false;
+  @Input() canInvitePeople: boolean = false;
 }

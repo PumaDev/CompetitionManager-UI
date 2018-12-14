@@ -1,0 +1,43 @@
+.Login-background {
+  position: fixed;
+  background-color: #3b3f4a;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.Login-background {
+  width: 100%;
+  height: 100%;
+}
+
+.Login-container {
+  background-color: white;
+  position: center;
+  border-radius: 5px;
+  width: 25%;
+  padding: 20px;
+  margin: 15% auto 0;
+}
+
+.Login-container mat-form-field {
+  width: 100%;
+}
+
+.Login-button {
+  margin: 10px 20px;
+  width: 35%;
+}
+
+.Login-button button {
+  width: 35%;
+}
+
+.Login-message {
+  text-align: center;
+  font-size: 22px;
+  color: #383838;
+  font-style: normal;
+  font-stretch: expanded;
+}

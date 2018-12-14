@@ -1,0 +1,6 @@
+<app-create-category-page
+  [savingState]="savingState$ | async"
+  [wasUploadStart]="wasUploadStart"
+  (onCategorySave)="save($event)"
+  (onClose)="close()">
+</app-create-category-page>

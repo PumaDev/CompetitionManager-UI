@@ -1,0 +1,19 @@
+<mat-card class="CategoryItem-container">
+  <mat-grid-list [cols]="5" rowHeight="60px">
+    <mat-grid-tile [colspan]="1">
+      {{category.displayName}}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      Возраст: {{ category | appAgeCategoryPipe }}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      Вес: {{ category | appWeightCategoryFormat }}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      Опыт: {{ category | appExperienceCategoryFormat }}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <button mat-raised-button color="primary">Изменить</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
