@@ -1,42 +1,29 @@
-<mat-grid-list cols="4" rowHeight="100px" *ngIf="competition">
-  <!-- Dates -->
-  <mat-grid-tile colspan="1" rowspan="1">
-    <div class="CompetitionDetails-competitionInfoItem">
-      <p>Даты проведения: {{competition.startDate}} - {{competition.endDate}}</p>
+<ng-container *ngIf="competition">
+  <div class="CompetitionDetails-competitionName">
+    <h4>{{competition.name}}</h4>
+  </div>
+  <div class="CompetitionDetails-competitionInfoContainer">
+    <div class="CompetitionDetails-competitionInfoSection">
+      <p class="CompetitionDetails-competitionInfo">
+        <span class="CompetitionDetails-label">Даты:</span>
+        {{competition.startDate}}
+        <ng-container *ngIf="competition.endDate !== competition.startDate">
+          - {{competition.endDate}}
+        </ng-container>
+      </p>
+      <p class="CompetitionDetails-competitionInfo">
+        <span class="CompetitionDetails-label">Всего участников:</span>
+        {{competition.competitionMeta.totalSportsmenCount}}
+      </p>
+      <p *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount"
+         class="CompetitionDetails-competitionInfo">
+        <span class="CompetitionDetails-label">От вашего клуба:</span>
+        {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}
+      </p>
     </div>
-  </mat-grid-tile>
-
-  <!-- Name -->
-  <mat-grid-tile colspan="2" rowspan="1">
-    <div class="CompetitionDetails-competitionInfoItem">
-      <p>{{competition.name}}</p>
+    <div class="CompetitionDetails-competitionInfoDescription">
+      <p class="CompetitionDetails-label">Описание:</p>
+      <p class="CompetitionDetails-competitionInfo">{{competition.description}}</p>
     </div>
-  </mat-grid-tile>
-
-  <!-- Additional Info -->
-  <mat-grid-tile colspan="1" rowspan="2">
-    <div class="CompetitionDetails-competitionInfoItem">
-      <p>{{competition.description}}</p>
-    </div>
-  </mat-grid-tile>
-
-  <mat-grid-tile colspan="1" rowspan="1">
-    <ng-container *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount !== null">
-      <div class="CompetitionDetails-competitionInfoItem">
-        <p>От вашего клуба заявлено {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}</p>
-      </div>
-    </ng-container>
-  </mat-grid-tile>
-
-  <!-- Total -->
-  <mat-grid-tile colspan="1" rowspan="1">
-    <ng-container *ngIf="competition.competitionMeta.totalSportsmenCount !== null">
-      <div class="CompetitionDetails-competitionInfoItem">
-        <p>Всего заявлено {{competition.competitionMeta.totalSportsmenCount}}</p>
-      </div>
-    </ng-container>
-  </mat-grid-tile>
-
-  <mat-grid-tile colspan="1" rowspan="1">
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</ng-container>

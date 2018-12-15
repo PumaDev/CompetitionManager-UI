@@ -1,9 +1,31 @@
-.CompetitionDetails-competitionInfoItem {
-  border: solid #313132 1px;
-  border-radius: 15px;
-  background-color: #eceeee;
-
-  margin: 10px;
-  padding: 12px 5px 5px 5px;
+.CompetitionDetails-competitionName {
+  font-size: 26px;
   text-align: center;
+  color: #272727;
+}
+
+.CompetitionDetails-competitionInfo {
+  font-size: 18px;
+  color: #272727;
+}
+
+.CompetitionDetails-competitionInfoContainer {
+  width: 100%;
+}
+
+.CompetitionDetails-competitionInfoSection {
+  float: left;
+  width: 45%;
+  padding: 20px;
+}
+
+.CompetitionDetails-competitionInfoDescription {
+  float: right;
+  width: 45%;
+  padding: 20px;
+}
+
+.CompetitionDetails-label {
+  font-size: 16px;
+  color: #4f4f4f;
 }

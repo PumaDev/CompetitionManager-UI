@@ -1,0 +1,15 @@
+.CompetitionCategoriesSection-category {
+  margin: 5px;
+  background-color: #f2f1f9;
+}
+
+.CompetitionCategoriesSection-categoryInfo p {
+  margin: 1px 5px;
+  padding: 0;
+}
+
+.CompetitionCategoriesSection-title {
+  font-size: 20px;
+  text-align: center;
+  color: #474747;
+}

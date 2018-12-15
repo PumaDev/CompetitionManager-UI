@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ICompetitionCategory } from '../models/category.model';
 import { competitionsConfig } from './competitions.config';
 
@@ -12,6 +12,13 @@ export class CompetitionCategoriesService {
 
   getAllCompetitionCategories(): Observable<ICompetitionCategory[]> {
     return this.http.get<ICompetitionCategory[]>(competitionsConfig.categoriesEndpoint);
+  }
+
+  getCategoriesByCompetition(competitionId: number): Observable<ICompetitionCategory[]> {
+    const endpoint = competitionsConfig.getCategoriesByCompetitionEndpoint
+      .replace('{competitionId}', competitionId.toString());
+
+    return this.http.get<ICompetitionCategory[]>(endpoint);
   }
 
   createCompetitionCategory(category: ICompetitionCategory): Observable<ICompetitionCategory> {

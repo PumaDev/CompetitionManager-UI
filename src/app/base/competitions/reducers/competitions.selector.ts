@@ -3,6 +3,7 @@ import { ICompetition, RegistrationStatus } from '../models/competitions.models'
 import { State } from '../../../app.reducers';
 import { ICompetitionsState } from './competitions.reducer';
 import { ActionState } from '../../../shared/general/general.models';
+import { ICompetitionCategory } from '../models/category.model';
 
 export const competitionsSelector: Selector<State, ICompetitionsState> =
   (state: State): ICompetitionsState => state.competitionsReducer;
@@ -30,4 +31,9 @@ export const getCompetitionSelector: MemoizedSelector<State, ICompetition> = cre
 export const getRegistrationStatusSelector: MemoizedSelector<State, RegistrationStatus> = createSelector(
   getCompetitionSelector,
   (competition: ICompetition) => competition ? competition.registrationStatus : null
+);
+
+export const getCategoriesFromCompetitionSelector: MemoizedSelector<State, ICompetitionCategory[]> = createSelector(
+  getCompetitionSelector,
+  (competition: ICompetition) => competition ? competition.categories : []
 );

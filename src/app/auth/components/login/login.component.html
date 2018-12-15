@@ -5,11 +5,17 @@
     <div>
       <p class="Login-message">Вход в систему</p>
     </div>
-    <div *ngIf="message" class="errorMessage">
-      {{message}}
-    </div>
     <div *ngIf="errorCode === 10" class="errorMessage">
       <p>Логин или пароль введены неверно. Повторите попытку</p>
+    </div>
+    <div *ngIf="errorCode === 21" class="errorMessage">
+      <p>Ваш пользователь забанинин. Обратитесь к админу</p>
+    </div>
+    <div *ngIf="errorCode === 22" class="errorMessage">
+      <p>Администротор ещё не рассмотрел вашу заявк</p>
+    </div>
+    <div *ngIf="errorCode === 23" class="errorMessage">
+      <p>Администротор отклонил вашу заявку на регистрацию</p>
     </div>
     <form [formGroup]="loginForm">
       <div>

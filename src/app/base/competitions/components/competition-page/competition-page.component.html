@@ -1,7 +1,8 @@
 <div class="CompetitionPage-container">
   <div class="CompetitionPage-competitionCategories">
-    <app-competition-page-categories-list>
-    </app-competition-page-categories-list>
+    <app-competition-page-categories-list-smart
+      [competitionId]="competitionId">
+    </app-competition-page-categories-list-smart>
   </div>
   <div class="CompetitionPage-competitionInfo">
     <app-competition-details-smart

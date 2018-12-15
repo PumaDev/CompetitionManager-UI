@@ -45,6 +45,8 @@ import { CompetitionPageSportsmenSectionComponent } from './components/competiti
 import { CompetitionPageSportsmenSectionSmartComponent } from './components/competition-page/competition-page-sportsmen-section/competition-page-sportsmen-section.smart.component';
 import { competitionServices } from './service';
 import { DeleteSportsmanFromLisModalDialog } from './components/competition-page/competition-page-sportsmen-section/delete-modal/delete-modal.component';
+import { CompetitionPageCategoriesListSmartComponent } from './components/competition-page/competition-page-categories-section/competition-page-categories-list.smart.component';
+import { PaginatorComponent } from './components/competition-page/competition-page-categories-section/paginator/paginator.component';
 
 @NgModule({
   imports: [
@@ -94,6 +96,8 @@ import { DeleteSportsmanFromLisModalDialog } from './components/competition-page
     CompetitionPageComponent,
     CompetitionPageCategoriesListComponent,
     CompetitionPageSportsmenSectionComponent,
+    CompetitionPageCategoriesListSmartComponent,
+    PaginatorComponent,
 
     // Modals
     AddCategoriesModalSmartComponent,

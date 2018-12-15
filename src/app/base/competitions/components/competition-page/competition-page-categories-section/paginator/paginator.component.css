@@ -1,0 +1,20 @@
+.Paginator-button{
+  color: cornflowerblue;
+}
+
+.Paginator-button #disabled {
+  color: #868686;
+}
+
+.Paginator-text {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #3b3f4a;
+}
+
+.Paginator-container {
+  margin: auto;
+  position: center;
+  width: max-content;
+}

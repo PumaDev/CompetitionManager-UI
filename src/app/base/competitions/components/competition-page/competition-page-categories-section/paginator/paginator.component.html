@@ -1,0 +1,13 @@
+<div class="Paginator-container" *ngIf="pageState">
+  <button mat-button
+          class="Paginator-button"
+          [disabled]="isPreviousPageDisabled()"
+          (click)="previousPage()"><
+  </button>
+  <span class="Paginator-text"> {{pageState.firstDisplayElement}} - {{pageState.lastDisplayElement}} из {{pageState.itemsCount}}</span>
+  <button mat-button
+          class="Paginator-button"
+          [disabled]="isNextPageDisabled()"
+          (click)="nextPage()">>
+  </button>
+</div>
