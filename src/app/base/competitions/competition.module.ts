@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, forwardRef, NgModule } from '@angular/core';
 import { CompetitionsListComponent } from './components/competitions-list/competitions-list.component';
 import { CompetitionItemComponent } from './components/competitions-list/competition-item/competition-item.component';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import {
   MatGridListModule, MatIconModule,
   MatInputModule,
   MatNativeDateModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatSelectModule,
   MatTabsModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +22,7 @@ import { CompetitionsService } from './service/competitions.service';
 import { NewCompetitionsComponent } from './components/new-competition/new-competitions.component';
 import { NewCompetitionCanActivate } from './security/new-competition.can-activate';
 import { NewCompetitionSmartComponent } from './components/new-competition/new-competition.smart.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { AddCategoriesModalComponent } from './components/new-competition/add-categories-modal/add-categories.modal.component';
 import { AddCategoriesModalSmartComponent } from './components/new-competition/add-categories-modal/add-categories.modal.smart.component';
 import { CompetitionCategoriesService } from './service/categories.service';
@@ -47,6 +47,7 @@ import { competitionServices } from './service';
 import { DeleteSportsmanFromLisModalDialog } from './components/competition-page/competition-page-sportsmen-section/delete-modal/delete-modal.component';
 import { CompetitionPageCategoriesListSmartComponent } from './components/competition-page/competition-page-categories-section/competition-page-categories-list.smart.component';
 import { PaginatorComponent } from './components/competition-page/competition-page-categories-section/paginator/paginator.component';
+import { MalePipe } from './pipes/male.pipe';
 
 @NgModule({
   imports: [
@@ -59,7 +60,6 @@ import { PaginatorComponent } from './components/competition-page/competition-pa
     MatCardModule,
     MatGridListModule,
     MatChipsModule,
-    MatFormFieldModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -70,8 +70,10 @@ import { PaginatorComponent } from './components/competition-page/competition-pa
     MatDialogModule,
     MatCheckboxModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     CompetitionsListComponent,
     CompetitionsPageComponent,
@@ -107,12 +109,18 @@ import { PaginatorComponent } from './components/competition-page/competition-pa
     // Pipes
     AgeCategoryPipe,
     WeightCategoryFormatterPipe,
-    ExperienceCategoryFormatterPipe
+    ExperienceCategoryFormatterPipe,
+    MalePipe
   ],
   providers: [
     ...competitionServices,
     NewCompetitionCanActivate,
-    AdminAndDeveloperCanActivate
+    AdminAndDeveloperCanActivate,
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => CompetitionPageSportsmenSectionComponent),
+    }
   ],
   entryComponents: [
     AddCategoriesModalSmartComponent,

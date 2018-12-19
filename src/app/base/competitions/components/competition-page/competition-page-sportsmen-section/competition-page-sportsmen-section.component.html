@@ -2,7 +2,8 @@
   <div class="SportsmenSection-newSportsmanSection">
     <div *ngIf="isSportsmanSaveFailed()" class="errorMessage">
       <ng-container *ngIf="errorCode === 4">
-        <p>Ни одна категрия не подходит. К сожалению этот спорстмен не сможет принять участвие в данных соревнованиях</p>
+        <p>Ни одна категрия не подходит. К сожалению этот спорстмен не сможет принять участвие в данных
+          соревнованиях</p>
       </ng-container>
     </div>
     <form [formGroup]="sportsmanForm" *ngIf="canRegistrateSportsman()">
@@ -35,6 +36,12 @@
                matInput
                placeholder="Вес"
                [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input SportsmanSection-maleInput">
+        <mat-select formControlName="male" placeholder="Пол">
+          <mat-option [value]="male">М</mat-option>
+          <mat-option [value]="female">Ж</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="SportsmanSection-input">
         <input id="new-sportsman-experience"
@@ -73,10 +80,12 @@
     <mat-card *ngFor="let sportsman of sportsmen" class="SportsmanSection-sportsmanInfo">
       <mat-grid-list cols="8" rowHeight="25px">
         <mat-grid-tile colspan="2" rowspan="1">
-          <p>{{sportsman.name}} {{sportsman.lastName}}<p>
+          <p>{{sportsman.name}} {{sportsman.lastName}}
+          <p>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
-          <p>Возраст: {{sportsman.age}}<p>
+          <p>Возраст: {{sportsman.age}}
+          <p>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
           <p>Вес: {{sportsman.weight}}</p>
@@ -85,7 +94,7 @@
           <p>Опыт: {{sportsman.experience}}</p>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
-          <p>Пол: {{sportsman.male}}</p>
+          <p>Пол: {{ sportsman.male | malePipe }}</p>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
           <p>Тренер: {{sportsman.coach}}</p>
@@ -93,7 +102,8 @@
         <mat-grid-tile colspan="1" rowspan="1">
           <button mat-raised-button color="warn"
                   (click)="deleteSportsman(sportsman)"
-                  class="SportsmanSection-deleteButton">Удалить</button>
+                  class="SportsmanSection-deleteButton">Удалить
+          </button>
         </mat-grid-tile>
         <mat-grid-tile colspan="2" rowspan="1" class="SportsmanSection-clubInfo">
           <p>{{sportsman.clubName}}</p>

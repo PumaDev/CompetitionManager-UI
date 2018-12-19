@@ -24,3 +24,7 @@
 .SportsmenSection-emptySportsmenList {
  text-align: center;
 }
+
+.SportsmanSection-maleInput {
+  width: 50px;
+}

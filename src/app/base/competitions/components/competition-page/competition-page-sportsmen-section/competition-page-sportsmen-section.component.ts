@@ -30,8 +30,12 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
 
   sportsmanForm: FormGroup;
 
+  male = Male.MALE;
+  female = Male.FEMALE;
+
   constructor(private store: Store<State>,
               private dialog: MatDialog) {
+    this.initForm();
     this.store.pipe(select(getAddSportsmenActionStateSelector)).subscribe(
       (state: ActionState) => {
         if (state === ActionState.SUCCEEDED) {
@@ -51,6 +55,7 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
       coach = this.sportsmanForm.value.coach.trim();
     }
     this.sportsmanForm = new FormGroup({
+      male: new FormControl(Male.MALE, [Validators.required]),
       name: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
       age: new FormControl(null, [Validators.required, Validators.pattern('\\d{1,2}')]),
@@ -80,7 +85,7 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
     const newSportsman: ISportsman = <ISportsman>{
       name: this.sportsmanForm.value.name.trim(),
       lastName: this.sportsmanForm.value.lastName.trim(),
-      male: Male.MALE,
+      male: this.sportsmanForm.value.male,
       age: Number(this.sportsmanForm.value.age),
       weight: Number(this.sportsmanForm.value.weight),
       experience: Number(this.sportsmanForm.value.experience),
