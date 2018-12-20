@@ -10,7 +10,7 @@ import { getCompetitionStateSelector } from '../../../reducers/categories.select
 
 @Component({
   selector: 'app-create-category-page-smart',
-  templateUrl: './create-category-page.component.html',
+  templateUrl: './create-category-page.smart.component.html',
 })
 export class CreateCategoryPageSmartComponent implements OnInit {
 
