@@ -6,20 +6,13 @@
 }
 
 .Header-headerLogo {
-  float: left;
   margin: 5px 20px;
 }
 
 .Header-headerMenuItemsContainer {
   margin: 10px;
-  float: left;
   padding: 4px;
   width: 75%;
-}
-
-.Header-headerMenuItem {
-  margin: 2px 20px;
-  display: inline-block;
 }
 
 .Header-headerMenuItem a {
@@ -33,5 +26,4 @@
 }
 
 .Header-exitButton {
-  float: right;
 }

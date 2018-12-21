@@ -1,25 +1,30 @@
 <div class="Header">
-  <div class="Header-headerLogo">
-    <a href="/">
-      <img src="/src/assets/images/mke-logo.png" alt="Competition Manager" height="50px" width="80px">
-    </a>
-  </div>
-  <div class="Header-headerLogo">
-    <p>Competitions Manager</p>
-  </div>
-  <div class="Header-headerMenuItemsContainer">
+  <mat-grid-list cols="7" rowHeight="60px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="Header-headerLogo">
+        <a href="/">
+          <img src="/src/assets/images/mke-logo.png" alt="Competition Manager" height="50px" width="80px">
+        </a>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="Header-headerLogo">
+        <p>Competitions Manager</p>
+      </div>
+    </mat-grid-tile>
     <ng-container
       *ngFor="let menuItem of menuItems">
-      <div
+      <mat-grid-tile colspan="1" rowspan="1"
         *ngIf="canShowMenuItem(menuItem)"
         class="Header-headerMenuItem">
         <a [href]="menuItem.link">
           {{menuItem.label}}
         </a>
-      </div>
+      </mat-grid-tile>
     </ng-container>
-    <div class="Header-headerMenuItem Header-exitButton">
+    <mat-grid-tile *ngIf="emptyCols() !== 0" [colspan]="emptyCols()" rowspan=""></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
       <button mat-flat-button color="primary" size="small" (click)="exit()">Выход</button>
-    </div>
-  </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

@@ -29,4 +29,8 @@ export class HeaderMenuComponent implements OnInit {
     sessionStorage.removeItem('user');
     this.router.navigateByUrl('/login');
   }
+
+  emptyCols() {
+    return 7 - 4 - menuItems.filter((item: MenuItem) => this.canShowMenuItem(item)).length;
+  }
 }
