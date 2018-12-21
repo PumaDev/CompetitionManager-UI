@@ -1,5 +1,6 @@
 export interface ICompetitionCategory {
   id: number;
+  section: string;
   displayName: string;
 
   lowerAge: number;

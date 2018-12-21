@@ -21,12 +21,18 @@
                placeholder="Фамилия"
                [disabled]="isSportsmanSaveInProgress()">
       </mat-form-field>
+      <mat-form-field class="SportsmanSection-input">
+        <mat-select formControlName="section" placeholder="Раздел">
+          <mat-option *ngFor="let section of sections"
+            [value]="section">{{section}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field class="SportsmanSection-input SportsmanSection-ageInput">
         <input id="new-sportsman-age"
                formControlName="age"
                size="5"
                matInput
-               placeholder="Возраст"
+               placeholder="Возраст"e
                [disabled]="isSportsmanSaveInProgress()">
       </mat-form-field>
       <mat-form-field class="SportsmanSection-input SportsmanSection-weightInput">

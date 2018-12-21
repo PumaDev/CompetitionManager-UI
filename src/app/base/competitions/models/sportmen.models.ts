@@ -13,6 +13,7 @@ export interface ISportsman {
   categoryId?: number;
   clubName?: string;
   competitionCategory?: ICompetitionCategory;
+  section?: string;
 }
 
 export enum Male {

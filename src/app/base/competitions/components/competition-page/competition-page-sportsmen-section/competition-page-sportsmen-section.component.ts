@@ -24,6 +24,7 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
   @Input() errorCode: number;
   @Input() competitionRegistrationStatus: RegistrationStatus;
   @Input() userRole: UserRole;
+  @Input() sections: string[];
 
   @Output() onAddSportsman = new EventEmitter<ISportsman>();
   @Output() onDeleteSportsman = new EventEmitter<number>();
@@ -50,9 +51,11 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
   }
 
   initForm() {
-    let coach: string = '';
+    let coach: string = null;
+    let section: string = null;
     if (this.sportsmanForm) {
       coach = this.sportsmanForm.value.coach.trim();
+      section = this.sportsmanForm.value.section;
     }
     this.sportsmanForm = new FormGroup({
       male: new FormControl(Male.MALE, [Validators.required]),
@@ -61,7 +64,8 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
       age: new FormControl(null, [Validators.required, Validators.pattern('\\d{1,2}')]),
       weight: new FormControl(null, [Validators.required, Validators.pattern('\\d{2,3}(\\.\\d)?')]),
       experience: new FormControl(null, [Validators.required, Validators.pattern('\\d{1,2}')]),
-      coach: new FormControl(coach, [Validators.required])
+      coach: new FormControl(coach, [Validators.required]),
+      section: new FormControl(section, [Validators.required])
     });
   }
 
@@ -89,7 +93,8 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
       age: Number(this.sportsmanForm.value.age),
       weight: Number(this.sportsmanForm.value.weight),
       experience: Number(this.sportsmanForm.value.experience),
-      coach: this.sportsmanForm.value.coach.trim()
+      coach: this.sportsmanForm.value.coach.trim(),
+      section: this.sportsmanForm.value.section
     };
 
     this.onAddSportsman.emit(newSportsman);

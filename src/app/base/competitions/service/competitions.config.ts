@@ -10,5 +10,6 @@ export const competitionsConfig = {
   updateRegistrationStatusInCompetition: appConfig.host + 'competition/{competitionId}/registration/{registrationStatus}',
   addSportsmanEndpoint: appConfig.host + 'sportsman/register/{competitionId}',
   sportsmenByCompetition: appConfig.host + 'sportsman/find/by-competition/{competitionId}',
-  deleteSportsman: appConfig.host + 'sportsman/delete/{sportsmanId}'
+  deleteSportsman: appConfig.host + 'sportsman/delete/{sportsmanId}',
+  sectionsEndpoint: appConfig.host + 'competition-category/sections'
 };
