@@ -3,7 +3,6 @@ import { ActionWithPayload, deepCloneMerge } from '../../../shared/utils/redux.u
 import { CompetitionsActions } from '../actions';
 import { ICompetitionPayload } from '../actions/competitions.actions';
 import { ActionState } from '../../../shared/general/general.models';
-import { a, st } from '@angular/core/src/render3';
 
 export interface ICompetitionsState {
   competition: ICompetition;
@@ -110,7 +109,7 @@ function getNextStatus(loadCount): ActionState {
 }
 
 function updateCompetitionInList(newCompetition: ICompetition, list: ICompetition[]): ICompetition[] {
-  const index = list.findIndex((c) => c.id == newCompetition.id);
+  const index = list.findIndex((c) => c.id === newCompetition.id);
   if (index >= 0) {
     const newList: ICompetition[] = deepCloneMerge(list);
     newList[index] = newCompetition;

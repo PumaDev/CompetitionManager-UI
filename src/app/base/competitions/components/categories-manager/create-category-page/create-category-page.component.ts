@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActionState } from '../../../../../shared/general/general.models';
 import { ICompetitionCategory } from '../../../models/category.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Male} from '../../../models/sportmen.models';
 
 @Component({
   selector: 'app-create-category-page',
@@ -11,12 +12,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreateCategoryPageComponent implements OnInit {
 
   @Input() savingState: ActionState;
-  @Input() wasUploadStart: boolean = false;
+  @Input() wasUploadStart = false;
 
   @Output() onCategorySave = new EventEmitter<ICompetitionCategory>();
   @Output() onClose = new EventEmitter<void>();
 
   categoryForm: FormGroup;
+
+  male = Male.MALE;
+  female = Male.FEMALE;
 
   constructor() {
     this.initCategoryFormGroup();
@@ -27,12 +31,14 @@ export class CreateCategoryPageComponent implements OnInit {
 
   initCategoryFormGroup() {
     this.categoryForm = new FormGroup({
-    /*  displayName: new FormControl(null, [Validators.required]),
+      displayName: new FormControl(null, [Validators.required]),
+      section: new FormControl(null, [Validators.required]),
+      male: new FormControl(Male.MALE, [Validators.required]),
       minAge: new FormControl(null, [Validators.min(0), Validators.max(100)]),
       maxAge: new FormControl(null, [Validators.min(0), Validators.max(100)]),
       minWeight: new FormControl(null, [Validators.min(0), Validators.max(150)]),
       maxWeight: new FormControl(null, [Validators.min(0), Validators.max(150)]),
-      minExperience: new FormControl(null, [Validators.min(0), Validators.max(100)]), */
+      minExperience: new FormControl(null, [Validators.min(0), Validators.max(100)]),
       maxExperience: new FormControl(null)
     });
   }
@@ -48,6 +54,8 @@ export class CreateCategoryPageComponent implements OnInit {
   save() {
     const category = <ICompetitionCategory> {
       displayName: this.categoryForm.value.displayName,
+      section: this.categoryForm.value.section,
+      male: this.categoryForm.value.male,
       lowerAge: this.categoryForm.value.minAge,
       upperAge: this.categoryForm.value.maxAge,
       lowerWeight: this.categoryForm.value.minWeight,

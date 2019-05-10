@@ -2,50 +2,77 @@
   Создание катеогрии
 </div>
 <mat-dialog-content>
-  <form [formGroup]="categoryForm">
-    <input id="new-competition-category-display-name"
-              type="text"
-              formControlName="displayName"
-              placeholder="Название">
-       <input id="new-competition-category-lower-age"
-              type="text"
-              size="5"
-              formControlName="minAge"
-              placeholder="Минимальный возраст">
-       <input id="new-competition-category-upper-age"
-              type="text"
-              size="5"
-              formControlName="maxAge"
-              placeholder="Максимальный возраст">
-       <input id="new-competition-category-lower-weight"
-              type="text"
-              size="5"
-              formControlName="minWeight"
-              placeholder="Минимальный вес">
-       <input id="new-competition-category-upper-weight"
-              type="text"
-              size="5"
-              formControlName="maxWeight"
-              placeholder="Максимальный вес">
-       <input id="new-competition-category-lower-experience"
-              type="text"
-              size="5"
-              formControlName="minExperience"
-              placeholder="Минимальный опыт">
-    <p>
+  <form [formGroup]="categoryForm" class="CreateCategoryPage-form">
+    <mat-form-field>
+      <input id="new-competition-category-display-name"
+             type="text"
+             formControlName="displayName"
+             matInput
+             placeholder="Название">
+    </mat-form-field>
+    <mat-form-field>
+      <input id="new-competition-category-section"
+             type="text"
+             matInput
+             formControlName="section"
+             placeholder="Раздел">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="male" placeholder="Пол">
+        <mat-option [value]="male">М</mat-option>
+        <mat-option [value]="female">Ж</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input id="new-competition-category-lower-age"
+             type="text"
+             matInput
+             formControlName="minAge"
+             placeholder="Минимальный возраст">
+    </mat-form-field>
+    <mat-form-field>
+      <input id="new-competition-category-upper-age"
+             type="text"
+             matInput
+             formControlName="maxAge"
+             placeholder="Максимальный возраст">
+    </mat-form-field>
+    <mat-form-field>
+      <input id="new-competition-category-lower-weight"
+             type="text"
+             matInput
+             formControlName="minWeight"
+             placeholder="Минимальный вес">
+    </mat-form-field>
+    <mat-form-field>
+      <input id="new-competition-category-upper-weight"
+             type="text"
+             matInput
+             formControlName="maxWeight"
+             placeholder="Максимальный вес">
+    </mat-form-field>
+    <mat-form-field>
+      <input id="new-competition-category-lower-experience"
+             type="text"
+             matInput
+             formControlName="minExperience"
+             placeholder="Минимальный опыт">
+    </mat-form-field>
+    <mat-form-field>
+      <label></label>
       <input id="new-competition-category-upper-experience"
-                 formControlName="maxExperience"
-                 matInput
-                 type="text"
-                 size="5"
-                 placeholder="Максимальный опыт" />
-    </p>
+             formControlName="maxExperience"
+             matInput
+             type="text"
+             placeholder="Максимальный опыт"/>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button
           color="primary"
-          id="save-new-competition-category-button">Сохранить
+          id="save-new-competition-category-button"
+          (click)="save()">Сохранить
   </button>
   <button mat-raised-button
           (click)="close()"
