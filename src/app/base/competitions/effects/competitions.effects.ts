@@ -1,15 +1,15 @@
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Injectable } from '@angular/core';
-import { ActionWithPayload } from '../../../shared/utils/redux.utils';
-import { CompetitionsActions, ICompetitionPayload } from '../actions/competitions.actions';
-import { Store } from '@ngrx/store';
-import { State } from '../../../app.reducers';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { ICompetition, RegistrationStatus } from '../models/competitions.models';
-import { CompetitionsService } from '../service/competitions.service';
-import { PageRequest } from '../../../shared/general/general.models';
-import { HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Injectable} from '@angular/core';
+import {ActionWithPayload} from '../../../shared/utils/redux.utils';
+import {CompetitionsActions, ICompetitionPayload} from '../actions/competitions.actions';
+import {Store} from '@ngrx/store';
+import {State} from '../../../app.reducers';
+import {catchError, map, switchMap} from 'rxjs/operators';
+import {ICompetition, RegistrationStatus} from '../models/competitions.models';
+import {CompetitionsService} from '../service/competitions.service';
+import {PageRequest} from '../../../shared/general/general.models';
+import {HttpErrorResponse} from '@angular/common/http';
+import {of} from 'rxjs';
 
 @Injectable()
 export class CompetitionsEffects {
@@ -19,6 +19,7 @@ export class CompetitionsEffects {
   @Effect() createCompetition$;
   @Effect() loadCompetitionById$;
   @Effect() setRegistrationStatus$;
+  @Effect() generateGrid$;
 
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
@@ -98,6 +99,25 @@ export class CompetitionsEffects {
             ),
             catchError((errorResponse: HttpErrorResponse) =>
               of(this.competitionsActions.setRegistrationStatusFailed(errorResponse.error.errorCode))
+            )
+          )
+      )
+    );
+
+    /************************************************************************************
+     * Generate Grid
+     */
+    this.generateGrid$ = this.actions$.pipe(
+      ofType(CompetitionsActions.GENERATE_GRID),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competitionId}: { competitionId: number }) =>
+        this.competitionsService.generateGrid(competitionId)
+          .pipe(
+            map((file: Blob) =>
+              this.competitionsActions.generateGridSuccess(file)
+            ),
+            catchError((errorResponse: HttpErrorResponse) =>
+              of(this.competitionsActions.generateGridFaulure(errorResponse.error.errorCode))
             )
           )
       )

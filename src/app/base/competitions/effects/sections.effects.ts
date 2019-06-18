@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import {Actions, Effect, ofType} from '@ngrx/effects';
 import { ISectionPayload, SectionActions } from '../actions/section.actions';
 import { SectionsService } from '../service';
 import { ActionWithPayload } from '../../../shared/utils/redux.utils';

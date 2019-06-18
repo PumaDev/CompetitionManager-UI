@@ -37,3 +37,13 @@ export const getCategoriesFromCompetitionSelector: MemoizedSelector<State, IComp
   getCompetitionSelector,
   (competition: ICompetition) => competition ? competition.categories : []
 );
+
+export const getGenerateGridStateSelector: MemoizedSelector<State, ActionState> = createSelector(
+  competitionsSelector,
+  (state: ICompetitionsState) => state.generateGridState
+);
+
+export const getGridFileSelector: MemoizedSelector<State, Blob> = createSelector(
+  competitionsSelector,
+  (state: ICompetitionsState) => state.file
+);

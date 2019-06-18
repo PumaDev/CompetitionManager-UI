@@ -1,3 +1,7 @@
 <app-competition-details
-  [competition]="competition$ | async">
+  [competition]="competition$ | async"
+  [userRole]="userRole"
+  [gridFile]="gridFile$ | async"
+  [generateGridState]="generateGridState$ | async"
+  (generateGridEvent)="onGenerateGrid($event)">
 </app-competition-details>

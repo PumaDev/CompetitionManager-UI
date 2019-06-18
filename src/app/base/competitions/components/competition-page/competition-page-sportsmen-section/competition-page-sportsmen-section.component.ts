@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ISportsman, Male } from '../../../models/sportmen.models';
-import { ActionState } from '../../../../../shared/general/general.models';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
-import { State } from '../../../../../app.reducers';
-import { getAddSportsmenActionStateSelector } from '../../../reducers/sportsmen.selector';
-import { MatDialog } from '@angular/material';
-import { DeleteSportsmanFromLisModalDialog } from './delete-modal/delete-modal.component';
-import { RegistrationStatus } from '../../../models/competitions.models';
-import { UserRole } from '../../../../../shared/permissions/models/permission.models';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ISportsman, Male} from '../../../models/sportmen.models';
+import {ActionState} from '../../../../../shared/general/general.models';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {select, Store} from '@ngrx/store';
+import {State} from '../../../../../app.reducers';
+import {getAddSportsmenActionStateSelector} from '../../../reducers/sportsmen.selector';
+import {MatDialog} from '@angular/material';
+import {DeleteSportsmanFromLisModalDialog} from './delete-modal/delete-modal.component';
+import {RegistrationStatus} from '../../../models/competitions.models';
+import {UserRole} from '../../../../../shared/permissions/models/permission.models';
 
 @Component({
   selector: 'app-competition-page-sportsmen-section',
@@ -53,7 +53,10 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
   initForm() {
     let coach: string = null;
     let section: string = null;
-    if (this.sportsmanForm) {
+    if (this.sportsmanForm !== null &&
+      this.sportsmanForm !== undefined &&
+      this.sportsmanForm.value.coach !== null &&
+      this.sportsmanForm.value.coach !== undefined) {
       coach = this.sportsmanForm.value.coach.trim();
       section = this.sportsmanForm.value.section;
     }

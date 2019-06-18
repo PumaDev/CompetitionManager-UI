@@ -14,7 +14,6 @@ import { reducers } from './app.reducers';
 import { appEffects } from './app.effects';
 import { appActions } from './app.actions';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({

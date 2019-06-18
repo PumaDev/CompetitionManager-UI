@@ -1,8 +1,8 @@
-import { ICompetition } from '../models/competitions.models';
-import { ActionWithPayload, deepCloneMerge } from '../../../shared/utils/redux.utils';
-import { CompetitionsActions } from '../actions';
-import { ICompetitionPayload } from '../actions/competitions.actions';
-import { ActionState } from '../../../shared/general/general.models';
+import {ICompetition} from '../models/competitions.models';
+import {ActionWithPayload, deepCloneMerge} from '../../../shared/utils/redux.utils';
+import {CompetitionsActions} from '../actions';
+import {ICompetitionPayload} from '../actions/competitions.actions';
+import {ActionState} from '../../../shared/general/general.models';
 
 export interface ICompetitionsState {
   competition: ICompetition;
@@ -10,6 +10,8 @@ export interface ICompetitionsState {
   lastCompetitions: ICompetition[];
   state: ActionState;
   loadCount: number;
+  generateGridState: ActionState;
+  file: Blob;
 }
 
 export const competitionsInitState: ICompetitionsState = {
@@ -17,7 +19,9 @@ export const competitionsInitState: ICompetitionsState = {
   futureCompetitions: [],
   lastCompetitions: [],
   state: ActionState.INITIAL,
-  loadCount: 0
+  loadCount: 0,
+  generateGridState: ActionState.INITIAL,
+  file: null
 };
 
 export function competitionsReducer(
@@ -99,6 +103,24 @@ export function competitionsReducer(
         errorCode: action.payload.errorCode,
         status: ActionState.FAILED
       });
+
+    case CompetitionsActions.GENERATE_GRID:
+      return deepCloneMerge(state, {
+        generateGridState: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.GENERATE_GRID_SUCCESS:
+      return deepCloneMerge(state, {
+        file: action.payload.file,
+        generateGridState: ActionState.SUCCEEDED
+      });
+
+    case CompetitionsActions.GENERATE_GRID_FAILURE:
+      return deepCloneMerge(state, {
+        errorCode: action.payload.errorCode,
+        generateGridState: ActionState.FAILED
+      });
+
     default:
       return state;
   }

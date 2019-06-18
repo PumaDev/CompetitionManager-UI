@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ActionWithPayload, createTypedAction } from '../../../shared/utils/redux.utils';
-import { ICompetition, RegistrationStatus } from '../models/competitions.models';
+import {Injectable} from '@angular/core';
+import {ActionWithPayload, createTypedAction} from '../../../shared/utils/redux.utils';
+import {ICompetition, RegistrationStatus} from '../models/competitions.models';
 
 @Injectable()
 export class CompetitionsActions {
@@ -21,6 +21,10 @@ export class CompetitionsActions {
   static SET_REGISTRATION_STATUS = '[Competition] Set Registration Statue';
   static SET_REGISTRATION_STATUS_FAILURE = '[Competition] Set Registration Statue Success';
   static SET_REGISTRATION_STATUS_SUCCESS = '[Competition] Set Registration Statue Failure';
+
+  static GENERATE_GRID = '[Competition] Generate Grid';
+  static GENERATE_GRID_SUCCESS = '[Competition] Generate Grid Success';
+  static GENERATE_GRID_FAILURE = '[Competition] Generate Grid Failure';
 
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
@@ -88,6 +92,24 @@ export class CompetitionsActions {
       errorCode: errorCode
     });
   }
+
+  generateGrid(competitionId: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.GENERATE_GRID, {
+      competitionId: competitionId
+    });
+  }
+
+  generateGridSuccess(file: Blob): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.GENERATE_GRID_SUCCESS, {
+      file: file
+    });
+  }
+
+  generateGridFaulure(errorCode: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.GENERATE_GRID_FAILURE, {
+      errorCode: errorCode
+    });
+  }
 }
 
 export interface ICompetitionPayload {
@@ -98,4 +120,5 @@ export interface ICompetitionPayload {
   competition?: any;
   competitions?: any[];
   errorCode?: number;
+  file?: Blob;
 }

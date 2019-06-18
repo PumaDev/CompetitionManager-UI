@@ -20,6 +20,17 @@
         <span class="CompetitionDetails-label">От вашего клуба:</span>
         {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}
       </p>
+      <div class="CompetitionDetails-competitionInfo">
+        <button *ngIf="showGenerateGridButton()" mat-button (click)="generateGrid()">
+          Сгенерировать сетку
+        </button>
+        <div *ngIf="isGridGenerationInProcess()">
+          <p>Сетка генерируется</p>
+        </div>
+        <div *ngIf="isGrigGenerationComplete()">
+          <a [href]="download()">Competition {{competition.id}} grids.zip</a>
+        </div>
+      </div>
     </div>
     <div class="CompetitionDetails-competitionInfoDescription">
       <p class="CompetitionDetails-label">Описание:</p>

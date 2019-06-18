@@ -35,9 +35,15 @@ export class CompetitionsService {
 
   updateRegistrationStatus(competitionId: number, registrationStatus: RegistrationStatus): Observable<ICompetition> {
     const endpoint = competitionsConfig.updateRegistrationStatusInCompetition
-      .replace('{competitionId}',competitionId.toString())
+      .replace('{competitionId}', competitionId.toString())
       .replace('{registrationStatus}', registrationStatus.toString());
 
     return this.http.put<ICompetition>(endpoint, {});
+  }
+
+  generateGrid(competitionId: number): Observable<Blob> {
+    const endpoint: string = competitionsConfig.generateGrid.replace('{competitionId}', competitionId.toString());
+
+    return this.http.post(endpoint, {}, { responseType: 'blob' });
   }
 }
