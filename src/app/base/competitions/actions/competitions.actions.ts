@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActionWithPayload, createTypedAction} from '../../../shared/utils/redux.utils';
-import {ICompetition, RegistrationStatus} from '../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
 
 @Injectable()
 export class CompetitionsActions {
@@ -99,9 +99,9 @@ export class CompetitionsActions {
     });
   }
 
-  generateGridSuccess(file: Blob): ActionWithPayload<ICompetitionPayload> {
+  generateGridSuccess(generatedCompetitionGrid: GeneratedCompetitionGrid): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.GENERATE_GRID_SUCCESS, {
-      file: file
+      generatedCompetitionGrid: generatedCompetitionGrid
     });
   }
 
@@ -120,5 +120,5 @@ export interface ICompetitionPayload {
   competition?: any;
   competitions?: any[];
   errorCode?: number;
-  file?: Blob;
+  generatedCompetitionGrid?: GeneratedCompetitionGrid;
 }

@@ -2,10 +2,15 @@ import {Component, Input, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {State} from '../../../../../app.reducers';
 import {CompetitionsActions} from '../../../actions';
-import {getCompetitionSelector, getGenerateGridStateSelector, getGridFileSelector} from '../../../reducers/competitions.selector';
+import {
+  getCompetitionSelector,
+  getGeneratedCompetitionGridSelector,
+  getGenerateGridStateSelector
+} from '../../../reducers/competitions.selector';
 import {UserRole} from '../../../../../shared/permissions/models/permission.models';
 import {Observable} from 'rxjs';
 import {ActionState} from '../../../../../shared/general/general.models';
+import {GeneratedCompetitionGrid} from '../../../models/competitions.models';
 
 @Component({
   selector: 'app-competition-details-smart',
@@ -17,7 +22,7 @@ export class CompetitionDetailsSmartComponent implements OnInit {
 
   competition$ = this.store.pipe(select(getCompetitionSelector));
   userRole: UserRole;
-  gridFile$: Observable<Blob> = this.store.pipe(select(getGridFileSelector));
+  generatedCompetitionGrid$: Observable<GeneratedCompetitionGrid> = this.store.pipe(select(getGeneratedCompetitionGridSelector));
   generateGridState$: Observable<ActionState> = this.store.pipe(select(getGenerateGridStateSelector));
 
   constructor(private store: Store<State>,

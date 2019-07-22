@@ -1,4 +1,4 @@
-import {ICompetition} from '../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition} from '../models/competitions.models';
 import {ActionWithPayload, deepCloneMerge} from '../../../shared/utils/redux.utils';
 import {CompetitionsActions} from '../actions';
 import {ICompetitionPayload} from '../actions/competitions.actions';
@@ -11,7 +11,7 @@ export interface ICompetitionsState {
   state: ActionState;
   loadCount: number;
   generateGridState: ActionState;
-  file: Blob;
+  generatedCompetitionGrid: GeneratedCompetitionGrid;
 }
 
 export const competitionsInitState: ICompetitionsState = {
@@ -21,7 +21,7 @@ export const competitionsInitState: ICompetitionsState = {
   state: ActionState.INITIAL,
   loadCount: 0,
   generateGridState: ActionState.INITIAL,
-  file: null
+  generatedCompetitionGrid: null
 };
 
 export function competitionsReducer(
@@ -111,7 +111,7 @@ export function competitionsReducer(
 
     case CompetitionsActions.GENERATE_GRID_SUCCESS:
       return deepCloneMerge(state, {
-        file: action.payload.file,
+        generatedCompetitionGrid: action.payload.generatedCompetitionGrid,
         generateGridState: ActionState.SUCCEEDED
       });
 

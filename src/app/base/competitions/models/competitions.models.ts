@@ -24,3 +24,7 @@ export interface CompetitionMeta {
   totalSportsmenCount: number;
   totalSportsmenOfCoachClubCount: number;
 }
+
+export interface GeneratedCompetitionGrid {
+  archiveName: String;
+}

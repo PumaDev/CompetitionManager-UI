@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ICompetition} from '../../../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition} from '../../../models/competitions.models';
 import {UserRole} from '../../../../../shared/permissions/models/permission.models';
 import {competitionsConfig} from '../../../service/competitions.config';
 import {ActionState} from '../../../../../shared/general/general.models';
-import { saveAs } from 'file-saver/src/FileSaver';
 import {DomSanitizer} from '@angular/platform-browser';
+import {appConfig} from '../../../../../app.config';
 
 @Component({
   selector: 'app-competition-details',
@@ -21,8 +21,9 @@ export class CompetitionDetailsComponent implements OnInit {
   }
 
   @Input() userRole: UserRole;
-  @Input() gridFile: Blob;
+  @Input() generatedCompetitionGrid: GeneratedCompetitionGrid;
   @Input() generateGridState: ActionState;
+  serverHost: String = appConfig.host;
 
   @Output() generateGridEvent: EventEmitter<number> = new EventEmitter<number>();
 
@@ -47,17 +48,15 @@ export class CompetitionDetailsComponent implements OnInit {
     return this.generateGridState === ActionState.IN_PROGRESS;
   }
 
-  isGrigGenerationComplete(): boolean {
-    return this.generateGridState === ActionState.SUCCEEDED && this.gridFile !== undefined && this.gridFile !== null;
+  isGridGenerationComplete(): boolean {
+    return this.generateGridState === ActionState.SUCCEEDED && this.generatedCompetitionGrid !== undefined && this.generatedCompetitionGrid !== null;
   }
 
   generateGrid(): void {
     this.generateGridEvent.emit(this.competition.id);
   }
 
-  download(): any {
-    const binaryData = [];
-    binaryData.push(this.gridFile);
-    return this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(new Blob(binaryData, {type: 'application/pdf'})));
+  buildArchiveLink(): String {
+    return this.serverHost + 'competition-archive/' + this.generatedCompetitionGrid.archiveName + '/download';
   }
 }

@@ -1,5 +1,5 @@
 import { createSelector, MemoizedSelector, Selector } from '@ngrx/store';
-import { ICompetition, RegistrationStatus } from '../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
 import { State } from '../../../app.reducers';
 import { ICompetitionsState } from './competitions.reducer';
 import { ActionState } from '../../../shared/general/general.models';
@@ -43,7 +43,7 @@ export const getGenerateGridStateSelector: MemoizedSelector<State, ActionState> 
   (state: ICompetitionsState) => state.generateGridState
 );
 
-export const getGridFileSelector: MemoizedSelector<State, Blob> = createSelector(
+export const getGeneratedCompetitionGridSelector: MemoizedSelector<State, GeneratedCompetitionGrid> = createSelector(
   competitionsSelector,
-  (state: ICompetitionsState) => state.file
+  (state: ICompetitionsState) => state.generatedCompetitionGrid
 );

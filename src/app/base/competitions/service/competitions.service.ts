@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICompetition, RegistrationStatus } from '../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { competitionsConfig } from './competitions.config';
 import { Observable } from 'rxjs';
@@ -41,9 +41,9 @@ export class CompetitionsService {
     return this.http.put<ICompetition>(endpoint, {});
   }
 
-  generateGrid(competitionId: number): Observable<Blob> {
+  generateGrid(competitionId: number): Observable<GeneratedCompetitionGrid> {
     const endpoint: string = competitionsConfig.generateGrid.replace('{competitionId}', competitionId.toString());
 
-    return this.http.post(endpoint, {}, { responseType: 'blob' });
+    return this.http.post<GeneratedCompetitionGrid>(endpoint, {});
   }
 }

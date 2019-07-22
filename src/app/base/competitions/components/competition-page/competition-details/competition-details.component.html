@@ -27,8 +27,8 @@
         <div *ngIf="isGridGenerationInProcess()">
           <p>Сетка генерируется</p>
         </div>
-        <div *ngIf="isGrigGenerationComplete()">
-          <a [href]="download()">Competition {{competition.id}} grids.zip</a>
+        <div *ngIf="isGridGenerationComplete()">
+          <a [href]="buildArchiveLink()">Competition {{competition.id}} grids.zip</a>
         </div>
       </div>
     </div>

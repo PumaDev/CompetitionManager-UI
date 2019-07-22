@@ -12,7 +12,7 @@ export class SectionsEffects {
 
   @Effect() loadSections$;
 
-  constructor(private actions$: Actions<ISectionPayload>,
+  constructor(private actions$: Actions<ActionWithPayload<ISectionPayload>>,
               private sectionsService: SectionsService,
               private sectionActions: SectionActions) {
     /*********************************************************************

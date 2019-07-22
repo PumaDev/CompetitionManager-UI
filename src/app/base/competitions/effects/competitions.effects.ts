@@ -5,7 +5,7 @@ import {CompetitionsActions, ICompetitionPayload} from '../actions/competitions.
 import {Store} from '@ngrx/store';
 import {State} from '../../../app.reducers';
 import {catchError, map, switchMap} from 'rxjs/operators';
-import {ICompetition, RegistrationStatus} from '../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
 import {CompetitionsService} from '../service/competitions.service';
 import {PageRequest} from '../../../shared/general/general.models';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -113,8 +113,8 @@ export class CompetitionsEffects {
       switchMap(({competitionId}: { competitionId: number }) =>
         this.competitionsService.generateGrid(competitionId)
           .pipe(
-            map((file: Blob) =>
-              this.competitionsActions.generateGridSuccess(file)
+            map((generatedCompetitionGrid: GeneratedCompetitionGrid) =>
+              this.competitionsActions.generateGridSuccess(generatedCompetitionGrid)
             ),
             catchError((errorResponse: HttpErrorResponse) =>
               of(this.competitionsActions.generateGridFaulure(errorResponse.error.errorCode))
