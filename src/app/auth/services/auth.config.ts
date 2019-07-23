@@ -2,5 +2,6 @@ import { appConfig } from '../../app.config';
 
 export const authConfig = {
   loginEndpoint: appConfig.host + 'login',
-  createUserEndpoint: appConfig.host + 'register'
+  createUserEndpoint: appConfig.host + 'register',
+  refreshTokenEndpoint: appConfig.host + 'token/refresh'
 };

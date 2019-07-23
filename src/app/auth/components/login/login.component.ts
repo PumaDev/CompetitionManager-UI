@@ -23,9 +23,10 @@ export class LoginComponent implements OnInit {
   constructor(private store: Store<State>,
               private authActions: AuthActions,
               private router: Router) {
+    // TODO: For refactoing. Take out to effects
     this.store.pipe(select(accessTokenWithUserSelector)).subscribe((accessTokenWithUser: AccessTokenWithUser) => {
       if (!accessTokenWithUser) {
-        return
+        return;
       }
       if (accessTokenWithUser.user.activateStatus === ActivateStatus.ACTIVE) {
         this.afterLogin(accessTokenWithUser);

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule, OnInit} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatInputModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
 import { LoginComponent } from './components/login/login.component';
@@ -16,6 +16,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { RegistrationActions } from './actions/register/registration.actions';
 import { RegistrationEffects } from './actions/register/registration.effects';
 import { RegisterSmartComponent } from './components/register/register.smart.component';
+import {interval} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {State} from '../app.reducers';
+import {IAccessToken} from '../shared/permissions/models/permission.models';
 
 @NgModule({
   imports: [
@@ -53,5 +57,14 @@ import { RegisterSmartComponent } from './components/register/register.smart.com
   ]
 })
 export class AuthModule {
+  constructor(private store: Store<State>,
+              private authActions: AuthActions) {
+    interval(10 * 60 * 1000).subscribe(() => {
+      const jsonAccessToken: string = sessionStorage.getItem('access-token');
+      if (jsonAccessToken) {
+        this.store.dispatch(this.authActions.refreshToken());
+      }
+    });
+  }
 
 }

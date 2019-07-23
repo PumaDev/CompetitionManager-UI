@@ -1,6 +1,6 @@
-import { ActionWithPayload, createTypedAction } from '../../shared/utils/redux.utils';
-import { Injectable } from '@angular/core';
-import { AccessTokenWithUser } from '../access-token.model';
+import {ActionWithPayload, createTypedAction} from '../../shared/utils/redux.utils';
+import {Injectable} from '@angular/core';
+import {AccessTokenWithUser} from '../access-token.model';
 
 @Injectable()
 export class AuthActions {
@@ -8,6 +8,10 @@ export class AuthActions {
   public static readonly LOGIN = '[Auth Actions] Login';
   public static readonly LOGIN_SUCCESS = '[Auth Actions] Login Success';
   public static readonly LOGIN_FAILED = '[AUTH Actions] Login Failed';
+
+  public static readonly REFRESH_TOKEN = '[Auth Actions] Refresh Token';
+  public static readonly REFRESH_TOKEN_SUCCESS = '[Auth Actions] Refresh Token Success';
+  public static readonly REFRESH_TOKEN_FAILED = '[Auth Actions] Refresh Token Failed';
 
   login(login: string, password: string): ActionWithPayload<AuthPayload> {
     return createTypedAction<AuthPayload>(AuthActions.LOGIN, {
@@ -25,7 +29,23 @@ export class AuthActions {
   loginFailed(errorCode: number): ActionWithPayload<AuthPayload> {
     return createTypedAction<AuthPayload>(AuthActions.LOGIN_FAILED, {
       errorCode: errorCode
-    })
+    });
+  }
+
+  refreshToken(): ActionWithPayload<AuthPayload> {
+    return createTypedAction<AuthPayload>(AuthActions.REFRESH_TOKEN, {});
+  }
+
+  refreshTokenSuccess(refreshedAccessTokenWithUser: AccessTokenWithUser): ActionWithPayload<AuthPayload> {
+    return createTypedAction<AuthPayload>(AuthActions.REFRESH_TOKEN_SUCCESS, {
+      accessTokenWithUser: refreshedAccessTokenWithUser
+    });
+  }
+
+  refreshTokenFailed(errorCode: number): ActionWithPayload<AuthPayload> {
+    return createTypedAction<AuthPayload>(AuthActions.REFRESH_TOKEN_FAILED, {
+      errorCode: errorCode
+    });
   }
 }
 

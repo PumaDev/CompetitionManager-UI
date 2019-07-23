@@ -19,4 +19,8 @@ export class LoginService {
   createUser(newUser: ICreateUserView): Observable<RegistrationResponse> {
     return this.http.post<RegistrationResponse>(authConfig.createUserEndpoint, newUser);
   }
+
+  refreshToken(): Observable<AccessTokenWithUser> {
+    return this.http.post<AccessTokenWithUser>(authConfig.refreshTokenEndpoint, {});
+  }
 }
