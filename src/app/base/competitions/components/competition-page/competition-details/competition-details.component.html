@@ -21,7 +21,10 @@
         {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}
       </p>
       <div class="CompetitionDetails-competitionInfo">
-        <button *ngIf="showGenerateGridButton()" mat-button (click)="generateGrid()">
+        <button *ngIf="showGenerateGridButton()"
+                mat-raised-button
+                color="primary"
+                (click)="generateGrid()">
           Сгенерировать сетку
         </button>
         <div *ngIf="isGridGenerationInProcess()">
