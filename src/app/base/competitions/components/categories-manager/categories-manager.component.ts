@@ -18,6 +18,7 @@ export class CategoriesManagerComponent implements OnInit {
   openCreateCategoryModal() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
+    dialogConfig.width = '600px';
 
     this.dialog.open(CreateCategoryPageSmartComponent, dialogConfig);
   }
