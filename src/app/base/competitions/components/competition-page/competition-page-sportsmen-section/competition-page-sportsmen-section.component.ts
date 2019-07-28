@@ -88,6 +88,12 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
     return this.loadState === ActionState.SUCCEEDED && this.sportsmen.length === 0;
   }
 
+  getEmptySportsmanListMessage(): String {
+    return this.userRole === UserRole.COACH ?
+      'От вашего клуба никто не зарегестрирован' :
+      'На соревнования пока-что никто не зарегестрирован';
+  }
+
   addSportsman() {
     const newSportsman: ISportsman = <ISportsman>{
       name: this.sportsmanForm.value.name.trim(),

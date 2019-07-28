@@ -80,7 +80,7 @@
 
     <div *ngIf="isSportsmanListEmpty()"
          class="SportsmenSection-emptySportsmenList">
-      От вашего клуба никто не зарегестрирован
+      {{getEmptySportsmanListMessage()}}
     </div>
 
     <mat-card *ngFor="let sportsman of sportsmen" class="SportsmanSection-sportsmanInfo">
