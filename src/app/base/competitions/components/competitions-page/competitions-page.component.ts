@@ -17,7 +17,7 @@ export class CompetitionsPageComponent implements OnInit {
 
   futureCompetitions$: Observable<ICompetition[]>;
   lastCompetitions$: Observable<ICompetition[]>;
-  canManageRegistrationStatus: boolean = false;
+  canManageRegistrationStatus = false;
 
   private _futureCompetitionsPage = 0;
   private _lastCompetitionsPage = 0;
@@ -38,9 +38,4 @@ export class CompetitionsPageComponent implements OnInit {
   private loadCompetitions() {
     this.store.dispatch(this.competitionsActions.loadCompetitions(this._futureCompetitionsPage, this._lastCompetitionsPage));
   }
-
-  setCompetitionStatus(competition: ICompetition) {
-    this.store.dispatch(this.competitionsActions.setRegistrationStatus(competition.id, competition.registrationStatus));
-  }
-
 }

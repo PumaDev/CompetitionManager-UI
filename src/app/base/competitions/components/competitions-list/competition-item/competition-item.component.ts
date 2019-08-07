@@ -12,8 +12,6 @@ export class CompetitionItemComponent implements OnInit {
   @Input() canManageRegistrationStatus: boolean = false;
   @Input() canInvitePeople: boolean = false;
 
-  @Output() onSetRegistrationStatus = new EventEmitter<ICompetition>();
-
   constructor() { }
 
   ngOnInit() {
@@ -25,27 +23,5 @@ export class CompetitionItemComponent implements OnInit {
 
   isRegistrationOpen(): boolean {
     return [RegistrationStatus.OPEN, RegistrationStatus.REOPEN].indexOf(this.competition.registrationStatus) >= 0;
-  }
-
-  canCloseRegistration(): boolean {
-    return this.canManageRegistrationStatus && this.competition.registrationStatus !== RegistrationStatus.CLOSED;
-  }
-
-  canReopenRegistration(): boolean {
-    return this.canManageRegistrationStatus && this.competition.registrationStatus === RegistrationStatus.CLOSED;
-  }
-
-  closeRegistration(competitionId: number) {
-    this.onSetRegistrationStatus.emit(<ICompetition> {
-      id: competitionId,
-      registrationStatus: RegistrationStatus.CLOSED
-    });
-  }
-
-  reopenRegistration(competitionId: number) {
-    this.onSetRegistrationStatus.emit(<ICompetition> {
-      id: competitionId,
-      registrationStatus: RegistrationStatus.REOPEN
-    });
   }
 }

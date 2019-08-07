@@ -23,16 +23,10 @@
       </mat-chip-list>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2">
-      <button *ngIf="canCloseRegistration()"
-              mat-raised-button
-              (click)="closeRegistration(competition.id)"
-              color="primary">Закрыть регистрацию
-      </button>
-      <button *ngIf="canReopenRegistration()"
-              mat-raised-button
-              (click)="reopenRegistration(competition.id)"
-              color="primary">Переоткрыть регистрацию
-      </button>
+      <app-competition-registration-status-manager-smart
+        [competition]="competition"
+        [canManageRegistrationStatus]="canManageRegistrationStatus">
+      </app-competition-registration-status-manager-smart>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalInfo">
       <ul>

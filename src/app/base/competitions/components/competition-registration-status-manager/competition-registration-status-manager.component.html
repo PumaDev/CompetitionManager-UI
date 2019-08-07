@@ -1,0 +1,10 @@
+<button *ngIf="canCloseRegistration()"
+        mat-raised-button
+        (click)="closeRegistration(competition.id)"
+        color="primary">Закрыть регистрацию
+</button>
+<button *ngIf="canReopenRegistration()"
+        mat-raised-button
+        (click)="reopenRegistration(competition.id)"
+        color="primary">Переоткрыть регистрацию
+</button>

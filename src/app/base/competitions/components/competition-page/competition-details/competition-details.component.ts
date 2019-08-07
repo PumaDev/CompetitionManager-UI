@@ -49,7 +49,8 @@ export class CompetitionDetailsComponent implements OnInit {
   }
 
   isGridGenerationComplete(): boolean {
-    return this.generateGridState === ActionState.SUCCEEDED && this.generatedCompetitionGrid !== undefined && this.generatedCompetitionGrid !== null;
+    return this.generateGridState === ActionState.SUCCEEDED &&
+      this.generatedCompetitionGrid !== undefined && this.generatedCompetitionGrid !== null;
   }
 
   generateGrid(): void {
@@ -59,4 +60,8 @@ export class CompetitionDetailsComponent implements OnInit {
   buildArchiveLink(): String {
     return this.serverHost + 'competition-archive/' + this.generatedCompetitionGrid.archiveName + '/download';
   }
+
+  canManageCompetitionRegistrationStatus(): boolean {
+    return this.userRole === UserRole.ADMIN;
+}
 }

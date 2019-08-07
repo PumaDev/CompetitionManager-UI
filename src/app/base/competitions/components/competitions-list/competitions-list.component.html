@@ -14,8 +14,7 @@
     <div *ngFor="let competition of competitions" class="Competitions-competitionView">
       <app-competition-item
       [competition]="competition"
-      [canManageRegistrationStatus]="canManageRegistrationStatus"
-      (onSetRegistrationStatus)="setRegistrationStatus($event)"></app-competition-item>
+      [canManageRegistrationStatus]="canManageRegistrationStatus"></app-competition-item>
     </div>
   </ng-container>
 </div>

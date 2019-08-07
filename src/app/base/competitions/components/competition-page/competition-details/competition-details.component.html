@@ -38,6 +38,11 @@
     <div class="CompetitionDetails-competitionInfoDescription">
       <p class="CompetitionDetails-label">Описание:</p>
       <p class="CompetitionDetails-competitionInfo">{{competition.description}}</p>
+
+      <app-competition-registration-status-manager-smart
+        [competition]="competition"
+        [canManageRegistrationStatus]="canManageCompetitionRegistrationStatus()">
+      </app-competition-registration-status-manager-smart>
     </div>
   </div>
 </ng-container>

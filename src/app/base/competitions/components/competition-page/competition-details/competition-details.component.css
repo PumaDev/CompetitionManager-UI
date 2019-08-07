@@ -25,6 +25,11 @@
   padding: 20px;
 }
 
+.CompetitionDetails-competitionRegistrationStatusManager {
+  float: right;
+  width: 45%;
+}
+
 .CompetitionDetails-label {
   font-size: 16px;
   color: #4f4f4f;

@@ -11,10 +11,4 @@ export class CompetitionsListComponent {
   @Input() competitions: ICompetition[] = null;
   @Input() canManageRegistrationStatus: boolean = false;
   @Input() canInvitePeople: boolean = false;
-
-  @Output() onSetRegistrationStatus = new EventEmitter<ICompetition>();
-
-  setRegistrationStatus(competition: ICompetition) {
-    this.onSetRegistrationStatus.emit(competition);
-  }
 }
