@@ -26,6 +26,7 @@ export class CompetitionDetailsComponent implements OnInit {
   serverHost: String = appConfig.host;
 
   @Output() generateGridEvent: EventEmitter<number> = new EventEmitter<number>();
+  @Output() deleteCompetition: EventEmitter<number> = new EventEmitter<number>();
 
   public generateGridLink: string;
   private _competition: ICompetition;
@@ -63,5 +64,13 @@ export class CompetitionDetailsComponent implements OnInit {
 
   canManageCompetitionRegistrationStatus(): boolean {
     return this.userRole === UserRole.ADMIN;
-}
+  }
+
+  canShowDeleteButton(): boolean {
+    return this.userRole === UserRole.ADMIN;
+  }
+
+  onDeleteCompetition(): void {
+    this.deleteCompetition.emit(this.competition.id);
+  }
 }

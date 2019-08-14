@@ -43,6 +43,16 @@
         [competition]="competition"
         [canManageRegistrationStatus]="canManageCompetitionRegistrationStatus()">
       </app-competition-registration-status-manager-smart>
+
+      <ng-container>
+        <br>
+        <button *ngIf="canShowDeleteButton()"
+                mat-raised-button
+                (click)="onDeleteCompetition()"
+                color="warn">Удалить
+        </button>
+
+      </ng-container>
     </div>
   </div>
 </ng-container>

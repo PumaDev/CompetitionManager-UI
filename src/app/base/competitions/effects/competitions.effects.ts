@@ -1,6 +1,6 @@
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {ActionWithPayload} from '../../../shared/utils/redux.utils';
+import {ActionWithPayload, createTypedAction} from '../../../shared/utils/redux.utils';
 import {CompetitionsActions, ICompetitionPayload} from '../actions/competitions.actions';
 import {Store} from '@ngrx/store';
 import {State} from '../../../app.reducers';
@@ -10,6 +10,7 @@ import {CompetitionsService} from '../service/competitions.service';
 import {PageRequest} from '../../../shared/general/general.models';
 import {HttpErrorResponse} from '@angular/common/http';
 import {of} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class CompetitionsEffects {
@@ -20,9 +21,12 @@ export class CompetitionsEffects {
   @Effect() loadCompetitionById$;
   @Effect() setRegistrationStatus$;
   @Effect() generateGrid$;
+  @Effect() deleteCompetition$;
+  @Effect() deleteCompetitionSuccess$;
 
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
+              private router: Router,
               private competitionsService: CompetitionsService,
               private competitionsActions: CompetitionsActions) {
 
@@ -65,7 +69,7 @@ export class CompetitionsEffects {
           competition.endDate = (competition.endDate as Date).toLocaleDateString();
           return this.competitionsService.createCompetition(competition)
             .pipe(
-              map((competition) => this.competitionsActions.createCompetitionSuccess())
+              map(() => this.competitionsActions.createCompetitionSuccess())
             );
         }
       )
@@ -120,6 +124,32 @@ export class CompetitionsEffects {
               of(this.competitionsActions.generateGridFaulure(errorResponse.error.errorCode))
             )
           )
+      )
+    );
+
+    this.deleteCompetition$ = this.actions$.pipe(
+      ofType(CompetitionsActions.DELETE_COMPETITION),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competitionId}: { competitionId: number }) =>
+        this.competitionsService.deleteCompetition(competitionId)
+          .pipe(
+            map(() =>
+              this.competitionsActions.deleteCompetitionSuccess()
+            ),
+            catchError((errorResponse: HttpErrorResponse) =>
+              of(this.competitionsActions.deleteCompetitionFaulure(errorResponse.error.errorCode))
+            )
+          )
+      )
+    );
+
+    this.deleteCompetitionSuccess$ = this.actions$.pipe(
+      ofType(CompetitionsActions.DELETE_COMPETITION_SUCCESS),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(() => {
+          this.router.navigateByUrl('/competitions');
+          return of(createTypedAction('NONE', {}));
+        }
       )
     );
   }

@@ -26,6 +26,10 @@ export class CompetitionsActions {
   static GENERATE_GRID_SUCCESS = '[Competition] Generate Grid Success';
   static GENERATE_GRID_FAILURE = '[Competition] Generate Grid Failure';
 
+  static DELETE_COMPETITION = '[Competition] Delete Competition';
+  static DELETE_COMPETITION_SUCCESS = '[Competition] Delete Competition Success';
+  static DELETE_COMPETITION_FAILURE = '[Competition] Delete Competition Failure';
+
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITIONS, {
@@ -107,6 +111,22 @@ export class CompetitionsActions {
 
   generateGridFaulure(errorCode: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.GENERATE_GRID_FAILURE, {
+      errorCode: errorCode
+    });
+  }
+
+  deleteCompetition(competitionId: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.DELETE_COMPETITION, {
+      competitionId: competitionId
+    });
+  }
+
+  deleteCompetitionSuccess(): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.DELETE_COMPETITION_SUCCESS, {});
+  }
+
+  deleteCompetitionFaulure(errorCode: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.DELETE_COMPETITION_FAILURE, {
       errorCode: errorCode
     });
   }

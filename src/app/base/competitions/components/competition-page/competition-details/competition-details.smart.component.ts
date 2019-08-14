@@ -39,4 +39,8 @@ export class CompetitionDetailsSmartComponent implements OnInit {
     this.store.dispatch(this.competitionActions.generateGrid(competitionId));
   }
 
+  deleteCompetition(competitionId: number): void {
+    this.store.dispatch(this.competitionActions.deleteCompetition(competitionId));
+  }
+
 }

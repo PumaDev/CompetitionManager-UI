@@ -3,5 +3,6 @@
   [userRole]="userRole"
   [generatedCompetitionGrid]="generatedCompetitionGrid$ | async"
   [generateGridState]="generateGridState$ | async"
-  (generateGridEvent)="onGenerateGrid($event)">
+  (generateGridEvent)="onGenerateGrid($event)"
+  (deleteCompetition)="deleteCompetition($event)">
 </app-competition-details>

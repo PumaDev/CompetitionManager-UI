@@ -12,6 +12,7 @@ export interface ICompetitionsState {
   loadCount: number;
   generateGridState: ActionState;
   generatedCompetitionGrid: GeneratedCompetitionGrid;
+  deleteCompetitionActionState: ActionState;
 }
 
 export const competitionsInitState: ICompetitionsState = {
@@ -21,7 +22,8 @@ export const competitionsInitState: ICompetitionsState = {
   state: ActionState.INITIAL,
   loadCount: 0,
   generateGridState: ActionState.INITIAL,
-  generatedCompetitionGrid: null
+  generatedCompetitionGrid: null,
+  deleteCompetitionActionState: ActionState.INITIAL
 };
 
 export function competitionsReducer(
@@ -119,6 +121,21 @@ export function competitionsReducer(
       return deepCloneMerge(state, {
         errorCode: action.payload.errorCode,
         generateGridState: ActionState.FAILED
+      });
+
+    case CompetitionsActions.DELETE_COMPETITION:
+      return deepCloneMerge(state, {
+        deleteCompetitionActionState: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.DELETE_COMPETITION_SUCCESS:
+      return deepCloneMerge(state, {
+        deleteCompetitionActionState: ActionState.SUCCEEDED
+      });
+
+    case CompetitionsActions.DELETE_COMPETITION_FAILURE:
+      return deepCloneMerge(state, {
+        deleteCompetitionActionState: ActionState.FAILED
       });
 
     default:
