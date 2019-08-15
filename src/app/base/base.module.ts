@@ -4,11 +4,12 @@ import { WelcomeModule } from './welcome/welcome.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { CompetitionModule } from './competitions/competition.module';
-import { MatTabsModule } from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatInputModule, MatTabsModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanActivateBasePage } from './base.can-activate';
 import { AuthModule } from '../auth/auth.module';
 import { UserModule } from './users/user.module';
+import { DeleteEntityDialog } from './dialogs/delete-dialog/delete-dialog.component';
 
 @NgModule({
   imports: [
@@ -20,13 +21,20 @@ import { UserModule } from './users/user.module';
     AuthModule,
 
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule
   ],
   declarations: [
-    BaseComponent
+    BaseComponent,
+    DeleteEntityDialog
   ],
   providers: [
     CanActivateBasePage
+  ],
+  entryComponents: [
+    DeleteEntityDialog
   ]
 })
 export class BaseModule {

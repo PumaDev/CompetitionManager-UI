@@ -3,8 +3,9 @@ import {GeneratedCompetitionGrid, ICompetition} from '../../../models/competitio
 import {UserRole} from '../../../../../shared/permissions/models/permission.models';
 import {competitionsConfig} from '../../../service/competitions.config';
 import {ActionState} from '../../../../../shared/general/general.models';
-import {DomSanitizer} from '@angular/platform-browser';
 import {appConfig} from '../../../../../app.config';
+import {DialogPosition, MatDialog, MatDialogConfig} from '@angular/material';
+import {DeleteEntityDialog} from '../../../../dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-competition-details',
@@ -35,7 +36,7 @@ export class CompetitionDetailsComponent implements OnInit {
     return this._competition;
   }
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -71,6 +72,20 @@ export class CompetitionDetailsComponent implements OnInit {
   }
 
   onDeleteCompetition(): void {
-    this.deleteCompetition.emit(this.competition.id);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      entityType: 'Соревнования',
+      entityName: this.competition.name
+    };
+
+    const dialogRef = this.dialog.open(DeleteEntityDialog, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((userConfirmedDeleting: boolean) => {
+      console.log('The delete dialog was closed: ' + userConfirmedDeleting);
+      if (userConfirmedDeleting) {
+        this.deleteCompetition.emit(this.competition.id);
+      }
+    });
   }
 }

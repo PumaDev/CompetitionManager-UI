@@ -45,7 +45,6 @@ import {CompetitionPageCategoriesListComponent} from './components/competition-p
 import {CompetitionPageSportsmenSectionComponent} from './components/competition-page/competition-page-sportsmen-section/competition-page-sportsmen-section.component';
 import {CompetitionPageSportsmenSectionSmartComponent} from './components/competition-page/competition-page-sportsmen-section/competition-page-sportsmen-section.smart.component';
 import {competitionServices} from './service';
-import {DeleteSportsmanFromLisModalDialog} from './components/competition-page/competition-page-sportsmen-section/delete-modal/delete-modal.component';
 import {CompetitionPageCategoriesListSmartComponent} from './components/competition-page/competition-page-categories-section/competition-page-categories-list.smart.component';
 import {PaginatorComponent} from './components/competition-page/competition-page-categories-section/paginator/paginator.component';
 import {MalePipe} from './pipes/male.pipe';
@@ -109,7 +108,6 @@ import {CompetitionRegistrationStatusManagerSmartComponent} from './components/c
     // Modals
     AddCategoriesModalSmartComponent,
     CreateCategoryPageSmartComponent,
-    DeleteSportsmanFromLisModalDialog,
 
     // Pipes
     AgeCategoryPipe,
@@ -129,8 +127,7 @@ import {CompetitionRegistrationStatusManagerSmartComponent} from './components/c
   ],
   entryComponents: [
     AddCategoriesModalSmartComponent,
-    CreateCategoryPageSmartComponent,
-    DeleteSportsmanFromLisModalDialog
+    CreateCategoryPageSmartComponent
   ]
 })
 export class CompetitionModule {

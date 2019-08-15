@@ -6,9 +6,9 @@ import {select, Store} from '@ngrx/store';
 import {State} from '../../../../../app.reducers';
 import {getAddSportsmenActionStateSelector} from '../../../reducers/sportsmen.selector';
 import {MatDialog} from '@angular/material';
-import {DeleteSportsmanFromLisModalDialog} from './delete-modal/delete-modal.component';
 import {RegistrationStatus} from '../../../models/competitions.models';
 import {UserRole} from '../../../../../shared/permissions/models/permission.models';
+import {DeleteEntityDialog} from '../../../../dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-competition-page-sportsmen-section',
@@ -114,12 +114,15 @@ export class CompetitionPageSportsmenSectionComponent implements OnInit {
   }
 
   deleteSportsman(sportsman: ISportsman) {
-    const dialogRef = this.dialog.open(DeleteSportsmanFromLisModalDialog, {
-      data: sportsman
+    const dialogRef = this.dialog.open(DeleteEntityDialog, {
+      data: {
+        entityType: 'Участника',
+        entityName: `${sportsman.name} ${sportsman.lastName} из списка участников`
+      }
     });
 
-    dialogRef.afterClosed().subscribe(userWhantToDeleteSportsman => {
-      if (userWhantToDeleteSportsman) {
+    dialogRef.afterClosed().subscribe(userConfirmedDeleting => {
+      if (userConfirmedDeleting) {
         this.onDeleteSportsman.emit(sportsman.id);
       }
     });
