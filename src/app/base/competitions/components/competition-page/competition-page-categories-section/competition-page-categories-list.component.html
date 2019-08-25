@@ -12,7 +12,7 @@
   </mat-card>
   <app-paginator
     [pageState]="pageState"
-    (onNextPage)="nextPage()"
-    (onPreviousPage)="previousPage()">
+    (onNextPage)="onPageNumberChange($event)"
+    (onPreviousPage)="onPageNumberChange($event)">
   </app-paginator>
 </div>

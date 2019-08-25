@@ -46,16 +46,18 @@ import {CompetitionPageSportsmenSectionComponent} from './components/competition
 import {CompetitionPageSportsmenSectionSmartComponent} from './components/competition-page/competition-page-sportsmen-section/competition-page-sportsmen-section.smart.component';
 import {competitionServices} from './service';
 import {CompetitionPageCategoriesListSmartComponent} from './components/competition-page/competition-page-categories-section/competition-page-categories-list.smart.component';
-import {PaginatorComponent} from './components/competition-page/competition-page-categories-section/paginator/paginator.component';
 import {MalePipe} from './pipes/male.pipe';
 import {CompetitionRegistrationStatusManagerComponent} from './components/competition-registration-status-manager/competition-registration-status-manager.component';
 import {CompetitionRegistrationStatusManagerSmartComponent} from './components/competition-registration-status-manager/competition-registration-status-manager.smart.component';
+import {PaginatorModule} from '../../shared/paginator/paginator.module';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
     AuthModule,
+    PaginatorModule,
+
 
     BrowserAnimationsModule,
     MatTabsModule,
@@ -101,7 +103,6 @@ import {CompetitionRegistrationStatusManagerSmartComponent} from './components/c
     CompetitionPageCategoriesListComponent,
     CompetitionPageSportsmenSectionComponent,
     CompetitionPageCategoriesListSmartComponent,
-    PaginatorComponent,
     CompetitionRegistrationStatusManagerComponent,
     CompetitionRegistrationStatusManagerSmartComponent,
 

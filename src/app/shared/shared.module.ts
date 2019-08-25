@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatCardModule, MatGridListModule, MatMenuModule } from '@angular/material';
-import { HeaderMenuComponent } from './menu/components/header-menu/header-menu.component';
-import { FooterComponent } from './footer/components/footer/footer.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatMenuModule} from '@angular/material';
+import {HeaderMenuComponent} from './menu/components/header-menu/header-menu.component';
+import {FooterComponent} from './footer/components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -22,4 +22,5 @@ import { FooterComponent } from './footer/components/footer/footer.component';
     FooterComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

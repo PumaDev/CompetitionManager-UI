@@ -1,40 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-@Component({
-  selector: 'app-paginator',
-  templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.css']
-})
-export class PaginatorComponent implements OnInit {
-
-  @Input() pageState: PageState;
-
-  @Output() onNextPage = new EventEmitter<void>();
-  @Output() onPreviousPage = new EventEmitter<void>();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  nextPage() {
-    this.onNextPage.emit();
-  }
-
-  previousPage() {
-    this.onPreviousPage.emit();
-  }
-
-  isNextPageDisabled(): boolean {
-    return this.pageState.isLastPage();
-  }
-
-  isPreviousPageDisabled(): boolean {
-    return this.pageState.isFirstPage();
-  }
-}
-
+import {PageLoadInfo} from './page-load-info.model';
 
 export class PageState {
   readonly itemsCount: number;
@@ -64,7 +28,7 @@ export class PageState {
 
   previousPage(): PageState {
     if (!this.isFirstPage()) {
-      this.currentPage --;
+      this.currentPage--;
       this.calcDisplayElements();
     }
 
@@ -78,7 +42,7 @@ export class PageState {
 
     this.pagesCount = Math.floor(this.itemsCount / this.pageSize);
     if ((this.itemsCount % this.pageSize) > 0) {
-      this.pagesCount ++;
+      this.pagesCount++;
     }
   }
 
@@ -89,4 +53,11 @@ export class PageState {
   isFirstPage(): boolean {
     return this.currentPage === 1;
   }
+
+  calculatePageLoadInfo(): PageLoadInfo {
+    const offset: number = this.firstDisplayElement - 1;
+
+    return new PageLoadInfo(offset, this.pageSize);
+  }
 }
+

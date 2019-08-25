@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ICompetitionCategory } from '../../../models/category.model';
-import { PageState } from './paginator/paginator.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {ICompetitionCategory} from '../../../models/category.model';
+import {PageState, PageLoadInfo} from '../../../../../shared/paginator/model';
 
 @Component({
   selector: 'app-competition-page-categories-list',
@@ -26,18 +26,13 @@ export class CompetitionPageCategoriesListComponent implements OnInit {
   private _allCategories: ICompetitionCategory[] = [];
   private _categories: ICompetitionCategory[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  nextPage() {
-    this.pageState = this.pageState.nextPage();
-    this._categories = this._allCategories.slice(this.pageState.firstDisplayElement - 1, this.pageState.lastDisplayElement);
-  }
-
-  previousPage() {
-    this.pageState = this.pageState.previousPage();
-    this._categories = this._allCategories.slice(this.pageState.firstDisplayElement - 1, this.pageState.lastDisplayElement);
+  onPageNumberChange(pageLoadInfo: PageLoadInfo) {
+    this._categories = this._allCategories.slice(pageLoadInfo.offset, pageLoadInfo.offset + pageLoadInfo.size);
   }
 }
