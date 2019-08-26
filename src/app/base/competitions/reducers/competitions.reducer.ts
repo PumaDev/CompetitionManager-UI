@@ -2,12 +2,12 @@ import {GeneratedCompetitionGrid, ICompetition} from '../models/competitions.mod
 import {ActionWithPayload, deepCloneMerge} from '../../../shared/utils/redux.utils';
 import {CompetitionsActions} from '../actions';
 import {ICompetitionPayload} from '../actions/competitions.actions';
-import {ActionState} from '../../../shared/general/general.models';
+import {ActionState, createEmptyPageResponse, IPageResponse, PageResponse} from '../../../shared/general/general.models';
 
 export interface ICompetitionsState {
   competition: ICompetition;
-  futureCompetitions: ICompetition[];
-  lastCompetitions: ICompetition[];
+  futureCompetitionsPage: IPageResponse<ICompetition>;
+  lastCompetitionsPage: IPageResponse<ICompetition>;
   state: ActionState;
   loadCount: number;
   generateGridState: ActionState;
@@ -17,8 +17,8 @@ export interface ICompetitionsState {
 
 export const competitionsInitState: ICompetitionsState = {
   competition: null,
-  futureCompetitions: [],
-  lastCompetitions: [],
+  futureCompetitionsPage: createEmptyPageResponse<ICompetition>(),
+  lastCompetitionsPage: createEmptyPageResponse<ICompetition>(),
   state: ActionState.INITIAL,
   loadCount: 0,
   generateGridState: ActionState.INITIAL,
@@ -42,7 +42,7 @@ export function competitionsReducer(
     case CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS:
       loadCount = state.loadCount + 1;
       return deepCloneMerge(state, {
-        futureCompetitions: action.payload.competitions,
+        futureCompetitionsPage: action.payload.competitionsPage,
         loadCount: loadCount,
         state: getNextStatus(loadCount)
       });
@@ -50,7 +50,7 @@ export function competitionsReducer(
     case CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS:
       loadCount = state.loadCount + 1;
       return deepCloneMerge(state, {
-        lastCompetitions: action.payload.competitions,
+        lastCompetitionsPage: action.payload.competitionsPage,
         loadCount: loadCount,
         state: getNextStatus(loadCount)
       });
@@ -95,8 +95,8 @@ export function competitionsReducer(
     case CompetitionsActions.SET_REGISTRATION_STATUS_SUCCESS:
       return deepCloneMerge(state, {
         competition: action.payload.competition,
-        futureCompetitions: updateCompetitionInList(action.payload.competition, state.futureCompetitions),
-        lastCompetitions: updateCompetitionInList(action.payload.competition, state.lastCompetitions),
+        futureCompetitionsPage: updateCompetitionInList(action.payload.competition, state.futureCompetitionsPage),
+        lastCompetitionsPage: updateCompetitionInList(action.payload.competition, state.lastCompetitionsPage),
         state: ActionState.SUCCEEDED
       });
 
@@ -147,14 +147,15 @@ function getNextStatus(loadCount): ActionState {
   return loadCount === 2 ? ActionState.SUCCEEDED : ActionState.IN_PROGRESS;
 }
 
-function updateCompetitionInList(newCompetition: ICompetition, list: ICompetition[]): ICompetition[] {
+function updateCompetitionInList(newCompetition: ICompetition, pageResponse: IPageResponse<ICompetition>): IPageResponse<ICompetition> {
+  const list: ICompetition[] = pageResponse.content;
   const index = list.findIndex((c) => c.id === newCompetition.id);
   if (index >= 0) {
     const newList: ICompetition[] = deepCloneMerge(list);
     newList[index] = newCompetition;
 
-    return newList;
+    return new PageResponse<ICompetition>(newList, pageResponse.totalPages, pageResponse.totalElements);
   } else {
-    return list;
+    return new PageResponse<ICompetition>(list, pageResponse.totalPages, pageResponse.totalElements);
   }
 }

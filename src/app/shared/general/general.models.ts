@@ -7,6 +7,34 @@ export enum ActionState {
   FAILED = 'FAILED'
 }
 
+export interface IPageResponse<T> {
+  content: T[];
+  totalPages: number;
+  totalElements: number;
+}
+
+export class PageResponse<T> implements IPageResponse<T> {
+
+  constructor(content: T[], totalPages: number, totalElements: number) {
+    this.content = content;
+    this.totalPages = totalPages;
+    this.totalElements = totalElements;
+  }
+
+  content: T[];
+  totalPages: number;
+  totalElements: number;
+}
+
+// TODO: take out
+export function createEmptyPageResponse<T>(): IPageResponse<T> {
+  return <IPageResponse<T>> {
+    content: [],
+    totalPages: 0,
+    totalElements: 0
+  };
+}
+
 export interface IPageRequest {
   pageNumber?: number;
   offset?: number;

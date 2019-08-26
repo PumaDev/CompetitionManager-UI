@@ -7,7 +7,7 @@ import {State} from '../../../app.reducers';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
 import {CompetitionsService} from '../service/competitions.service';
-import {PageRequest} from '../../../shared/general/general.models';
+import {IPageResponse, PageRequest} from '../../../shared/general/general.models';
 import {HttpErrorResponse} from '@angular/common/http';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
@@ -39,7 +39,7 @@ export class CompetitionsEffects {
       switchMap(({futureCompetitionsPage}: { futureCompetitionsPage: number }) =>
         this.competitionsService.getFutureCompetitions(new PageRequest(futureCompetitionsPage))
           .pipe(
-            map((futureCompetitions: ICompetition[]) => this.competitionsActions.loadFutureCompetitionsSuccess(futureCompetitions))
+            map((futureCompetitionsPage: IPageResponse<ICompetition>) => this.competitionsActions.loadFutureCompetitionsSuccess(futureCompetitionsPage))
           )
       )
     );
@@ -53,7 +53,7 @@ export class CompetitionsEffects {
       switchMap(({lastCompetitionsPage}: { lastCompetitionsPage: number }) =>
         this.competitionsService.getLastCompetitions(new PageRequest(lastCompetitionsPage))
           .pipe(
-            map((lastCompetitions: ICompetition[]) => this.competitionsActions.loadLastCompetitionsSuccess(lastCompetitions))
+            map((lastCompetitionsPage: IPageResponse<ICompetition>) => this.competitionsActions.loadLastCompetitionsSuccess(lastCompetitionsPage))
           )
       )
     );

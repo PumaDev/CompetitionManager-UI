@@ -3,7 +3,7 @@ import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../mod
 import {HttpClient} from '@angular/common/http';
 import {competitionsConfig} from './competitions.config';
 import {Observable} from 'rxjs';
-import {PageRequest} from '../../../shared/general/general.models';
+import {IPageResponse, PageRequest} from '../../../shared/general/general.models';
 
 @Injectable()
 export class CompetitionsService {
@@ -11,16 +11,16 @@ export class CompetitionsService {
   constructor(private http: HttpClient) {
   }
 
-  getFutureCompetitions(pageRequest: PageRequest): Observable<ICompetition[]> {
+  getFutureCompetitions(pageRequest: PageRequest): Observable<IPageResponse<ICompetition>> {
     const params = pageRequest.buildToHttpParams();
 
-    return this.http.get<ICompetition[]>(competitionsConfig.futureCompetitionsEndpoint, {params: params});
+    return this.http.get<IPageResponse<ICompetition>>(competitionsConfig.futureCompetitionsEndpoint, {params: params});
   }
 
-  getLastCompetitions(pageRequest: PageRequest): Observable<ICompetition[]> {
+  getLastCompetitions(pageRequest: PageRequest): Observable<IPageResponse<ICompetition>> {
     const params = pageRequest.buildToHttpParams();
 
-    return this.http.get<ICompetition[]>(competitionsConfig.lastCompetitionsEndpoint, {params: params});
+    return this.http.get<IPageResponse<ICompetition>>(competitionsConfig.lastCompetitionsEndpoint, {params: params});
   }
 
   createCompetition(competition: ICompetition): Observable<ICompetition> {

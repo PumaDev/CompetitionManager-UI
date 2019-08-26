@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActionWithPayload, createTypedAction} from '../../../shared/utils/redux.utils';
 import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
+import {IPageResponse} from '../../../shared/general/general.models';
 
 @Injectable()
 export class CompetitionsActions {
@@ -38,12 +39,12 @@ export class CompetitionsActions {
     });
   }
 
-  loadFutureCompetitionsSuccess(competitions: ICompetition[]): ActionWithPayload<ICompetitionPayload> {
-    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS, {competitions: competitions});
+  loadFutureCompetitionsSuccess(competitionsPage: IPageResponse<ICompetition>): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS, {competitionsPage: competitionsPage});
   }
 
-  loadLastCompetitionsSuccess(competitions: ICompetition[]): ActionWithPayload<ICompetitionPayload> {
-    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS, {competitions: competitions});
+  loadLastCompetitionsSuccess(competitionsPage: IPageResponse<ICompetition>): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS, {competitionsPage: competitionsPage});
   }
 
   loadCompetitionsFailure(): ActionWithPayload<ICompetitionPayload> {
@@ -138,7 +139,7 @@ export interface ICompetitionPayload {
   futureCompetitionsPage?: number;
   lastCompetitionsPage?: number;
   competition?: any;
-  competitions?: any[];
+  competitionsPage?: IPageResponse<ICompetition>;
   errorCode?: number;
   generatedCompetitionGrid?: GeneratedCompetitionGrid;
 }

@@ -57,7 +57,7 @@ export class PageState {
   calculatePageLoadInfo(): PageLoadInfo {
     const offset: number = this.firstDisplayElement - 1;
 
-    return new PageLoadInfo(offset, this.pageSize);
+    return new PageLoadInfo(offset, this.pageSize, this.currentPage);
   }
 }
 

@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { State } from '../../../../app.reducers';
-import { CompetitionsActions } from '../../actions';
-import { Observable } from 'rxjs';
-import { ICompetition } from '../../models/competitions.models';
-import { select, Store } from '@ngrx/store';
-import { getFutureCompetitionsSelector, getLastCompetitionsSelector } from '../../reducers/competitions.selector';
-import { UserRole } from '../../../../shared/permissions/models/permission.models';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {State} from '../../../../app.reducers';
+import {CompetitionsActions} from '../../actions';
+import {Observable} from 'rxjs';
+import {ICompetition} from '../../models/competitions.models';
+import {select, Store} from '@ngrx/store';
+import {getFutureCompetitionsSelector, getLastCompetitionsSelector} from '../../reducers/competitions.selector';
+import {UserRole} from '../../../../shared/permissions/models/permission.models';
+import {IPageResponse} from '../../../../shared/general/general.models';
+import {PageLoadInfo} from '../../../../shared/paginator/model';
 
 @Component({
   selector: 'app-competitions-page',
@@ -15,12 +17,12 @@ import { UserRole } from '../../../../shared/permissions/models/permission.model
 })
 export class CompetitionsPageComponent implements OnInit {
 
-  futureCompetitions$: Observable<ICompetition[]>;
-  lastCompetitions$: Observable<ICompetition[]>;
+  futureCompetitions$: Observable<IPageResponse<ICompetition>>;
+  lastCompetitions$: Observable<IPageResponse<ICompetition>>;
   canManageRegistrationStatus = false;
 
-  private _futureCompetitionsPage = 0;
-  private _lastCompetitionsPage = 0;
+  _futureCompetitionsPage = 0;
+  _lastCompetitionsPage = 0;
 
   constructor(private store: Store<State>,
               private competitionsActions: CompetitionsActions) {
@@ -37,5 +39,15 @@ export class CompetitionsPageComponent implements OnInit {
 
   private loadCompetitions() {
     this.store.dispatch(this.competitionsActions.loadCompetitions(this._futureCompetitionsPage, this._lastCompetitionsPage));
+  }
+
+  onChangeFutureCompetitionsPage(pageLoadInfo: PageLoadInfo): void {
+    this._futureCompetitionsPage = pageLoadInfo.pageNumber - 1;
+    this.loadCompetitions();
+  }
+
+  onChangeLastCompetitionsPage(pageLoadInfo: PageLoadInfo): void {
+    this._lastCompetitionsPage = pageLoadInfo.pageNumber - 1;
+    this.loadCompetitions();
   }
 }
