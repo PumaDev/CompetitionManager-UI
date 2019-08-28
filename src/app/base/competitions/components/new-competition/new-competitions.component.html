@@ -86,14 +86,13 @@
   </div>
 
   <!-- SUCCESS -->
-  <div *ngIf="isUploadSuccess()">
+  <div *ngIf="isUploadSuccess()" class="Common-successMessage">
     <p>Соревнование сохранено успешно</p>
   </div>
 
   <!-- FAILED -->
-  <div *ngIf="isUploadFailed()">
-    <p>Соревнование сохранено успешно</p>
+  <div *ngIf="isUploadFailed()" class="Common-errorMessage">
+    <p>Упс, произошла неизвестная ошибка. Постучите по голове разработчика :)</p>
   </div>
-
 
 </div>

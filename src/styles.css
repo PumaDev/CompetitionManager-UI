@@ -14,13 +14,24 @@ body {
   padding: 0;
 }
 
-.errorMessage {
+.Common-errorMessage, .Common-successMessage {
   border-radius: 10px;
-  border: #d6292c solid 1px;
+  border: solid 1px;
   text-align: center;
-  background-color: rgba(212, 83, 78, 0.2);
   color: #292929;
   width: max-content;
   margin: auto;
-  padding: 5px;
+  padding: 20px;
+  font-size: 24px;
+  font-style: italic;
+}
+
+.Common-errorMessage {
+  border-color: #d6292c;
+  background-color: rgba(212, 83, 78, 0.2);
+}
+
+.Common-successMessage {
+  border-color: #53a600;
+  background-color: rgba(83, 166, 0, 0.2);
 }

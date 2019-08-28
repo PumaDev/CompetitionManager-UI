@@ -69,7 +69,8 @@ export class CompetitionsEffects {
           competition.endDate = (competition.endDate as Date).toLocaleDateString();
           return this.competitionsService.createCompetition(competition)
             .pipe(
-              map(() => this.competitionsActions.createCompetitionSuccess())
+              map(() => this.competitionsActions.createCompetitionSuccess()),
+              catchError(() => of(this.competitionsActions.createCompetitionFailure()))
             );
         }
       )
