@@ -22,7 +22,8 @@
 .SportsmanSection-registrationIsClose,
 .SportsmenSection-registratedSportsmenSection,
 .SportsmenSection-emptySportsmenList {
- text-align: center;
+  text-align: center;
+  font-size: 24px;
 }
 
 .SportsmanSection-maleInput {
