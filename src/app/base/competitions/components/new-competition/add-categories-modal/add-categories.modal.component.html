@@ -1,8 +1,20 @@
 <div mat-dialog-title>
-  <h3>Select Categories:</h3>
+  <h3>Выберите категории:</h3>
 </div>
 <mat-dialog-content>
-  <div *ngFor="let checkedCategory of allCheckableCategories">
+  <div class="AddCategories-filter">
+    <form [formGroup]="filterFormGroup">
+      <mat-form-field>
+        <input type="text"
+               id="categories-filter"
+               matInput
+               placeholder="Категория"
+               formControlName="filter"
+               (keyup)="filterCompetitions()"/>
+      </mat-form-field>
+    </form>
+  </div>
+  <div *ngFor="let checkedCategory of shownCheckableCategories">
     <mat-checkbox [(ngModel)]="checkedCategory.isChecked">{{checkedCategory.category.displayName}}</mat-checkbox>
   </div>
 </mat-dialog-content>
