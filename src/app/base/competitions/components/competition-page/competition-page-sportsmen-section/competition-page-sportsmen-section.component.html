@@ -85,36 +85,36 @@
 
     <mat-card *ngFor="let sportsman of sportsmen" class="SportsmanSection-sportsmanInfo">
       <mat-grid-list cols="8" rowHeight="25px">
-        <mat-grid-tile colspan="2" rowspan="1">
+        <mat-grid-tile colspan="2" rowspan="2">
           <p>{{sportsman.name}} {{sportsman.lastName}}
           <p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="1" rowspan="2">
           <p>Возраст: {{sportsman.age}}
           <p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="1" rowspan="2">
           <p>Вес: {{sportsman.weight}}</p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="1" rowspan="2">
           <p>Опыт: {{sportsman.experience}}</p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="1" rowspan="2">
           <p>Пол: {{ sportsman.male | malePipe }}</p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="1" rowspan="2">
           <p>Тренер: {{sportsman.coach}}</p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
+        <mat-grid-tile colspan="1" rowspan="2">
           <button mat-raised-button color="warn"
                   (click)="deleteSportsman(sportsman)"
                   class="SportsmanSection-deleteButton">Удалить
           </button>
         </mat-grid-tile>
-        <mat-grid-tile colspan="2" rowspan="1" class="SportsmanSection-clubInfo">
+        <mat-grid-tile colspan="2" rowspan="2" class="SportsmanSection-clubInfo">
           <p>{{sportsman.clubName}}</p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="6" rowspan="1">
+        <mat-grid-tile colspan="6" rowspan="2">
           <p>Катеогрия: {{sportsman.competitionCategory.displayName}}</p>
         </mat-grid-tile>
       </mat-grid-list>
