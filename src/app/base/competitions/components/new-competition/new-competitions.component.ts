@@ -77,4 +77,8 @@ export class NewCompetitionsComponent implements OnInit {
     });
     this.categories = [];
   }
+
+  getDescriptionMarkdown() {
+    return this.createCompetitionForm.value.description;
+  }
 }

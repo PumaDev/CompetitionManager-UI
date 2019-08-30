@@ -38,14 +38,21 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="example-full-width">
-      <textarea id="new-competition-description"
-                formControlName="description"
-                matInput
-                rows="10"
-                placeholder="Описание"
-                [disabled]="isUploadInProgress()"></textarea>
-      </mat-form-field>
+      <mat-tab-group>
+        <mat-tab label="Текст">
+          <mat-form-field class="example-full-width">
+            <textarea id="new-competition-description"
+                      formControlName="description"
+                      matInput
+                      rows="10"
+                      placeholder="Описание"
+                      [disabled]="isUploadInProgress()"></textarea>
+          </mat-form-field>
+        </mat-tab>
+        <mat-tab label="Превью">
+          <markdown [data]="getDescriptionMarkdown()"></markdown>
+        </mat-tab>
+      </mat-tab-group>
     </p>
     <div>
       <p>Категории</p>
