@@ -50,6 +50,7 @@ import {MalePipe} from './pipes/male.pipe';
 import {CompetitionRegistrationStatusManagerComponent} from './components/competition-registration-status-manager/competition-registration-status-manager.component';
 import {CompetitionRegistrationStatusManagerSmartComponent} from './components/competition-registration-status-manager/competition-registration-status-manager.smart.component';
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
+import {MarkdownModule} from 'ngx-markdown';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import {PaginatorModule} from '../../shared/paginator/paginator.module';
     AuthModule,
     PaginatorModule,
 
+    MarkdownModule.forChild(),
 
     BrowserAnimationsModule,
     MatTabsModule,

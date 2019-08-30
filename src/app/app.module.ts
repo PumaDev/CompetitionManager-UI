@@ -15,6 +15,7 @@ import { appEffects } from './app.effects';
 import { appActions } from './app.actions';
 import { CommonModule } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
+import {MarkdownModule} from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,8 @@ import { AuthModule } from './auth/auth.module';
     // ngrx
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(appEffects),
+
+    MarkdownModule.forRoot(),
 
     MatButtonModule,
     MatCheckboxModule,
