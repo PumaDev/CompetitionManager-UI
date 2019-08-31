@@ -10,7 +10,7 @@
       </ng-template>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" class="CompetitionItem-competitionName">
-      <a [href]="'competition/' + competition.id"><p>{{ competition.name }}</p></a>
+      <a routerLink="/competition/{{competition.id}}"><p>{{ competition.name }}</p></a>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" class="CompetitionItem-registrationStatus">
       <mat-chip-list>

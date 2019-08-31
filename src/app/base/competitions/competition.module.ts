@@ -51,6 +51,7 @@ import {CompetitionRegistrationStatusManagerComponent} from './components/compet
 import {CompetitionRegistrationStatusManagerSmartComponent} from './components/competition-registration-status-manager/competition-registration-status-manager.smart.component';
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import {MarkdownModule} from 'ngx-markdown';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -78,7 +79,8 @@ import {MarkdownModule} from 'ngx-markdown';
     FormsModule,
     MatIconModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [

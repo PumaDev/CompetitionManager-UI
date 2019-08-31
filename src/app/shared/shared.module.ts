@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatMenuModule} from '@angular/material';
 import {HeaderMenuComponent} from './menu/components/header-menu/header-menu.component';
 import {FooterComponent} from './footer/components/footer/footer.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import {FooterComponent} from './footer/components/footer/footer.component';
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    RouterModule
   ],
   exports: [
     HeaderMenuComponent,

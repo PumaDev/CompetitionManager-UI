@@ -17,7 +17,7 @@
       <mat-grid-tile colspan="1" rowspan="1"
         *ngIf="canShowMenuItem(menuItem)"
         class="Header-headerMenuItem">
-        <a [href]="menuItem.link">
+        <a routerLink="{{menuItem.link}}" routerLinkActive="active">
           {{menuItem.label}}
         </a>
       </mat-grid-tile>
