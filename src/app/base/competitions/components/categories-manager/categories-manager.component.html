@@ -1,14 +1,14 @@
 <div class="CategoriesManager-HeaderActions">
-    <button mat-raised-button
-            color="primary"
-            (click)="openCreateCategoryModal()"
-            id="add-competition-category-page">Новая категория
-    </button>
+  <button mat-raised-button
+          color="primary"
+          (click)="openCreateCategoryModal()"
+          id="add-competition-category-page">Новая категория
+  </button>
+  <div class="Common-hintMessage">
+    Вы можете создавать свои катеогрии! Любые, какие захотите!
+    И добавлять их к соревнованиям!
+  </div>
 </div>
 <div class="CategoriesManager-CategoriesList">
   <app-categories-list-smart></app-categories-list-smart>
-</div>
-<div class="CategoriesManager-CategoriesFooter">
-  Вы можете создавать свои катеогрии! Любые, какие захотите!
-  И добавлять их к соревнованиям!
 </div>

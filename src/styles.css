@@ -14,7 +14,10 @@ body {
   padding: 0;
 }
 
-.Common-errorMessage, .Common-successMessage {
+.Common-errorMessage,
+.Common-successMessage,
+.Common-infoMessage,
+.Common-hintMessage {
   border-radius: 10px;
   border: solid 1px;
   text-align: center;
@@ -34,4 +37,16 @@ body {
 .Common-successMessage {
   border-color: #53a600;
   background-color: rgba(83, 166, 0, 0.2);
+}
+
+.Common-infoMessage {
+  border-color: rgba(62,38,255,0.94);
+  background-color: rgba(62, 38, 255, 0.2);
+}
+
+.Common-hintMessage {
+  font-size: 14px;
+  padding: 5px;
+  border-color: rgba(62,38,255,0.94);
+  background-color: rgba(62, 38, 255, 0.2);
 }
