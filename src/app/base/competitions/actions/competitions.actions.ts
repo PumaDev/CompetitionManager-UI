@@ -31,6 +31,10 @@ export class CompetitionsActions {
   static DELETE_COMPETITION_SUCCESS = '[Competition] Delete Competition Success';
   static DELETE_COMPETITION_FAILURE = '[Competition] Delete Competition Failure';
 
+  static UPDATE_COMPETITION = '[Competition] Update Competition';
+  static UPDATE_COMPETITION_SUCCESS = '[Competition] Update Competition Success';
+  static UPDATE_COMPETITION_FAILURE = '[Competition] Update Competition Failure';
+
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITIONS, {
@@ -128,6 +132,24 @@ export class CompetitionsActions {
 
   deleteCompetitionFaulure(errorCode: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.DELETE_COMPETITION_FAILURE, {
+      errorCode: errorCode
+    });
+  }
+
+  updateCompetition(competitionForUpdate: ICompetition): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.UPDATE_COMPETITION, {
+      competition: competitionForUpdate
+    });
+  }
+
+  updateCompetitionSuccess(updatedCompetition: ICompetition): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.UPDATE_COMPETITION_SUCCESS, {
+      competition: updatedCompetition
+    });
+  }
+
+  updateCompetitionFailure(errorCode: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.UPDATE_COMPETITION_FAILURE, {
       errorCode: errorCode
     });
   }

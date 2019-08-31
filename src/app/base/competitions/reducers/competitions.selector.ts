@@ -47,3 +47,8 @@ export const getGeneratedCompetitionGridSelector: MemoizedSelector<State, Genera
   competitionsSelector,
   (state: ICompetitionsState) => state.generatedCompetitionGrid
 );
+
+export const getUpdateCompetitionActionState: MemoizedSelector<State, ActionState> = createSelector(
+  competitionsSelector,
+  (state: ICompetitionsState) => state.updateCompetitionActionState
+);

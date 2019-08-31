@@ -6,7 +6,7 @@ import {Store} from '@ngrx/store';
 import {State} from '../../../app.reducers';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
-import {CompetitionsService} from '../service/competitions.service';
+import {CompetitionsService} from '../service';
 import {IPageResponse, PageRequest} from '../../../shared/general/general.models';
 import {HttpErrorResponse} from '@angular/common/http';
 import {of} from 'rxjs';
@@ -23,6 +23,7 @@ export class CompetitionsEffects {
   @Effect() generateGrid$;
   @Effect() deleteCompetition$;
   @Effect() deleteCompetitionSuccess$;
+  @Effect() updateCompetition$;
 
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
@@ -152,6 +153,22 @@ export class CompetitionsEffects {
           return of(createTypedAction('NONE', {}));
         }
       )
+    );
+
+    this.updateCompetition$ = this.actions$.pipe(
+      ofType(CompetitionsActions.UPDATE_COMPETITION),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competition}: { competition: ICompetition }) => {
+        competition.startDate = (competition.startDate as Date).toLocaleDateString();
+        competition.endDate = (competition.endDate as Date).toLocaleDateString();
+        return this.competitionsService.updateCompetition(competition)
+          .pipe(
+            map((updatedCompetition: ICompetition) => this.competitionsActions.updateCompetitionSuccess(updatedCompetition)),
+            catchError((errorResponse: HttpErrorResponse) =>
+              of(this.competitionsActions.updateCompetitionFailure(errorResponse.error.errorCode))
+            )
+          );
+      })
     );
   }
 }

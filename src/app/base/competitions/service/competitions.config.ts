@@ -13,5 +13,6 @@ export const competitionsConfig = {
   deleteSportsman: appConfig.host + 'sportsman/delete/{sportsmanId}',
   sectionsEndpoint: appConfig.host + 'competition-category/sections',
   generateGrid: appConfig.host + 'competition/{competitionId}/grid/generate',
-  deleteCompetition: appConfig.host + 'competition/{competitionId}'
+  deleteCompetition: appConfig.host + 'competition/{competitionId}',
+  updateCompetition:  appConfig.host + 'competition/{competitionId}'
 };

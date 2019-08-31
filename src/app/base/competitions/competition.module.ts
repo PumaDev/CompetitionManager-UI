@@ -17,7 +17,7 @@ import {
   MatInputModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
-  MatSelectModule,
+  MatSelectModule, MatSnackBarModule,
   MatTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -77,7 +77,8 @@ import {MarkdownModule} from 'ngx-markdown';
     MatCheckboxModule,
     FormsModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [

@@ -52,4 +52,10 @@ export class CompetitionsService {
 
     return this.http.delete<boolean>(endpoint);
   }
+
+  updateCompetition(competition: ICompetition): Observable<ICompetition> {
+    const endpoint: string = competitionsConfig.updateCompetition.replace('{competitionId}', competition.id.toString());
+
+    return this.http.put<ICompetition>(endpoint, competition);
+  }
 }

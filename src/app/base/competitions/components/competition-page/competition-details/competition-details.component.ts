@@ -4,8 +4,10 @@ import {UserRole} from '../../../../../shared/permissions/models/permission.mode
 import {competitionsConfig} from '../../../service/competitions.config';
 import {ActionState} from '../../../../../shared/general/general.models';
 import {appConfig} from '../../../../../app.config';
-import {DialogPosition, MatDialog, MatDialogConfig} from '@angular/material';
+import {MatDialog, MatDialogConfig, MatSnackBar} from '@angular/material';
 import {DeleteEntityDialog} from '../../../../dialogs/delete-dialog/delete-dialog.component';
+import {EditableState} from '../../../../../shared/edit/model/edit.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-competition-details',
@@ -17,6 +19,7 @@ export class CompetitionDetailsComponent implements OnInit {
   @Input() set competition(competition: ICompetition) {
     this._competition = competition;
     if (competition !== null && competition !== undefined) {
+      this.createFormGroup();
       this.generateGridLink = competitionsConfig.generateGrid.replace('{competitionId}', this.competition.id.toString());
     }
   }
@@ -24,10 +27,27 @@ export class CompetitionDetailsComponent implements OnInit {
   @Input() userRole: UserRole;
   @Input() generatedCompetitionGrid: GeneratedCompetitionGrid;
   @Input() generateGridState: ActionState;
+  @Input() set updateCompetitionState(updateCompetitionState: ActionState) {
+    if (updateCompetitionState === ActionState.SUCCEEDED) {
+      this.editState = EditableState.VIEW;
+      this._snackBar.open('Соревнование обновлнено успешно', 'OK', {
+        duration: 5 * 1000
+      });
+    }
+    if (updateCompetitionState === ActionState.FAILED) {
+      this._snackBar.open('Произошла ошибка. попробуйте ещё раз', 'OK', {
+        duration: 5 * 1000
+      });
+    }
+  }
   serverHost: String = appConfig.host;
 
   @Output() generateGridEvent: EventEmitter<number> = new EventEmitter<number>();
   @Output() deleteCompetition: EventEmitter<number> = new EventEmitter<number>();
+  @Output() updateCompetition: EventEmitter<ICompetition> = new EventEmitter<ICompetition>();
+
+  editState: EditableState = EditableState.VIEW;
+  updateCompetitionFormGroup: FormGroup;
 
   public generateGridLink: string;
   private _competition: ICompetition;
@@ -36,10 +56,20 @@ export class CompetitionDetailsComponent implements OnInit {
     return this._competition;
   }
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              private _snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
+  }
+
+  createFormGroup(): void {
+    this.updateCompetitionFormGroup = new FormGroup({
+      name: new FormControl(this.competition.name, Validators.required),
+      startDate: new FormControl(this.competition.startDate, Validators.required),
+      endDate: new FormControl(this.competition.endDate, Validators.required),
+      description: new FormControl(this.competition.description)
+    });
   }
 
   showGenerateGridButton(): boolean {
@@ -71,6 +101,11 @@ export class CompetitionDetailsComponent implements OnInit {
     return this.userRole === UserRole.ADMIN;
   }
 
+  canShowEditButton(): boolean {
+    return (this.userRole === UserRole.ADMIN || this.userRole === UserRole.DEVELOPER) &&
+      this.editState !== EditableState.EDIT;
+  }
+
   onDeleteCompetition(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -87,5 +122,29 @@ export class CompetitionDetailsComponent implements OnInit {
         this.deleteCompetition.emit(this.competition.id);
       }
     });
+  }
+
+  updateToEditState(): void {
+    this.editState = EditableState.EDIT;
+  }
+
+  isViewState(): boolean {
+    return this.editState === EditableState.VIEW;
+  }
+
+  isEditState(): boolean {
+    return this.editState === EditableState.EDIT;
+  }
+
+  saveUpdates(): void {
+    const competition: ICompetition = <ICompetition> {};
+    competition.name = this.updateCompetitionFormGroup.value.name;
+    competition.startDate = new Date(this.updateCompetitionFormGroup.value.startDate);
+    competition.endDate = new Date(this.updateCompetitionFormGroup.value.endDate);
+    competition.description = this.updateCompetitionFormGroup.value.description;
+    competition.registrationStatus = this.competition.registrationStatus;
+    competition.id = this.competition.id;
+
+    this.updateCompetition.emit(competition);
   }
 }

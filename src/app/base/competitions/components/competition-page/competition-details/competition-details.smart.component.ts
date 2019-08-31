@@ -5,12 +5,12 @@ import {CompetitionsActions} from '../../../actions';
 import {
   getCompetitionSelector,
   getGeneratedCompetitionGridSelector,
-  getGenerateGridStateSelector
+  getGenerateGridStateSelector, getUpdateCompetitionActionState
 } from '../../../reducers/competitions.selector';
 import {UserRole} from '../../../../../shared/permissions/models/permission.models';
 import {Observable} from 'rxjs';
 import {ActionState} from '../../../../../shared/general/general.models';
-import {GeneratedCompetitionGrid} from '../../../models/competitions.models';
+import {GeneratedCompetitionGrid, ICompetition} from '../../../models/competitions.models';
 
 @Component({
   selector: 'app-competition-details-smart',
@@ -24,6 +24,7 @@ export class CompetitionDetailsSmartComponent implements OnInit {
   userRole: UserRole;
   generatedCompetitionGrid$: Observable<GeneratedCompetitionGrid> = this.store.pipe(select(getGeneratedCompetitionGridSelector));
   generateGridState$: Observable<ActionState> = this.store.pipe(select(getGenerateGridStateSelector));
+  updateCompetitionActionState$: Observable<ActionState> = this.store.pipe(select(getUpdateCompetitionActionState));
 
   constructor(private store: Store<State>,
               private competitionActions: CompetitionsActions
@@ -43,4 +44,7 @@ export class CompetitionDetailsSmartComponent implements OnInit {
     this.store.dispatch(this.competitionActions.deleteCompetition(competitionId));
   }
 
+  updateCompetition(competition: ICompetition): void {
+    this.store.dispatch(this.competitionActions.updateCompetition(competition));
+  }
 }
