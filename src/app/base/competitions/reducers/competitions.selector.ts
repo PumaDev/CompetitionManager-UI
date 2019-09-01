@@ -52,3 +52,9 @@ export const getUpdateCompetitionActionState: MemoizedSelector<State, ActionStat
   competitionsSelector,
   (state: ICompetitionsState) => state.updateCompetitionActionState
 );
+
+export const getCreateCompetitionActionState: MemoizedSelector<State, ActionState> = createSelector(
+  competitionsSelector,
+  (state: ICompetitionsState) => state.createCompetitionState
+);
+

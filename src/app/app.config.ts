@@ -1,3 +1,5 @@
+import {environment} from '../environments/environment';
+
 export const appConfig = {
-  host: 'http://localhost:8080/'
+  host: environment.host
 };

@@ -14,6 +14,7 @@ export class CompetitionsActions {
   static CREATE_COMPETITION = '[Competition] Create Competition';
   static CREATE_COMPETITION_SUCCESS = '[Competition] Create Competition Success';
   static CREATE_COMPETITION_FAILURE = '[Competition] Create Competition Failure';
+  static CLEAR_CREATE_STATE = '[Competition] Clear Create State';
 
   static LOAD_COMPETITION = '[Competition] Load Competition';
   static LOAD_COMPETITION_SUCCESS = '[Competition] Load Competition Success';
@@ -65,6 +66,10 @@ export class CompetitionsActions {
 
   createCompetitionFailure(): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.CREATE_COMPETITION_FAILURE, {});
+  }
+
+  clearCreateState(): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.CLEAR_CREATE_STATE, {});
   }
 
   loadCompetition(competitionId: number): ActionWithPayload<ICompetitionPayload> {

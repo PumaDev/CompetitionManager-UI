@@ -20,6 +20,7 @@ import {interval} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {State} from '../app.reducers';
 import {IAccessToken} from '../shared/permissions/models/permission.models';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {IAccessToken} from '../shared/permissions/models/permission.models';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    RouterModule,
   ],
   exports: [
     LoginComponent
