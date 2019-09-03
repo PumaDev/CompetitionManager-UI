@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuItem, menuItems } from '../../models/menu.model';
-import { Router } from '@angular/router';
-import { UserRole } from '../../../permissions/models/permission.models';
+import {Component, OnInit} from '@angular/core';
+import {MenuItem, menuItems} from '../../models/menu.model';
+import {UserRole} from '../../../permissions/models/permission.models';
+import {AuthActions} from '../../../../auth/actions/auth.actions';
+import {Store} from '@ngrx/store';
+import {State} from '../../../../app.reducers';
 
 @Component({
   selector: 'app-header-menu',
@@ -14,10 +16,13 @@ export class HeaderMenuComponent implements OnInit {
 
   private _currentUserRole: UserRole;
 
-  constructor(private router: Router) { }
+  constructor(
+    private store: Store<State>,
+    private authActions: AuthActions) {
+  }
 
   ngOnInit() {
-    this._currentUserRole = JSON.parse(sessionStorage.getItem('user')).userRole;
+    this._currentUserRole = JSON.parse(localStorage.getItem('user')).userRole;
   }
 
   canShowMenuItem(menuItem: MenuItem): boolean {
@@ -25,9 +30,7 @@ export class HeaderMenuComponent implements OnInit {
   }
 
   exit() {
-    sessionStorage.removeItem('access-token');
-    sessionStorage.removeItem('user');
-    this.router.navigateByUrl('/login');
+    this.store.dispatch(this.authActions.logout());
   }
 
   emptyCols() {

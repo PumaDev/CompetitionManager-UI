@@ -6,8 +6,13 @@ import { UserRole } from '../../shared/permissions/models/permission.models';
 @Injectable()
 export class AdminAndDeveloperCanActivate implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const userRole = JSON.parse(sessionStorage.getItem('user')).userRole;
-    return userRole === UserRole.ADMIN || userRole === UserRole.DEVELOPER;
+    const userJson: string = localStorage.getItem('user');
+    if (userJson) {
+      const userRole = JSON.parse(userJson).userRole;
+      return userRole === UserRole.ADMIN || userRole === UserRole.DEVELOPER;
+    } else {
+      return false;
+    }
   }
 
 }

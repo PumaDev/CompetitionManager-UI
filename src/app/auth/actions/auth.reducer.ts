@@ -20,16 +20,25 @@ export function authReducer(
   action: ActionWithPayload<AuthPayload>
 ): IAuthState {
   switch (action.type) {
+    case AuthActions.LOGOUT:
     case AuthActions.REFRESH_TOKEN:
     case AuthActions.LOGIN:
       return deepCloneMerge(state, {
+        errorCode: 0,
         actionState: ActionState.IN_PROGRESS
       });
 
     case AuthActions.REFRESH_TOKEN_SUCCESS:
     case AuthActions.LOGIN_SUCCESS:
       return deepCloneMerge(state, {
+        errorCode: 0,
         accessTokenWithUser: action.payload.accessTokenWithUser,
+        actionState: ActionState.SUCCEEDED
+      });
+
+    case AuthActions.LOGOUT_SUCCESS:
+      return deepCloneMerge(state, {
+        errorCode: 0,
         actionState: ActionState.SUCCEEDED
       });
 

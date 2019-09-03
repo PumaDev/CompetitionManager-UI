@@ -29,7 +29,7 @@ export class CompetitionsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.canManageRegistrationStatus = JSON.parse(sessionStorage.getItem('user')).userRole as UserRole === UserRole.ADMIN;
+    this.canManageRegistrationStatus = JSON.parse(localStorage.getItem('user')).userRole as UserRole === UserRole.ADMIN;
 
     this.futureCompetitions$ = this.store.pipe(select(getFutureCompetitionsSelector));
     this.lastCompetitions$ = this.store.pipe(select(getLastCompetitionsSelector));

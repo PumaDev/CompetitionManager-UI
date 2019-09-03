@@ -9,19 +9,24 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import {AccessTokenWithUser} from '../access-token.model';
 import {HttpErrorResponse} from '@angular/common/http';
 import {of} from 'rxjs';
-import {IAccessToken} from '../../shared/permissions/models/permission.models';
+import {ActivateStatus, IAccessToken} from '../../shared/permissions/models/permission.models';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
 
   @Effect() login$;
+  @Effect() loginSuccess$;
   @Effect() refreshToken$;
   @Effect() refreshTokenSuccess$;
+  @Effect() logout$;
+  @Effect() logoutSuccess$;
 
   constructor(private store: Store<State>,
               private actions$: Actions<ActionWithPayload<AuthPayload>>,
               private authActions: AuthActions,
-              private loginService: LoginService) {
+              private loginService: LoginService,
+              private router: Router) {
 
     /*************************************************************
      * Login
@@ -37,6 +42,26 @@ export class AuthEffects {
               of(this.authActions.loginFailed(errorResponse.error.errorCode))
             )
           )
+      )
+    );
+
+    /*************************************************************
+     * Login Success
+     ************************************************************/
+    this.loginSuccess$ = this.actions$.pipe(
+      ofType(AuthActions.LOGIN_SUCCESS),
+      map((action: ActionWithPayload<AuthPayload>) => ({...action.payload})),
+      switchMap(({accessTokenWithUser}: { accessTokenWithUser: AccessTokenWithUser }) => {
+          if (accessTokenWithUser.user.activateStatus === ActivateStatus.ACTIVE) {
+            const accessToken: IAccessToken = {token: accessTokenWithUser.token, expiresIn: new Date()};
+            localStorage.setItem('access-token', JSON.stringify(accessToken));
+            localStorage.setItem('user', JSON.stringify(accessTokenWithUser.user));
+
+            this.router.navigateByUrl('/competitions');
+          }
+
+          return of(createTypedAction('NONE', {}));
+        }
       )
     );
 
@@ -67,10 +92,38 @@ export class AuthEffects {
       map((action: ActionWithPayload<AuthPayload>) => ({...action.payload})),
       switchMap(({accessTokenWithUser}: { accessTokenWithUser: AccessTokenWithUser }) => {
           const accessToken: IAccessToken = {token: accessTokenWithUser.token, expiresIn: new Date()};
-          sessionStorage.setItem('access-token', JSON.stringify(accessToken));
+          localStorage.setItem('access-token', JSON.stringify(accessToken));
           return of(createTypedAction('NONE', {}));
         }
       )
+    );
+
+    /*************************************************************
+     * Logout
+     ************************************************************/
+    this.logout$ = this.actions$.pipe(
+      ofType(AuthActions.LOGOUT),
+      switchMap(() => {
+        console.log('Remove access token from storage');
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('user');
+
+        return of(this.authActions.logoutSuccess());
+      })
+    );
+
+    /*************************************************************
+     * Logout
+     ************************************************************/
+    this.logoutSuccess$ = this.actions$.pipe(
+      ofType(AuthActions.LOGOUT_SUCCESS),
+      switchMap(() => {
+        console.log('Navigate to login page');
+
+        this.router.navigateByUrl('/login');
+
+        return of(createTypedAction('NONE', {}));
+      })
     );
   }
 }

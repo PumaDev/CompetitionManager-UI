@@ -13,6 +13,9 @@ export class AuthActions {
   public static readonly REFRESH_TOKEN_SUCCESS = '[Auth Actions] Refresh Token Success';
   public static readonly REFRESH_TOKEN_FAILED = '[Auth Actions] Refresh Token Failed';
 
+  public static readonly LOGOUT = '[Auth Actions] Logout';
+  public static readonly LOGOUT_SUCCESS = '[Auth Actions] Logout Success';
+
   login(login: string, password: string): ActionWithPayload<AuthPayload> {
     return createTypedAction<AuthPayload>(AuthActions.LOGIN, {
       login: login,
@@ -46,6 +49,14 @@ export class AuthActions {
     return createTypedAction<AuthPayload>(AuthActions.REFRESH_TOKEN_FAILED, {
       errorCode: errorCode
     });
+  }
+
+  logout(): ActionWithPayload<AuthPayload> {
+    return createTypedAction<AuthPayload>(AuthActions.LOGOUT, {});
+  }
+
+  logoutSuccess(): ActionWithPayload<AuthPayload> {
+    return createTypedAction<AuthPayload>(AuthActions.LOGOUT_SUCCESS, {});
   }
 }
 

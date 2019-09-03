@@ -6,7 +6,7 @@ import { UserRole } from '../../../shared/permissions/models/permission.models';
 @Injectable()
 export class NewCompetitionCanActivate implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const userRole = JSON.parse(sessionStorage.getItem('user')).userRole;
+    const userRole = JSON.parse(localStorage.getItem('user')).userRole;
     return userRole === UserRole.ADMIN;
   }
 

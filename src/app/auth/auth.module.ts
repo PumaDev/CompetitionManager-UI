@@ -62,7 +62,7 @@ export class AuthModule {
   constructor(private store: Store<State>,
               private authActions: AuthActions) {
     interval(10 * 60 * 1000).subscribe(() => {
-      const jsonAccessToken: string = sessionStorage.getItem('access-token');
+      const jsonAccessToken: string = localStorage.getItem('access-token');
       if (jsonAccessToken) {
         this.store.dispatch(this.authActions.refreshToken());
       }

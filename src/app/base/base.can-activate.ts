@@ -12,7 +12,7 @@ export class CanActivateBasePage implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const accessToken: IAccessToken = JSON.parse(sessionStorage.getItem('access-token'));
+    const accessToken: IAccessToken = JSON.parse(localStorage.getItem('access-token'));
     if (accessToken) {
       return true;
     }

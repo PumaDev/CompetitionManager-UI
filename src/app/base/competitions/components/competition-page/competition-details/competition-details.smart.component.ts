@@ -32,7 +32,7 @@ export class CompetitionDetailsSmartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userRole = JSON.parse(sessionStorage.getItem('user')).userRole;
+    this.userRole = JSON.parse(localStorage.getItem('user')).userRole;
     this.store.dispatch(this.competitionActions.loadCompetition(this.competitionId));
   }
 

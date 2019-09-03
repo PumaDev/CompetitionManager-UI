@@ -40,7 +40,7 @@ export class CompetitionPageSportsmenSectionSmartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userRole = JSON.parse(sessionStorage.getItem('user')).userRole;
+    this.userRole = JSON.parse(localStorage.getItem('user')).userRole;
     this.store.dispatch(this.sportsmanActions.loadSportsmenByCompetition(this.competitionId));
     this.store.dispatch(this.sectionActions.loadSections());
   }

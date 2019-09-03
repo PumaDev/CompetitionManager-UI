@@ -9,7 +9,7 @@ export class CanActivateLoginPage implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const accessToken: string = sessionStorage.getItem('access-token');
+    const accessToken: string = localStorage.getItem('access-token');
     if (!accessToken) {
       return true;
     }

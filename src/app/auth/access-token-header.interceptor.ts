@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 export class AccessTokenHeaderInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const accessToken = JSON.parse(sessionStorage.getItem('access-token'));
+    const accessToken = JSON.parse(localStorage.getItem('access-token'));
     if (accessToken) {
       req = req.clone({headers: req.headers.set('X-Auth-Token', accessToken.token)});
     }

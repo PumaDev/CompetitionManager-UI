@@ -28,9 +28,7 @@ export class LoginComponent implements OnInit {
       if (!accessTokenWithUser) {
         return;
       }
-      if (accessTokenWithUser.user.activateStatus === ActivateStatus.ACTIVE) {
-        this.afterLogin(accessTokenWithUser);
-      } else if (accessTokenWithUser.user.activateStatus === ActivateStatus.WAITING_APPROVE) {
+      if (accessTokenWithUser.user.activateStatus === ActivateStatus.WAITING_APPROVE) {
         this.message = 'Администротор ещё не рассмотрел вашу заявку';
       } else if (accessTokenWithUser.user.activateStatus === ActivateStatus.BANNED) {
         this.message = 'Извините, вы попали в бан-лист';
@@ -55,14 +53,5 @@ export class LoginComponent implements OnInit {
     const password: string = this.loginForm.value.password;
 
     this.store.dispatch(this.authActions.login(login, password));
-  }
-
-  private afterLogin(accessTokenWithUser: AccessTokenWithUser) {
-    const accessToken: IAccessToken = { token: accessTokenWithUser.token, expiresIn: new Date() };
-    const user = accessTokenWithUser.user;
-    sessionStorage.setItem('access-token', JSON.stringify(accessToken));
-    sessionStorage.setItem('user', JSON.stringify(user));
-
-    this.router.navigateByUrl('/competitions');
   }
 }
