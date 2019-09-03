@@ -4,11 +4,6 @@ import { CanActivateBasePage } from '../base.can-activate';
 
 export const welcomeRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'welcome',
-    pathMatch: 'full'
-  },
-  {
     path: 'welcome',
     component: WelcomePageComponent,
     canActivate: [CanActivateBasePage]

@@ -8,6 +8,11 @@ import { CompetitionPageComponent } from './components/competition-page/competit
 
 export const competitionRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'competitions',
+    pathMatch: 'full'
+  },
+  {
     path: 'competitions',
     component: CompetitionsPageComponent
   },

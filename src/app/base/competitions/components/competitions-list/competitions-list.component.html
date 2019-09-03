@@ -1,9 +1,15 @@
 <div class="Competitions-competitionsContainer">
   <!-- Load Competitions -->
-  <div *ngIf="_competitionsPage === null" class="Competitions-competitionsMessage">
-    Load data
-  </div>
+  <div *ngIf="_competitionsPage === null" class="Common-inProgress">
+    <p class="Common-inProgressText">Load data</p>
 
+    <mat-progress-spinner
+      class="Common-inProgressSpinner"
+      color="primary"
+      mode="indeterminate"
+      [value]="25">
+    </mat-progress-spinner>
+  </div>
   <!-- Competitions List is empty -->
   <div *ngIf="_competitionsPage !== null && _competitionsPage.content.length === 0" class="Competitions-competitionsMessage">
     Соревнований нет

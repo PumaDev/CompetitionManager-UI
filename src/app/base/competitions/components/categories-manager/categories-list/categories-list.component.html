@@ -1,12 +1,14 @@
 <div class="CompetitionCategories-container">
   <!-- Categories loading IN_PROGRESS -->
-  <mat-progress-spinner
-    *ngIf="isLoadingInProcess()"
-    class="example-margin"
-    color="primary"
-    mode="indeterminate"
-    [value]="25">
-  </mat-progress-spinner>
+  <div *ngIf="isLoadingInProcess()"
+       class="Common-inProgress">
+    <mat-progress-spinner
+      class="Common-inProgressSpinner"
+      color="primary"
+      mode="indeterminate"
+      [value]="25">
+    </mat-progress-spinner>
+  </div>
 
   <!-- Categories loading SUCCESS -->
   <ng-container *ngIf="wasCategoriesSuccessfullyLoaded()">

@@ -58,10 +58,11 @@
     </div>
 
 
-    <div *ngIf="isRegistrationInProgress()">
-      <p>Идёт создание заявки на регистрацию</p>
+    <div *ngIf="isRegistrationInProgress()"
+          class="Common-inProgress">
+      <p class="Common-inProgressText">Идёт создание заявки на регистрацию</p>
       <mat-progress-spinner
-        class="example-margin"
+        class="Common-inProgressSpinner"
         color="primary"
         mode="indeterminate"
         [value]="25">

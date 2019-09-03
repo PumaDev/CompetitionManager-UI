@@ -26,7 +26,6 @@ body {
   margin: auto;
   padding: 20px;
   font-size: 24px;
-  font-style: italic;
 }
 
 .Common-errorMessage {
@@ -49,4 +48,20 @@ body {
   padding: 5px;
   border-color: rgba(62,38,255,0.94);
   background-color: rgba(62, 38, 255, 0.2);
+}
+
+.Common-inProgress {
+  width: 100%;
+}
+
+.Common-inProgressText {
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+}
+
+.Common-inProgressSpinner {
+  left: 50%;
+  margin-top: 15px;
+  margin-left: -45px;
 }

@@ -81,11 +81,11 @@
   <!-- Messages -->
 
   <!-- IN_PROGRESS -->
-  <div *ngIf="isUploadInProgress()">
-    <p>Соревнование сохраняется</p>
+  <div *ngIf="isUploadInProgress()"
+       class="Common-inProgress">
+    <p class="Common-inProgressText">Соревнование сохраняется</p>
     <mat-progress-spinner
-      *ngIf="isUploadInProgress()"
-      class="example-margin"
+      class="Common-inProgressSpinner"
       color="primary"
       mode="indeterminate"
       [value]="25">
