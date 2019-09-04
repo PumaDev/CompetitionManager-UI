@@ -14,4 +14,11 @@ export interface ICompetitionCategory {
 
   lowerExperience: number;
   upperExperience: number;
+
+  sportsmanMeta: ICompetitionCategoryMeta;
+}
+
+interface ICompetitionCategoryMeta {
+  sportsmanFromCoachClubCount: number;
+  totalSportsmanCount: number;
 }

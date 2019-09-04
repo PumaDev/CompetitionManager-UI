@@ -3,11 +3,13 @@
   <mat-card *ngFor="let category of categories" class="CompetitionCategoriesSection-category">
     <mat-card-header>{{category.displayName}}</mat-card-header>
     <mat-card-content class="CompetitionCategoriesSection-categoryInfo">
-      <p><span class="CompetitionCategoriesSection-label">Раздел:</span>{{ category.section }}</p>
+      <p><span class="CompetitionCategoriesSection-label">Раздел:</span> {{ category.section }}</p>
       <p><span class="CompetitionCategoriesSection-label">Возраст:</span> {{ category | appAgeCategoryPipe }}</p>
       <p><span class="CompetitionCategoriesSection-label">Вес:</span> {{ category | appWeightCategoryFormat }}</p>
       <p><span class="CompetitionCategoriesSection-label">Опыт:</span> {{ category | appExperienceCategoryFormat }}</p>
-      <!-- <p><span class="CompetitionCategoriesSection-label">Пол: </span></p> -->
+      <p><span class="CompetitionCategoriesSection-label">Пол: </span> {{ category.male | malePipe }} </p>
+      <p><span class="CompetitionCategoriesSection-label">Участников:</span> {{ category.sportsmanMeta.totalSportsmanCount }} </p>
+      <p><span class="CompetitionCategoriesSection-label">От клуба:</span> {{ category.sportsmanMeta.sportsmanFromCoachClubCount }} </p>
     </mat-card-content>
   </mat-card>
   <app-paginator
