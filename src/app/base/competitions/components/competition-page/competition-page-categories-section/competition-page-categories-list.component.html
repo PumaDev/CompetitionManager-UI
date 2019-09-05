@@ -1,5 +1,10 @@
 <div class="CompetitionCategoriesSection-container">
   <h4 class="CompetitionCategoriesSection-title">Катеогрии:</h4>
+  <button *ngIf="canShowAddCategoriesButton()"
+          mat-raised-button
+          color="primary"
+          (click)="openAddCategoriesModal()"
+          >Add</button>
   <mat-card *ngFor="let category of categories" class="CompetitionCategoriesSection-category">
     <mat-card-header>{{category.displayName}}</mat-card-header>
     <mat-card-content class="CompetitionCategoriesSection-categoryInfo">

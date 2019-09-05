@@ -58,4 +58,10 @@ export class CompetitionsService {
 
     return this.http.put<ICompetition>(endpoint, competition);
   }
+
+  addCategoriesToCompetition(competitionId: number, categoriesIds: number[]): Observable<ICompetition> {
+    const endpoint: string = competitionsConfig.addCategoriesToCompetition.replace('{competitionId}', competitionId.toString());
+
+    return this.http.put<ICompetition>(endpoint, categoriesIds);
+  }
 }

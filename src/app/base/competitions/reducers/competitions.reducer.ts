@@ -15,6 +15,7 @@ export interface ICompetitionsState {
   generatedCompetitionGrid: GeneratedCompetitionGrid;
   deleteCompetitionActionState: ActionState;
   updateCompetitionActionState: ActionState;
+  addCategoriesActionState: ActionState;
 }
 
 export const competitionsInitState: ICompetitionsState = {
@@ -27,7 +28,8 @@ export const competitionsInitState: ICompetitionsState = {
   generateGridState: ActionState.INITIAL,
   generatedCompetitionGrid: null,
   deleteCompetitionActionState: ActionState.INITIAL,
-  updateCompetitionActionState: ActionState.INITIAL
+  updateCompetitionActionState: ActionState.INITIAL,
+  addCategoriesActionState: ActionState.INITIAL
 };
 
 export function competitionsReducer(
@@ -162,6 +164,24 @@ export function competitionsReducer(
       return deepCloneMerge(state, {
         errorCode: action.payload.errorCode,
         updateCompetitionActionState: ActionState.FAILED
+      });
+
+    case CompetitionsActions.ADD_CATEGORIES:
+      return deepCloneMerge(state, {
+        errorCode: 0,
+        addCategoriesActionState: ActionState.IN_PROGRESS
+      });
+
+    case CompetitionsActions.ADD_CATEGORIES_SUCCESS:
+      return deepCloneMerge(state, {
+        competition: action.payload.competition,
+        addCategoriesActionState: ActionState.SUCCEEDED
+      });
+
+    case CompetitionsActions.ADD_CATEGORIES_FAILURE:
+      return deepCloneMerge(state, {
+        errorCode: action.payload.errorCode,
+        addCategoriesActionState: ActionState.FAILED
       });
 
     default:

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActionWithPayload, createTypedAction} from '../../../shared/utils/redux.utils';
 import {GeneratedCompetitionGrid, ICompetition, RegistrationStatus} from '../models/competitions.models';
 import {IPageResponse} from '../../../shared/general/general.models';
+import {ICompetitionCategory} from '../models/category.model';
 
 @Injectable()
 export class CompetitionsActions {
@@ -36,6 +37,10 @@ export class CompetitionsActions {
   static UPDATE_COMPETITION_SUCCESS = '[Competition] Update Competition Success';
   static UPDATE_COMPETITION_FAILURE = '[Competition] Update Competition Failure';
 
+  static ADD_CATEGORIES = '[Competition] Add Categories';
+  static ADD_CATEGORIES_SUCCESS = '[Competition] Add Categories Success';
+  static ADD_CATEGORIES_FAILURE = '[Competition] Add Categories Failure';
+
   loadCompetitions(futureCompetitionsPage: number,
                    lastCompetitionsPage: number): ActionWithPayload<ICompetitionPayload> {
     return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_COMPETITIONS, {
@@ -45,11 +50,15 @@ export class CompetitionsActions {
   }
 
   loadFutureCompetitionsSuccess(competitionsPage: IPageResponse<ICompetition>): ActionWithPayload<ICompetitionPayload> {
-    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS, {competitionsPage: competitionsPage});
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_FUTURE_COMPETITIONS_SUCCESS, {
+      competitionsPage: competitionsPage
+    });
   }
 
   loadLastCompetitionsSuccess(competitionsPage: IPageResponse<ICompetition>): ActionWithPayload<ICompetitionPayload> {
-    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS, {competitionsPage: competitionsPage});
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.LOAD_LAST_COMPETITIONS_SUCCESS, {
+      competitionsPage: competitionsPage
+    });
   }
 
   loadCompetitionsFailure(): ActionWithPayload<ICompetitionPayload> {
@@ -158,6 +167,26 @@ export class CompetitionsActions {
       errorCode: errorCode
     });
   }
+
+  addCompetitionCategoriesToCompetition(competitionId: number,
+                                        competitionCategories: ICompetitionCategory[]): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.ADD_CATEGORIES, {
+      competitionId: competitionId,
+      competitionCategories: competitionCategories
+    });
+  }
+
+  addCompetitionCategoriesSuccess(competition: ICompetition): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.ADD_CATEGORIES_SUCCESS, {
+      competition: competition
+    });
+  }
+
+  addCompetitionCategoriesFailure(errorCode: number): ActionWithPayload<ICompetitionPayload> {
+    return createTypedAction<ICompetitionPayload>(CompetitionsActions.ADD_CATEGORIES_FAILURE, {
+      errorCode: errorCode
+    });
+  }
 }
 
 export interface ICompetitionPayload {
@@ -169,4 +198,5 @@ export interface ICompetitionPayload {
   competitionsPage?: IPageResponse<ICompetition>;
   errorCode?: number;
   generatedCompetitionGrid?: GeneratedCompetitionGrid;
+  competitionCategories?: ICompetitionCategory[];
 }

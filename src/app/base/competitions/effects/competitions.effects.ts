@@ -11,6 +11,8 @@ import {IPageResponse, PageRequest} from '../../../shared/general/general.models
 import {HttpErrorResponse} from '@angular/common/http';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
+import {ICompetitionCategory} from '../models/category.model';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable()
 export class CompetitionsEffects {
@@ -25,11 +27,16 @@ export class CompetitionsEffects {
   @Effect() deleteCompetitionSuccess$;
   @Effect() updateCompetition$;
 
+  @Effect() addCategoriesToCompetition$;
+  @Effect() addCategoriesToCompetitionSuccess$;
+  @Effect() addCategoriesToCompetitionFailure$;
+
   constructor(private actions$: Actions<ActionWithPayload<ICompetitionPayload>>,
               private store: Store<State>,
               private router: Router,
               private competitionsService: CompetitionsService,
-              private competitionsActions: CompetitionsActions) {
+              private competitionsActions: CompetitionsActions,
+              private _snackBar: MatSnackBar) {
 
     /*****************************************************************************
      * Load Future Competitions
@@ -112,7 +119,7 @@ export class CompetitionsEffects {
 
     /************************************************************************************
      * Generate Grid
-     */
+     ************************************************************************************/
     this.generateGrid$ = this.actions$.pipe(
       ofType(CompetitionsActions.GENERATE_GRID),
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
@@ -129,6 +136,9 @@ export class CompetitionsEffects {
       )
     );
 
+    /************************************************************************************
+     * Delete Competition
+     ************************************************************************************/
     this.deleteCompetition$ = this.actions$.pipe(
       ofType(CompetitionsActions.DELETE_COMPETITION),
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
@@ -145,6 +155,9 @@ export class CompetitionsEffects {
       )
     );
 
+    /************************************************************************************
+     * Delete Competition Success
+     ************************************************************************************/
     this.deleteCompetitionSuccess$ = this.actions$.pipe(
       ofType(CompetitionsActions.DELETE_COMPETITION_SUCCESS),
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
@@ -155,6 +168,9 @@ export class CompetitionsEffects {
       )
     );
 
+    /************************************************************************************
+     * Update Competition
+     ************************************************************************************/
     this.updateCompetition$ = this.actions$.pipe(
       ofType(CompetitionsActions.UPDATE_COMPETITION),
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
@@ -168,6 +184,49 @@ export class CompetitionsEffects {
               of(this.competitionsActions.updateCompetitionFailure(errorResponse.error.errorCode))
             )
           );
+      })
+    );
+
+    /************************************************************************************
+     * Add Categories To Competition
+     ************************************************************************************/
+    this.addCategoriesToCompetition$ = this.actions$.pipe(
+      ofType(CompetitionsActions.ADD_CATEGORIES),
+      map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
+      switchMap(({competitionId, competitionCategories}: { competitionId: number, competitionCategories: ICompetitionCategory[] }) =>
+        this.competitionsService.addCategoriesToCompetition(competitionId, competitionCategories.map(category => category.id))
+          .pipe(
+            map((updatedCompetition: ICompetition) => this.competitionsActions.addCompetitionCategoriesSuccess(updatedCompetition)),
+            catchError((errorResponse: HttpErrorResponse) =>
+              of(this.competitionsActions.addCompetitionCategoriesFailure(errorResponse.error.errorCode))
+            )
+          )
+      )
+    );
+
+    /************************************************************************************
+     * Add Categories To Competition Success
+     ************************************************************************************/
+    this.addCategoriesToCompetitionSuccess$ = this.actions$.pipe(
+      ofType(CompetitionsActions.ADD_CATEGORIES_SUCCESS),
+      switchMap(() => {
+        this._snackBar.open('Категории добавлены', 'OK', {
+          duration: 5 * 1000
+        });
+        return of(createTypedAction('NONE', {}));
+      })
+    );
+
+    /************************************************************************************
+     * Add Categories To Competition Failure
+     ************************************************************************************/
+    this.addCategoriesToCompetitionFailure$ = this.actions$.pipe(
+      ofType(CompetitionsActions.ADD_CATEGORIES_FAILURE),
+      switchMap(() => {
+        this._snackBar.open('При добавлении произошла ошибка', 'OK', {
+          duration: 5 * 1000
+        });
+        return of(createTypedAction('NONE', {}));
       })
     );
   }

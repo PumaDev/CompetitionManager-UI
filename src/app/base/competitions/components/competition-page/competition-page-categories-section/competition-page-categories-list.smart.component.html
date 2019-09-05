@@ -1,3 +1,4 @@
 <app-competition-page-categories-list
-  [categories]="categories$ | async">
+  [categories]="categories$ | async"
+  (addCategories)="addCategoriesToCompetition($event)">
 </app-competition-page-categories-list>
