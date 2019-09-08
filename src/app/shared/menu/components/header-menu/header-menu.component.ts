@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem, menuItems} from '../../models/menu.model';
+import {MenuItem, menuItems, userProfileMenu} from '../../models/menu.model';
 import {UserRole} from '../../../permissions/models/permission.models';
 import {AuthActions} from '../../../../auth/actions/auth.actions';
 import {Store} from '@ngrx/store';
@@ -13,6 +13,7 @@ import {State} from '../../../../app.reducers';
 export class HeaderMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = menuItems;
+  userProfileMenuItems: MenuItem[] = userProfileMenu;
 
   private _currentUserRole: UserRole;
 

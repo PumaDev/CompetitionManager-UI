@@ -1,4 +1,4 @@
-import { UserRole } from '../../../shared/permissions/models/permission.models';
+import {UserRole} from '../../../shared/permissions/models/permission.models';
 
 export interface IUser {
   id: number;
@@ -14,4 +14,9 @@ export enum ActiveStatus {
   WAITING_APPROVE = 'WAITING_APPROVE',
   BLOCKED = 'BLOCKED',
   BANNED = 'BANNED'
+}
+
+export interface IUpdateUserPasswordView {
+  oldPassword: string;
+  newPassword: string;
 }

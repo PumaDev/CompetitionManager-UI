@@ -30,3 +30,11 @@ export const menuItems: MenuItem[] = [
     forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
   }
 ];
+
+export const userProfileMenu: MenuItem[] = [
+  {
+    label: 'Профиль',
+    link: '/profile',
+    forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
+  }
+];

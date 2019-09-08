@@ -1,0 +1,68 @@
+<div>
+  <form *ngIf="updateUserFormGroup"
+        [formGroup]="updateUserFormGroup"
+        class="ProfilePage-form">
+    <p>
+      <mat-form-field>
+        <input id="user-login"
+               formControlName="login"
+               matInput
+               placeholder="Логин">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input id="user-mail"
+               formControlName="mail"
+               matInput
+               placeholder="Почта">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input id="user-club-name"
+               formControlName="clubName"
+               matInput
+               placeholder="Имя клуба">
+      </mat-form-field>
+    </p>
+
+    <button mat-raised-button
+            class="NewCompetition-actionButton"
+            id="new-competition-save-button"
+            color="primary"
+            [disabled]="!updateUserFormGroup.valid"
+            (click)="saveUpdates()">Сохранить изменения
+    </button>
+  </form>
+
+  <form *ngIf="updatePasswordFormGroup"
+        [formGroup]="updatePasswordFormGroup"
+        class="ProfilePage-form">
+    <p>
+      <mat-form-field>
+        <input id="update-password-old-password"
+               formControlName="oldPassword"
+               type="password"
+               matInput
+               placeholder="Старый пароль">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input id="update-password-new-password"
+               formControlName="newPassword"
+               type="password"
+               matInput
+               placeholder="Новый пароль">
+      </mat-form-field>
+    </p>
+    <button mat-raised-button
+            class="NewCompetition-actionButton"
+            id="update-password-save-button"
+            color="primary"
+            [disabled]="!updatePasswordFormGroup.valid"
+            (click)="updatePassword()">Изменить пароль
+    </button>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+.ProfilePage-form {
+  margin: 20px auto;
+  width: 30%;
+  background-color: #f7f9f9;
+  padding: 20px;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+
+mat-form-field,
+input {
+  width: 100%;
+}
+
+.ProfilePage-actionButton {
+  margin: 10px;
+}

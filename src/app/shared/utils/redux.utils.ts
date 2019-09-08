@@ -18,6 +18,7 @@ export function createTypedAction<T>(type, payload?: T): ActionWithPayload<T> {
   return {type, payload};
 }
 
+export const EMPTY_ACTION: Action = createTypedAction('NONE', {});
 
 /**
  * recursively merges the source objects into the destination, creating new references for every object and array;

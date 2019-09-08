@@ -17,6 +17,8 @@ import { AdminAndDeveloperCanActivate } from '../../auth/can-activate/admin-and-
 import { usersServices } from './service';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { UsersListSmartComponent } from './components/users-list/users-list.smart.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { ProfilePageSmartComponent } from './components/profile-page/profile-page.smart.component';
 
 @NgModule({
   imports: [
@@ -49,7 +51,9 @@ import { UsersListSmartComponent } from './components/users-list/users-list.smar
   ],
   declarations: [
     UsersListComponent,
-    UsersListSmartComponent
+    UsersListSmartComponent,
+    ProfilePageComponent,
+    ProfilePageSmartComponent
   ]
 })
 export class UserModule {

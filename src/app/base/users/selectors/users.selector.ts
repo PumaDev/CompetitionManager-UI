@@ -20,3 +20,8 @@ export const getUsersActionStateSelector: MemoizedSelector<State, ActionState> =
   usersSelector,
   (state: IUsersState) => state.state
 );
+
+export const getUserSelector: MemoizedSelector<State, IUser> = createSelector(
+  usersSelector,
+  (state: IUsersState) => state.user
+);

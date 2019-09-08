@@ -1,6 +1,6 @@
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
-import {ActionWithPayload, createTypedAction} from '../../../shared/utils/redux.utils';
+import {ActionWithPayload, createTypedAction, EMPTY_ACTION} from '../../../shared/utils/redux.utils';
 import {CompetitionsActions, ICompetitionPayload} from '../actions/competitions.actions';
 import {Store} from '@ngrx/store';
 import {State} from '../../../app.reducers';
@@ -163,7 +163,7 @@ export class CompetitionsEffects {
       map((action: ActionWithPayload<ICompetitionPayload>) => ({...action.payload})),
       switchMap(() => {
           this.router.navigateByUrl('/competitions');
-          return of(createTypedAction('NONE', {}));
+          return of(EMPTY_ACTION);
         }
       )
     );
@@ -213,7 +213,7 @@ export class CompetitionsEffects {
         this._snackBar.open('Категории добавлены', 'OK', {
           duration: 5 * 1000
         });
-        return of(createTypedAction('NONE', {}));
+        return of(EMPTY_ACTION);
       })
     );
 
@@ -226,7 +226,7 @@ export class CompetitionsEffects {
         this._snackBar.open('При добавлении произошла ошибка', 'OK', {
           duration: 5 * 1000
         });
-        return of(createTypedAction('NONE', {}));
+        return of(EMPTY_ACTION);
       })
     );
   }

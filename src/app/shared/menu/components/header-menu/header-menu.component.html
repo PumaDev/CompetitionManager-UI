@@ -15,8 +15,8 @@
     <ng-container
       *ngFor="let menuItem of menuItems">
       <mat-grid-tile colspan="1" rowspan="1"
-        *ngIf="canShowMenuItem(menuItem)"
-        class="Header-headerMenuItem">
+                     *ngIf="canShowMenuItem(menuItem)"
+                     class="Header-headerMenuItem">
         <a routerLink="{{menuItem.link}}" routerLinkActive="active">
           {{menuItem.label}}
         </a>
@@ -24,7 +24,17 @@
     </ng-container>
     <mat-grid-tile *ngIf="emptyCols() !== 0" [colspan]="emptyCols()" rowspan=""></mat-grid-tile>
     <mat-grid-tile colspan="1" rowspan="1">
-      <button mat-flat-button color="primary" size="small" (click)="exit()">Выход</button>
+      <button mat-flat-button size="small" color="primary" [matMenuTriggerFor]="userProfileMenu">Пользователь</button>
+      <mat-menu #userProfileMenu="matMenu">
+        <ng-container *ngFor="let userProfileMenuItem of userProfileMenuItems">
+          <button *ngIf="canShowMenuItem(userProfileMenuItem)"
+                  mat-menu-item
+                  [routerLink]="userProfileMenuItem.link">
+            {{userProfileMenuItem.label}}
+          </button>
+        </ng-container>
+        <button mat-menu-item (click)="exit()">Выход</button>
+      </mat-menu>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
