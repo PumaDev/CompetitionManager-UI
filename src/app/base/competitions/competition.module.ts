@@ -52,6 +52,8 @@ import {CompetitionRegistrationStatusManagerSmartComponent} from './components/c
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import {MarkdownModule} from 'ngx-markdown';
 import {RouterModule} from '@angular/router';
+import { ArrachmentsSectionComponent } from './components/arrachments-section/arrachments-section.component';
+import {ArrachmentsSectionSmartComponent} from './components/arrachments-section/arrachments-section.smart.component';
 
 @NgModule({
   imports: [
@@ -110,6 +112,8 @@ import {RouterModule} from '@angular/router';
     CompetitionPageCategoriesListSmartComponent,
     CompetitionRegistrationStatusManagerComponent,
     CompetitionRegistrationStatusManagerSmartComponent,
+    ArrachmentsSectionComponent,
+    ArrachmentsSectionSmartComponent,
 
     // Modals
     AddCategoriesModalSmartComponent,
