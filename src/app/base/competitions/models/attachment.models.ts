@@ -1,5 +1,5 @@
-export interface Attachment {
-  attachmentId: number;
+export interface IAttachment {
+  id: number;
   competitionId: number;
   fileName: string;
   name: string;

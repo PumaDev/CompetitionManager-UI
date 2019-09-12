@@ -1,5 +1,12 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { competitionsReducer, ICompetitionsState, ISectionsState, sectionsReducer } from './base/competitions/reducers';
+import {
+  attachmentsReducer,
+  competitionsReducer,
+  IAttachmentsState,
+  ICompetitionsState,
+  ISectionsState,
+  sectionsReducer
+} from './base/competitions/reducers';
 import { authReducer, IAuthState } from './auth/actions/auth.reducer';
 import { competitionCategoriesReducer, ICompetitionCategoriesState } from './base/competitions/reducers';
 import { IRegistrationState, registrationReducer } from './auth/actions/register/registration.reducer';
@@ -14,6 +21,7 @@ export interface State {
   sportsmenReducer: ISportsmenState;
   usersReducer: IUsersState;
   sectionsReducer: ISectionsState;
+  attachmentsReducer: IAttachmentsState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -23,5 +31,6 @@ export const reducers: ActionReducerMap<State> = {
   registrationReducer: registrationReducer,
   sportsmenReducer: sportsmenReducer,
   usersReducer: usersReducer,
-  sectionsReducer: sectionsReducer
+  sectionsReducer: sectionsReducer,
+  attachmentsReducer: attachmentsReducer
 };
