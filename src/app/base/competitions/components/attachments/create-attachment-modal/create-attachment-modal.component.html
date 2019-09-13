@@ -1,0 +1,26 @@
+<div>
+  <div>
+    Добавление нового вложения
+  </div>
+  <mat-card-content>
+    <form [formGroup]="createAttachmentFormGroup">
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="name"
+            id="attachment-name"
+            placeholder="Название">
+        </mat-form-field>
+      </p>
+      <p>
+          <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+          <input hidden #fileInput type="file" id="file" (change)="onSelectFile" /> {{ getChoosedFile() }}
+      </p>
+    </form>
+  </mat-card-content>
+  <mat-dialog-actions class="CreateAttachmentModal-actionsPanel">
+    <button mat-raised-button (click)="close()">Отмена</button>
+    <button mat-raised-button color="primary">Сохранить</button>
+  </mat-dialog-actions>
+</div>

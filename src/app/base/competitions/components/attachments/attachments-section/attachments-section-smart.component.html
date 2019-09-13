@@ -1,0 +1,6 @@
+<app-attachments-section
+  [competitionId]="competitionId"
+  [attachments]="attachments$ | async"
+  [loadAttachmentsActionState]="loadAttachmentsActionState$ | async"
+  (deleteAttachment)="deleteAttachment($event)">
+</app-attachments-section>

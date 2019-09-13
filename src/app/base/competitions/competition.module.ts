@@ -52,8 +52,11 @@ import {CompetitionRegistrationStatusManagerSmartComponent} from './components/c
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import {MarkdownModule} from 'ngx-markdown';
 import {RouterModule} from '@angular/router';
-import { ArrachmentsSectionComponent } from './components/arrachments-section/arrachments-section.component';
-import {ArrachmentsSectionSmartComponent} from './components/arrachments-section/arrachments-section.smart.component';
+import { AttachmentsSectionComponent } from './components/attachments/attachments-section/attachments-section.component';
+import { AttachmentsSectionSmartComponent } from './components/attachments/attachments-section/attachments-section-smart.component';
+import { AttachmentItemComponent } from './components/attachments/attachment-item/attachment-item.component';
+import { CreateAttachmentModalComponent } from './components/attachments/create-attachment-modal/create-attachment-modal.component';
+import {CreateAttachmentModalSmartComponent} from './components/attachments/create-attachment-modal/create-attachment-modal.smart.component';
 
 @NgModule({
   imports: [
@@ -82,7 +85,9 @@ import {ArrachmentsSectionSmartComponent} from './components/arrachments-section
     MatIconModule,
     MatSelectModule,
     MatSnackBarModule,
-    RouterModule
+    RouterModule,
+
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -112,12 +117,15 @@ import {ArrachmentsSectionSmartComponent} from './components/arrachments-section
     CompetitionPageCategoriesListSmartComponent,
     CompetitionRegistrationStatusManagerComponent,
     CompetitionRegistrationStatusManagerSmartComponent,
-    ArrachmentsSectionComponent,
-    ArrachmentsSectionSmartComponent,
+    AttachmentsSectionComponent,
+    AttachmentsSectionSmartComponent,
+    AttachmentItemComponent,
+    CreateAttachmentModalComponent,
 
     // Modals
     AddCategoriesModalSmartComponent,
     CreateCategoryPageSmartComponent,
+    CreateAttachmentModalSmartComponent,
 
     // Pipes
     AgeCategoryPipe,
@@ -137,7 +145,8 @@ import {ArrachmentsSectionSmartComponent} from './components/arrachments-section
   ],
   entryComponents: [
     AddCategoriesModalSmartComponent,
-    CreateCategoryPageSmartComponent
+    CreateCategoryPageSmartComponent,
+    CreateAttachmentModalSmartComponent
   ]
 })
 export class CompetitionModule {

@@ -11,7 +11,7 @@ export class AttachmentsService {
   }
 
   getAttachmentsForCompetition(competitionId: number): Observable<IAttachment[]> {
-    const getAttachmentsForCompetitionEndpoint: string = competitionsConfig.getAttachmentContentEndpoint
+    const getAttachmentsForCompetitionEndpoint: string = competitionsConfig.attachmentsForCompetitionEndpoint
       .replace('{competitionId}', competitionId.toString());
 
     return this.http.get<IAttachment[]>(getAttachmentsForCompetitionEndpoint);
@@ -21,7 +21,11 @@ export class AttachmentsService {
     const createAttachmentEndpoint: string = competitionsConfig.createAttachmentEndpoint
       .replace('{competitionId}', createAttachmentView.competitionId.toString());
 
-    return this.http.post<IAttachment>(createAttachmentEndpoint, createAttachmentView);
+    const formData: FormData = new FormData();
+    formData.append('file', createAttachmentView.file, createAttachmentView.file.name);
+    formData.append('name', createAttachmentView.name);
+
+    return this.http.post<IAttachment>(createAttachmentEndpoint, formData);
   }
 
   deleteAttachmentById(competitionId: number, attachmentId: number): Observable<string> {

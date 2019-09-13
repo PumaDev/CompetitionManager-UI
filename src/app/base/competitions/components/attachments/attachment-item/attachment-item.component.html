@@ -1,0 +1,4 @@
+<mat-card *ngIf="attachment" class="AttachmentItem-container">
+  <mat-card-title>{{attachment.name}}</mat-card-title>
+  <mat-card-content><a [href]="buildAttachmentContentLink()">{{attachment.fileName}}</a></mat-card-content>
+</mat-card>
