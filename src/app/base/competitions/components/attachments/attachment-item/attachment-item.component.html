@@ -1,0 +1,14 @@
+<mat-card *ngIf="attachment" class="AttachmentItem-container">
+  <mat-card-title>
+    {{attachment.name}}
+    <button *ngIf="canDeleteAttachment"
+            mat-icon-button
+            color="warn"
+            (click)="onDeleteAttachment()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content>
+    <a [href]="buildAttachmentContentLink()">{{attachment.fileName}}</a>
+  </mat-card-content>
+</mat-card>

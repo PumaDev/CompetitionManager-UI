@@ -1,0 +1,8 @@
+.AttachmentItem-container {
+  border-radius: 3px;
+  width: max-content;
+  padding: 5px;
+  display: inline-block;
+  margin: 5px;
+  background-color: #f2f1f9;
+}

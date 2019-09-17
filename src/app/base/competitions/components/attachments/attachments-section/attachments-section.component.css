@@ -1,0 +1,14 @@
+.AttachmentsSection-container {
+  background-color: #f4f6f6;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+  padding: 5px;
+
+  width: 75%;
+  height: 25%;
+  float: left;
+}
+
+.AttachmentsSection-attachmentsList {
+  display: inline-block
+}

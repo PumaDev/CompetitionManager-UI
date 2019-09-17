@@ -15,5 +15,11 @@ export const competitionsConfig = {
   generateGrid: appConfig.host + 'competition/{competitionId}/grid/generate',
   deleteCompetition: appConfig.host + 'competition/{competitionId}',
   updateCompetition:  appConfig.host + 'competition/{competitionId}',
-  addCategoriesToCompetition: appConfig.host + '/competitions/{competitionId}/attach-categories'
+  addCategoriesToCompetition: appConfig.host + '/competitions/{competitionId}/attach-categories',
+
+  // Attachments
+  attachmentsForCompetitionEndpoint: appConfig.host + 'v1/competitions/{competitionId}/attachments',
+  createAttachmentEndpoint: appConfig.host + 'v1/competitions/{competitionId}/attachments',
+  deleteAttachmentEndpoint: appConfig.host + 'v1/competitions/{competitionId}/attachments/{attachmentId}',
+  getAttachmentContentEndpoint: appConfig.host + 'v1/competitions/{competitionId}/attachments/{attachmentId}/content',
 };

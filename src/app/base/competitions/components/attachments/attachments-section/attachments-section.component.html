@@ -1,0 +1,16 @@
+<div class="AttachmentsSection-container">
+  <p>
+    Вложения:
+    <button
+      *ngIf="canManageAttachments"
+      mat-raised-button
+      color="primary"
+      (click)="openCreateAttachmentModal()">Добавить</button>
+  </p>
+  <div *ngFor="let attachment of attachments" class="AttachmentsSection-attachmentsList">
+    <app-attachment-item
+      [attachment]="attachment"
+      [canDeleteAttachment]="canManageAttachments"
+      (deleteAttachment)="onDeleteAttachment($event)"></app-attachment-item>
+  </div>
+</div>
