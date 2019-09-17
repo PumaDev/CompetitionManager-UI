@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CreateAttachment} from '../../../models/attachment.models';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-attachment-modal',
@@ -9,18 +9,21 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class CreateAttachmentModalComponent implements OnInit {
 
+  @Input() competitionId;
+
   @Output() createAttachment: EventEmitter<CreateAttachment> = new EventEmitter<CreateAttachment>();
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
 
   createAttachmentFormGroup: FormGroup;
+
+  file: File;
 
   constructor() {
   }
 
   ngOnInit() {
     this.createAttachmentFormGroup = new FormGroup({
-      name: new FormControl(null),
-      file: new FormControl(null)
+      name: new FormControl(null, Validators.required)
     });
   }
 
@@ -28,24 +31,28 @@ export class CreateAttachmentModalComponent implements OnInit {
     this.closeModal.emit();
   }
 
-  getChoosedFile() {
-    const choosedFile: File = this.createAttachmentFormGroup.value.file;
+  onFileChoose() {
+    const fileUploadInput: HTMLInputElement = document.getElementById('fileUpload') as HTMLInputElement;
+    fileUploadInput.onchange = () => {
+      if (fileUploadInput.files.length > 0) {
+        this.file = fileUploadInput.files[0];
+      }
+    };
 
-    return choosedFile ? choosedFile.name : '';
+    fileUploadInput.click();
   }
 
-  onSelectFile(file: File) {
-    // const inputNode: any = document.querySelector('#file');
-    //
-    // if (typeof (FileReader) !== 'undefined') {
-    //   const reader = new FileReader();
-    //
-    //   reader.onload = (e: any) => {
-    //     this.srcResult = e.target.result;
-    //   };
-    //
-    //   reader.readAsArrayBuffer(inputNode.files[0]);
-    // }
-    console.log(file);
+  save() {
+    const newAttachment: CreateAttachment = {
+      name: this.createAttachmentFormGroup.value.name,
+      competitionId: this.competitionId,
+      file: this.file
+    };
+    this.createAttachment.emit(newAttachment);
+    this.close();
+  }
+
+  shouldDisableSaveButton() {
+    return this.file === null || this.file === undefined || !this.createAttachmentFormGroup.valid;
   }
 }

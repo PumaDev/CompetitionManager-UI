@@ -8,3 +8,7 @@
   height: 25%;
   float: left;
 }
+
+.AttachmentsSection-attachmentsList {
+  display: inline-block
+}

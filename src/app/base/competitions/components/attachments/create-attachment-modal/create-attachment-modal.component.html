@@ -14,13 +14,21 @@
         </mat-form-field>
       </p>
       <p>
-          <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-          <input hidden #fileInput type="file" id="file" (change)="onSelectFile" /> {{ getChoosedFile() }}
+            <button mat-button color="warn" (click)="onFileChoose()">
+              <mat-icon>file_upload</mat-icon>
+              Upload
+            </button>
+            <input type="file"
+                   id="fileUpload"
+                   name="fileUpload"
+                   multiple="multiple"
+                   style="display:none;"/>
+            <label *ngIf="file">{{file.name}}</label>
       </p>
     </form>
   </mat-card-content>
   <mat-dialog-actions class="CreateAttachmentModal-actionsPanel">
     <button mat-raised-button (click)="close()">Отмена</button>
-    <button mat-raised-button color="primary">Сохранить</button>
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="shouldDisableSaveButton()">Сохранить</button>
   </mat-dialog-actions>
 </div>

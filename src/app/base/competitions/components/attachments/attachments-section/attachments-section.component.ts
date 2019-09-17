@@ -14,6 +14,7 @@ export class AttachmentsSectionComponent implements OnInit {
   @Input() competitionId: number;
   @Input() attachments: IAttachment[] = [];
   @Input() loadAttachmentsActionState: ActionState;
+  @Input() canManageAttachments: boolean;
 
   @Output() deleteAttachment: EventEmitter<number> = new EventEmitter<number>();
 
@@ -29,5 +30,9 @@ export class AttachmentsSectionComponent implements OnInit {
     dialogConfig.data = {competitionId: this.competitionId};
 
     this.dialog.open(CreateAttachmentModalSmartComponent, dialogConfig);
+  }
+
+  onDeleteAttachment(attachmentId: number) {
+    this.deleteAttachment.emit(attachmentId);
   }
 }

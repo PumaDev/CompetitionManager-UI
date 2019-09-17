@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {IAddCategoriesDialogData} from '../../new-competition/add-categories-modal/add-categories.model';
 import {CreateAttachment} from '../../../models/attachment.models';
 import {Store} from '@ngrx/store';
 import {State} from '../../../../../app.reducers';
@@ -14,7 +13,7 @@ import {AttachmentsActions} from '../../../actions';
 export class CreateAttachmentModalSmartComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateAttachmentModalSmartComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IAddCategoriesDialogData,
+              @Inject(MAT_DIALOG_DATA) public data: ICreateAttachmentDialogData,
               private store: Store<State>,
               private attachmentsActions: AttachmentsActions) {
   }
@@ -29,4 +28,8 @@ export class CreateAttachmentModalSmartComponent implements OnInit {
   createAttachment(createAttachmentView: CreateAttachment) {
     this.store.dispatch(this.attachmentsActions.createAttachment(createAttachmentView));
   }
+}
+
+export interface ICreateAttachmentDialogData {
+  competitionId: number;
 }

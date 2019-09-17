@@ -48,7 +48,7 @@ export class AttachmentsActions {
   }
 
   createAttachmentFailure(errorCode: number): ActionWithPayload<IAttachmentsPayload> {
-    return createTypedAction<IAttachmentsPayload>(AttachmentsActions.LOAD_ATTACHMENTS_FOR_COMPETITION_FAILURE, {
+    return createTypedAction<IAttachmentsPayload>(AttachmentsActions.CREATE_ATTACHMENT_FAILURE, {
       errorCode: errorCode
     });
   }

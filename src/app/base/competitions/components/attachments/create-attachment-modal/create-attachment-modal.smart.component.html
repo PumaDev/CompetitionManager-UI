@@ -1,4 +1,5 @@
 <app-create-attachment-modal
-(createAttachment)="createAttachment($event)"
-(closeModal)="close()">
+  [competitionId]="data.competitionId"
+  (createAttachment)="createAttachment($event)"
+  (closeModal)="close()">
 </app-create-attachment-modal>
