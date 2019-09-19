@@ -12,6 +12,7 @@ import { competitionCategoriesReducer, ICompetitionCategoriesState } from './bas
 import { IRegistrationState, registrationReducer } from './auth/actions/register/registration.reducer';
 import { ISportsmenState, sportsmenReducer } from './base/competitions/reducers/sportsmen.reducer';
 import { IUsersState, usersReducer } from './base/users/reducers/users.reducer';
+import { IMailTemplatesState, mailTemplatesReducer } from './base/mail-templates/reducers/mail-templates.reducer';
 
 export interface State {
   competitionsReducer: ICompetitionsState;
@@ -22,6 +23,7 @@ export interface State {
   usersReducer: IUsersState;
   sectionsReducer: ISectionsState;
   attachmentsReducer: IAttachmentsState;
+  mailTemplatesReducer: IMailTemplatesState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -32,5 +34,6 @@ export const reducers: ActionReducerMap<State> = {
   sportsmenReducer: sportsmenReducer,
   usersReducer: usersReducer,
   sectionsReducer: sectionsReducer,
-  attachmentsReducer: attachmentsReducer
+  attachmentsReducer: attachmentsReducer,
+  mailTemplatesReducer: mailTemplatesReducer
 };

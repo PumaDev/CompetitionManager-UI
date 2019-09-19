@@ -1,4 +1,4 @@
-import { UserRole } from '../../permissions/models/permission.models';
+import {UserRole} from '../../permissions/models/permission.models';
 
 export interface MenuItem {
   label: string;
@@ -27,6 +27,11 @@ export const menuItems: MenuItem[] = [
   {
     label: 'Пользователи',
     link: '/users',
+    forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
+  },
+  {
+    label: 'Почта',
+    link: '/mail-templates',
     forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
   }
 ];
