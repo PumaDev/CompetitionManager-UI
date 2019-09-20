@@ -11,7 +11,7 @@ export const getMailTemplatesSelector: MemoizedSelector<State, IMailTemplate[]> 
   (state: IMailTemplatesState) => state.mailTemplates
 );
 
-export const getMailTemplatesActionStateSelector: MemoizedSelector<State, ActionState> = createSelector(
+export const getLoadMailTemplatesActionStateSelector: MemoizedSelector<State, ActionState> = createSelector(
   mailTemplatesStateSelector,
-  (state: IMailTemplatesState) => state.actionState
+  (state: IMailTemplatesState) => state.loadMailTemplatesActionState
 );

@@ -1,2 +1,4 @@
-<app-mail-templates-page>
+<app-mail-templates-page
+  [mailTemplates]="mailTemplates$ | async"
+  [loadMailTemplatesActionState]="loadMailTemplatesActionState$ | async">
 </app-mail-templates-page>

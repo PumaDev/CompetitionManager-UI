@@ -5,12 +5,14 @@ import {IMailTemplatesPayload, MailTemplatesActions} from '../actions/mail-templ
 
 export interface IMailTemplatesState {
   mailTemplates: IMailTemplate[];
+  loadMailTemplatesActionState: ActionState;
   actionState: ActionState;
   errorCode: number;
 }
 
 const initialMailTemplatesState: IMailTemplatesState = {
   mailTemplates: [],
+  loadMailTemplatesActionState: ActionState.INITIAL,
   actionState: ActionState.INITIAL,
   errorCode: 0
 };
@@ -18,8 +20,13 @@ const initialMailTemplatesState: IMailTemplatesState = {
 export function mailTemplatesReducer(state: IMailTemplatesState = initialMailTemplatesState,
                                      action: ActionWithPayload<IMailTemplatesPayload>): IMailTemplatesState {
   switch (action.type) {
-    case MailTemplatesActions.CREATE_MAIL_TEMPLATE:
+
     case MailTemplatesActions.LOAD_MAIL_TEMPLATES:
+      return deepCloneMerge(state, {
+        loadMailTemplatesActionState: ActionState.IN_PROGRESS
+      });
+
+    case MailTemplatesActions.CREATE_MAIL_TEMPLATE:
     case MailTemplatesActions.UPDATE_MAIL_TEMPLATE:
     case MailTemplatesActions.UPDATE_TEMPLATE_IN_MAIL_TEMPLATE:
     case MailTemplatesActions.DELETE_MAIL_TEMPLATE:
@@ -36,7 +43,7 @@ export function mailTemplatesReducer(state: IMailTemplatesState = initialMailTem
     case MailTemplatesActions.LOAD_MAIL_TEMPLATES_SUCCESS:
       return deepCloneMerge(state, {
         mailTemplates: action.payload.mailTemplates,
-        actionState: ActionState.SUCCEEDED
+        loadMailTemplatesActionState: ActionState.SUCCEEDED
       });
 
     case MailTemplatesActions.UPDATE_MAIL_TEMPLATE_SUCCESS:
@@ -52,8 +59,13 @@ export function mailTemplatesReducer(state: IMailTemplatesState = initialMailTem
         actionState: ActionState.SUCCEEDED
       });
 
-    case MailTemplatesActions.CREATE_MAIL_TEMPLATE_FAILURE:
     case MailTemplatesActions.LOAD_MAIL_TEMPLATES_FAILURE:
+      return deepCloneMerge(state, {
+        errorCode: action.payload.errorCode,
+        loadMailTemplatesActionState: ActionState.FAILED
+      });
+
+    case MailTemplatesActions.CREATE_MAIL_TEMPLATE_FAILURE:
     case MailTemplatesActions.UPDATE_MAIL_TEMPLATE_FAILURE:
     case MailTemplatesActions.UPDATE_TEMPLATE_IN_MAIL_TEMPLATE_FAILURE:
     case MailTemplatesActions.DELETE_MAIL_TEMPLATE_FAILURE:

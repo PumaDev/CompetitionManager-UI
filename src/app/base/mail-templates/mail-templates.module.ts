@@ -4,6 +4,7 @@ import { MailTemplatesPageComponent } from './components/mail-templates-page/mai
 import {MailTemplatesPageSmartComponent} from './components/mail-templates-page/mail-templates-page.smart.component';
 import {MailTemplatesActions} from './actions';
 import {MailTemplatesService} from './services/mail-templates.service';
+import {MatButtonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,11 @@ import {MailTemplatesService} from './services/mail-templates.service';
     MailTemplatesPageSmartComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatChipsModule,
+    MatButtonModule
   ],
   providers: [
     MailTemplatesActions,

@@ -1,3 +1,43 @@
 <div class="MailTemplates-container">
+  <!-- LOAD IN PROGRESS -->
+  <div *ngIf="isLoadMailTemplatesInProgress()"
+       class="Common-inProgressSpinner">
+    <p class="Common-inProgressText">Шаблоны загружаются</p>
+    <mat-progress-spinner
+      class="Common-inProgressSpinner"
+      color="primary"
+      mode="indeterminate"
+      [value]="25">
+    </mat-progress-spinner>
+  </div>
 
+  <!-- LOAD FAILED -->
+  <div *ngIf="isLoadMailTemplatesFailed()"
+       class="Common-errorMessage">
+    При загрузке шаблонов произошла ошибка
+  </div>
+
+  <!-- LOAD SUCCEEDED -->
+  <div *ngIf="isLoadMailTemplatesSucceeded()">
+    <ng-container *ngFor="let mailTemplate of mailTemplates">
+      <mat-card class="MailTemplate-mailTemplateCard">
+        <mat-card-title class="MailTemplate-mailTemplateName">{{mailTemplate.keyName}}</mat-card-title>
+        <mat-card-content>
+          <div [innerHTML]="mailTemplate.template"></div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">Редактировать</button>
+          <button mat-raised-button color="warn">Удалить</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
 </div>
+
+
+<!--
+<mat-card-subtitle>Подстановки:</mat-card-subtitle>
+          <mat-chip-list>
+            <mat-chip *ngFor="let replacement of mailTemplate.mailTemplateReplacements" [selected]="true">{{replacement.key}}</mat-chip>
+          </mat-chip-list>
+-->
