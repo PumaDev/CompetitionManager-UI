@@ -1,0 +1,8 @@
+p, mat-form-field {
+  width: 100%;
+}
+
+.UpdateFullMail-textarea {
+  width: 600px;
+  height: 200px;
+}

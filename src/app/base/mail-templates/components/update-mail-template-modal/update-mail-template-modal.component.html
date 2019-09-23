@@ -1,0 +1,22 @@
+<div matDialogTitle>
+  Изменение шаблона {{mailTemplate.keyName}}
+</div>
+<mat-dialog-content>
+  <ng-container *ngIf="canEditAllMailTemplate()">
+  </ng-container>
+    <app-update-full-mail-template-body
+      [mailTemplate]="mailTemplate"
+      (updateMailTemplate)="onEditTemplate($event)">
+    </app-update-full-mail-template-body>
+  <ng-container *ngIf="!canEditAllMailTemplate()">
+  <app-update-mail-template-only-template-body
+    [mailTemplate]="mailTemplate"
+    (editTemplate)="onEditTemplate($event)">
+  </app-update-mail-template-only-template-body>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onSave()">Сохранить</button>
+  <button mat-raised-button (click)="closeModal()">Отмена</button>
+</mat-dialog-actions>
+

@@ -9,6 +9,7 @@ import {CanActivateBasePage} from './base.can-activate';
 import {AuthModule} from '../auth/auth.module';
 import {UserModule} from './users/user.module';
 import {DeleteEntityDialog} from './dialogs/delete-dialog/delete-dialog.component';
+import {MailTemplatesModule} from './mail-templates/mail-templates.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {DeleteEntityDialog} from './dialogs/delete-dialog/delete-dialog.componen
     RouterModule,
     SharedModule,
     AuthModule,
+    MailTemplatesModule,
 
     BrowserAnimationsModule,
     MatTabsModule,
