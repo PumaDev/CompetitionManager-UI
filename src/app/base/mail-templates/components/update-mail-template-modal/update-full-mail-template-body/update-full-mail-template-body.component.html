@@ -1,0 +1,26 @@
+<form [formGroup]="editMailTemplateFormGroup">
+  <p>
+    <mat-form-field>
+      <label>Подстановки:</label>
+      <textarea id="edit-replacements"
+                formControlName="replacements"
+                matInput
+                class="UpdateFullMail-textarea"
+                (change)="onEdit()">
+        </textarea>
+    </mat-form-field>
+  </p>
+    <mat-tab-group>
+      <mat-tab label="Текст">
+        <label for="edit-template">Template</label><textarea id="edit-template"
+                                                             formControlName="template"
+                                                             matInput
+                                                             class="UpdateFullMail-textarea"
+                                                             (change)="onEdit()">
+        </textarea>
+      </mat-tab>
+      <mat-tab label="Превью">
+        <div [innerHTML]="getCurrentTemplate()"></div>
+      </mat-tab>
+    </mat-tab-group>
+</form>

@@ -1,4 +1,6 @@
 <app-mail-templates-page
   [mailTemplates]="mailTemplates$ | async"
-  [loadMailTemplatesActionState]="loadMailTemplatesActionState$ | async">
+  [loadMailTemplatesActionState]="loadMailTemplatesActionState$ | async"
+  [canCreateAndDeleteMailTemplate]="canDeleteAndCreateMailTemplates"
+  [userRole]="userRole">
 </app-mail-templates-page>

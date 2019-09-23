@@ -1,0 +1,20 @@
+<p>Подстановки</p>
+<mat-chip-list>
+  <mat-chip *ngFor="let replacement of mailTemplate.mailTemplateReplacements"
+            [selected]="true">{{replacement.key}}</mat-chip>
+</mat-chip-list>
+<mat-tab-group>
+  <mat-tab label="Текст">
+    <form [formGroup]="editTemplateFormGroup">
+      <label for="edit-template"></label><textarea id="edit-template"
+                                                   formControlName="template"
+                                                   matInput
+                                                   class="UpdateMail-template"
+                                                    (change)="onEdit()">
+        </textarea>
+    </form>
+  </mat-tab>
+  <mat-tab label="Превью">
+    <div [innerHTML]="getCurrentTemplate()"></div>
+  </mat-tab>
+</mat-tab-group>

@@ -19,6 +19,7 @@
 
   <!-- LOAD SUCCEEDED -->
   <div *ngIf="isLoadMailTemplatesSucceeded()">
+    <button mat-raised-button color="primary" *ngIf="canCreateAndDeleteMailTemplate">Создать</button>
     <ng-container *ngFor="let mailTemplate of mailTemplates">
       <mat-card class="MailTemplate-mailTemplateCard">
         <mat-card-title class="MailTemplate-mailTemplateName">{{mailTemplate.keyName}}</mat-card-title>
@@ -26,18 +27,10 @@
           <div [innerHTML]="mailTemplate.template"></div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary">Редактировать</button>
-          <button mat-raised-button color="warn">Удалить</button>
+          <button mat-raised-button color="primary" (click)="openEditModal(mailTemplate)">Редактировать</button>
+          <button mat-raised-button color="warn" *ngIf="canCreateAndDeleteMailTemplate">Удалить</button>
         </mat-card-actions>
       </mat-card>
     </ng-container>
   </div>
 </div>
-
-
-<!--
-<mat-card-subtitle>Подстановки:</mat-card-subtitle>
-          <mat-chip-list>
-            <mat-chip *ngFor="let replacement of mailTemplate.mailTemplateReplacements" [selected]="true">{{replacement.key}}</mat-chip>
-          </mat-chip-list>
--->

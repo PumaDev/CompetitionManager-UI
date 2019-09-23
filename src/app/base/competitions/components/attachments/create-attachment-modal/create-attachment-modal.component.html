@@ -2,7 +2,7 @@
   <div>
     Добавление нового вложения
   </div>
-  <mat-card-content>
+  <mat-dialog-content>
     <form [formGroup]="createAttachmentFormGroup">
       <p>
         <mat-form-field>
@@ -26,7 +26,7 @@
             <label *ngIf="file">{{file.name}}</label>
       </p>
     </form>
-  </mat-card-content>
+  </mat-dialog-content>
   <mat-dialog-actions class="CreateAttachmentModal-actionsPanel">
     <button mat-raised-button (click)="close()">Отмена</button>
     <button mat-raised-button color="primary" (click)="save()" [disabled]="shouldDisableSaveButton()">Сохранить</button>
