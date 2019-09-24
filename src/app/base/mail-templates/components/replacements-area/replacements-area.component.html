@@ -1,0 +1,9 @@
+<form [formGroup]="mailTemplatesForm">
+  <mat-form-field>
+<textarea id="edit-replacements"
+          formControlName="replacements"
+          matInput
+          (change)="onEdit()">
+        </textarea>
+  </mat-form-field>
+</form>

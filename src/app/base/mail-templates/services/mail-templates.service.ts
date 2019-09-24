@@ -33,7 +33,7 @@ export class MailTemplatesService {
   }
 
   deleteMailTemplate(mailTemplateId: number): Observable<IMailTemplate> {
-    const deleteMailTemplateEndpoint: string = mailTemplatesConfig.endpoints.updateTemplateInMailTemplateEndpoint
+    const deleteMailTemplateEndpoint: string = mailTemplatesConfig.endpoints.deleteMailTemplateEndpoint
       .replace('{mailTemplateId}', mailTemplateId.toString());
 
     return this.http.delete<IMailTemplate>(deleteMailTemplateEndpoint);

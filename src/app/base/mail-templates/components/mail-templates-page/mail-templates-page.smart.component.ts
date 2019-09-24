@@ -31,4 +31,7 @@ export class MailTemplatesPageSmartComponent implements OnInit {
     this.canDeleteAndCreateMailTemplates = this.userRole === UserRole.DEVELOPER;
   }
 
+  deleteMailTemplate(mailTemplate: IMailTemplate): void {
+    this.store.dispatch(this.mailTemplatesActions.deleteMailTemplate(mailTemplate.id));
+  }
 }

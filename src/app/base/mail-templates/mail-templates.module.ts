@@ -19,16 +19,20 @@ import {UpdateMailTemplateModalSmartComponent} from './components/update-mail-te
 import {ReactiveFormsModule} from '@angular/forms';
 import { UpdateMailTemplateOnlyTemplateBodyComponent } from './components/update-mail-template-modal/update-mail-template-only-template-body/update-mail-template-only-template-body.component';
 import { UpdateFullMailTemplateBodyComponent } from './components/update-mail-template-modal/update-full-mail-template-body/update-full-mail-template-body.component';
+import {CreateMailTemplateModalSmartComponent} from './components/create-mail-template-modal/create-mail-template-modal.smart.component';
+import { ReplacementsAreaComponent } from './components/replacements-area/replacements-area.component';
 
 @NgModule({
   declarations: [
     MailTemplatesPageComponent,
     MailTemplatesPageSmartComponent,
     CreateMailTemplateModalComponent,
+    CreateMailTemplateModalSmartComponent,
     UpdateMailTemplateModalComponent,
     UpdateMailTemplateModalSmartComponent,
     UpdateMailTemplateOnlyTemplateBodyComponent,
-    UpdateFullMailTemplateBodyComponent
+    UpdateFullMailTemplateBodyComponent,
+    ReplacementsAreaComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,7 @@ import { UpdateFullMailTemplateBodyComponent } from './components/update-mail-te
   ],
   entryComponents: [
     UpdateMailTemplateModalSmartComponent,
+    CreateMailTemplateModalSmartComponent
   ]
 })
 export class MailTemplatesModule { }

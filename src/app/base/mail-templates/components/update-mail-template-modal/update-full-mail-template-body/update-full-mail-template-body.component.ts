@@ -16,19 +16,21 @@ export class UpdateFullMailTemplateBodyComponent implements OnInit {
 
   editMailTemplateFormGroup: FormGroup;
 
+  changedMailReplacements: IMailTemplateReplacement[];
+
   constructor() {
   }
 
   ngOnInit() {
     this.editMailTemplateFormGroup = new FormGroup({
-      replacements: new FormControl(this.buildViewOfReplacements(this.mailTemplate.mailTemplateReplacements)),
       template: new FormControl(this.mailTemplate.template, Validators.required)
     });
+    this.changedMailReplacements = this.mailTemplate.mailTemplateReplacements;
   }
 
   onEdit() {
     const mailTemplateWithUpdates: IMailTemplate = deepCloneMerge(this.mailTemplate, {
-      mailTemplateReplacements: this.getCurrentReplacements(),
+      mailTemplateReplacements: this.changedMailReplacements,
       template: this.getCurrentTemplate()
     });
 
@@ -39,19 +41,8 @@ export class UpdateFullMailTemplateBodyComponent implements OnInit {
     return this.editMailTemplateFormGroup.value.template;
   }
 
-  getCurrentReplacements(): IMailTemplateReplacement[] {
-    return  this.buildReplacementsFromString(this.editMailTemplateFormGroup.value.replacements);
-  }
-
-  buildViewOfReplacements(replacements: IMailTemplateReplacement[]): string {
-    return replacements.map((replacement) => `${replacement.key}->${replacement.fieldName}\n`).reduce((a, b) => a + b);
-  }
-
-  buildReplacementsFromString(textReplacements: string): IMailTemplateReplacement[] {
-    return textReplacements
-      .split('\n')
-      .map((splitLine) => splitLine.split('->'))
-      .filter((chunk) => chunk.length === 2)
-      .map((chunk) => <IMailTemplateReplacement> {key: chunk[0], fieldName: chunk[1]});
+  updateMailReplacements(changedReplacements: IMailTemplateReplacement[]) {
+    this.changedMailReplacements = changedReplacements;
+    this.onEdit();
   }
 }

@@ -1,3 +1,43 @@
-<p>
-  create-mail-template-modal works!
-</p>
+<div matDialogTitle>
+  Создание шаблона
+</div>
+<mat-dialog-content>
+  <form [formGroup]="createMailTemplateFormGroup">
+    <p>
+      <mat-form-field>
+        <label>Ключ</label>
+        <input id="mail-template-name"
+               matInput
+               formControlName="keyName">
+      </mat-form-field>
+    </p>
+    <p>
+      <label>Подстановки</label>
+      <app-replacements-area
+        class="CreateMailTemplate-replacements"
+        (changedMailReplacements)="onChangeMailReplacements($event)">
+      </app-replacements-area>
+    </p>
+    <p>
+      <label>Шаблон</label>
+      <mat-tab-group>
+        <mat-tab label="Source">
+          <mat-form-field>
+              <textarea class="CreateMailTemplate"
+                        id="new-mail-template-template"
+                        matInput
+                        formControlName="template"></textarea>
+          </mat-form-field>
+        </mat-tab>
+        <mat-tab label="Preview">
+          <div [innerHTML]="getCurrentTemplate()"></div>
+        </mat-tab>
+      </mat-tab-group>
+    </p>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="!createMailTemplateFormGroup.valid">Сохранить
+  </button>
+  <button mat-raised-button (click)="onClose()">Отмена</button>
+</mat-dialog-actions>

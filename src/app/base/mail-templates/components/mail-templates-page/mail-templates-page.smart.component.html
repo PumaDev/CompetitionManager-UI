@@ -2,5 +2,6 @@
   [mailTemplates]="mailTemplates$ | async"
   [loadMailTemplatesActionState]="loadMailTemplatesActionState$ | async"
   [canCreateAndDeleteMailTemplate]="canDeleteAndCreateMailTemplates"
-  [userRole]="userRole">
+  [userRole]="userRole"
+  (deleteMailTemplate)="deleteMailTemplate($event)">
 </app-mail-templates-page>

@@ -1,14 +1,11 @@
 <form [formGroup]="editMailTemplateFormGroup">
   <p>
-    <mat-form-field>
       <label>Подстановки:</label>
-      <textarea id="edit-replacements"
-                formControlName="replacements"
-                matInput
-                class="UpdateFullMail-textarea"
-                (change)="onEdit()">
-        </textarea>
-    </mat-form-field>
+      <app-replacements-area
+        class="UpdateFullMail-textarea"
+        [mailReplacements]="mailTemplate.mailTemplateReplacements"
+        (changedMailReplacements)="updateMailReplacements($event)">
+      </app-replacements-area>
   </p>
     <mat-tab-group>
       <mat-tab label="Текст">
