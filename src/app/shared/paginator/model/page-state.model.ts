@@ -36,7 +36,7 @@ export class PageState {
   }
 
   private calcDisplayElements(): void {
-    this.firstDisplayElement = (this.currentPage - 1) * this.pageSize + 1;
+    this.firstDisplayElement = this.itemsCount === 0 ? 0 : (this.currentPage - 1) * this.pageSize + 1;
     this.lastDisplayElement = this.currentPage * this.pageSize;
     this.lastDisplayElement = this.lastDisplayElement < this.itemsCount ? this.lastDisplayElement : this.itemsCount;
 
