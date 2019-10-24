@@ -35,7 +35,9 @@ export class ReplacementsAreaComponent implements OnInit {
   }
 
   buildViewOfReplacements(replacements: IMailTemplateReplacement[]): string {
-    return replacements.map((replacement) => `${replacement.key}->${replacement.fieldName}\n`).reduce((a, b) => a + b);
+    return replacements.length === 0 ?
+      '' :
+      replacements.map((replacement) => `${replacement.key}->${replacement.fieldName}\n`).reduce((a, b) => a + b);
   }
 
   buildReplacementsFromString(textReplacements: string): IMailTemplateReplacement[] {

@@ -35,6 +35,6 @@ export class HeaderMenuComponent implements OnInit {
   }
 
   emptyCols() {
-    return 7 - 4 - menuItems.filter((item: MenuItem) => this.canShowMenuItem(item)).length;
+    return 7 - 2 - menuItems.filter((item: MenuItem) => this.canShowMenuItem(item)).length;
   }
 }
