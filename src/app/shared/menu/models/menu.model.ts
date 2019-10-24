@@ -40,6 +40,6 @@ export const userProfileMenu: MenuItem[] = [
   {
     label: 'Профиль',
     link: '/profile',
-    forRoles: [UserRole.ADMIN, UserRole.DEVELOPER]
+    forRoles: ALL_ROLES
   }
 ];
