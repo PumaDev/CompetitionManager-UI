@@ -6,7 +6,7 @@ export function formatLowUpperProperties(obj: any, propertyName: string): string
   } else if (!!lower && !upper) {
     return `${lower}+`
   } else if (!lower && !!upper) {
-    return `+${upper}`
+    return `-${upper}`
   } else {
     return '';
   }

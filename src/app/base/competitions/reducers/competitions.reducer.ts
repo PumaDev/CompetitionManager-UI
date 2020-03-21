@@ -84,6 +84,7 @@ export function competitionsReducer(
 
     case CompetitionsActions.LOAD_COMPETITION:
       return deepCloneMerge(state, {
+        competition: null,
         state: ActionState.IN_PROGRESS
       });
 
