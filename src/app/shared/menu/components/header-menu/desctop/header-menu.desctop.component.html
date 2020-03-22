@@ -1,0 +1,35 @@
+<div class="Header">
+  <mat-grid-list cols="7" rowHeight="60px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="Header-headerLogo">
+        <a href="/">
+          <img src="/assets/images/mke-logo.png" alt="Competition Manager" height="50px" width="80px">
+        </a>
+      </div>
+    </mat-grid-tile>
+    <ng-container
+      *ngFor="let menuItem of menuItems">
+      <mat-grid-tile colspan="1" rowspan="1"
+                     *ngIf="canShowMenuItem(menuItem)"
+                     class="Header-headerMenuItem">
+        <a routerLink="{{menuItem.link}}" routerLinkActive="active">
+          {{menuItem.label}}
+        </a>
+      </mat-grid-tile>
+    </ng-container>
+    <mat-grid-tile *ngIf="emptyCols() !== 0" [colspan]="emptyCols()" rowspan=""></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-flat-button size="small" color="primary" [matMenuTriggerFor]="userProfileMenu">Пользователь</button>
+      <mat-menu #userProfileMenu="matMenu">
+        <ng-container *ngFor="let userProfileMenuItem of userProfileMenuItems">
+          <button *ngIf="canShowMenuItem(userProfileMenuItem)"
+                  mat-menu-item
+                  [routerLink]="userProfileMenuItem.link">
+            {{userProfileMenuItem.label}}
+          </button>
+        </ng-container>
+        <button mat-menu-item (click)="exit()">Выход</button>
+      </mat-menu>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
