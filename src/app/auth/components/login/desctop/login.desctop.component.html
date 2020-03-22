@@ -1,0 +1,56 @@
+<div class="Login-background"></div>
+
+<div class="Login-background">
+  <div class="Login-container">
+    <div>
+      <p class="Login-message">Вход в систему</p>
+    </div>
+    <div *ngIf="errorCode === 10" class="Common-errorMessage">
+      <p>Логин или пароль введены неверно. Повторите попытку</p>
+    </div>
+    <div *ngIf="errorCode === 21" class="Common-errorMessage">
+      <p>Ваш пользователь забанинин. Обратитесь к админу</p>
+    </div>
+    <div *ngIf="errorCode === 22" class="Common-errorMessage">
+      <p>Администротор ещё не рассмотрел вашу заявк</p>
+    </div>
+    <div *ngIf="errorCode === 23" class="Common-errorMessage">
+      <p>Администротор отклонил вашу заявку на регистрацию</p>
+    </div>
+    <form [formGroup]="loginForm">
+      <div>
+        <mat-form-field>
+          <input id="login"
+                 type="text"
+                 matInput
+                 formControlName="login"
+                 placeholder="Логин"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input id="password"
+                 type="password"
+                 matInput
+                 formControlName="password"
+                 placeholder="Пароль"/>
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button id="sign-in-button"
+              class="Login-button"
+              mat-raised-button
+              [disabled]="!loginForm.valid"
+              color="primary"
+              (click)="login()">Вход
+      </button>
+      <a routerLink="/registration"
+         class="Login-button">
+        <button id="link-to-registrate-button"
+                mat-button>Регистрация
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

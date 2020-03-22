@@ -30,4 +30,8 @@ export class RegisterSmartComponent {
   createUser(newUser: ICreateUserView) {
     this.store.dispatch(this.registrationActions.createUser(newUser));
   }
+
+  isMobile(): boolean {
+    return isMobileVersion();
+  }
 }

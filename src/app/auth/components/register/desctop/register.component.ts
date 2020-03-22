@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ICreateUserView } from '../../model/registration.models';
-import { IUser } from '../../../shared/permissions/models/permission.models';
-import { ActionState } from '../../../shared/general/general.models';
+import { ICreateUserView } from '../../../model/registration.models';
+import { IUser } from '../../../../shared/permissions/models/permission.models';
+import { ActionState } from '../../../../shared/general/general.models';
 
 @Component({
   selector: 'app-register',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterComponent } from '../register.component';
+import { RegisterComponent } from '../desctop/register.component';
 
 @Component({
     selector: 'app-register-mobile',
-    templateUrl: '../register.component.html',
-    styleUrls: ['./register.mobile.component.css', '../register.component.css']
+    templateUrl: '../desctop/register.component.html',
+    styleUrls: ['./register.mobile.component.css', '../desctop/register.component.css']
 })
 export class RegisterMobileComponent extends RegisterComponent {
 }

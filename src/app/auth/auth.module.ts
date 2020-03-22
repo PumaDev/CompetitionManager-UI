@@ -12,18 +12,17 @@ import { AuthEffects } from './actions/auth.effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccessTokenHeaderInterceptor } from './access-token-header.interceptor';
 import { AdminAndDeveloperCanActivate } from './can-activate/admin-and-developer.can-activate';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/register/desctop/register.component';
 import { RegistrationActions } from './actions/register/registration.actions';
 import { RegistrationEffects } from './actions/register/registration.effects';
 import { RegisterSmartComponent } from './components/register/register.smart.component';
 import {interval} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {State} from '../app.reducers';
-import {IAccessToken} from '../shared/permissions/models/permission.models';
 import {RouterModule} from '@angular/router';
-import { LoginMobileComponent } from './components/login/login.mobile.component';
-import { RegisterMobileSmartComponent } from './components/register/mobile/register.mobile.smart.component';
+import { LoginMobileComponent } from './components/login/mobile/login.mobile.component';
 import { RegisterMobileComponent } from './components/register/mobile/register.mobile.component';
+import { LoginDesctopComponent } from './components/login/desctop/login.desctop.component';
 
 @NgModule({
   imports: [
@@ -43,9 +42,9 @@ import { RegisterMobileComponent } from './components/register/mobile/register.m
   declarations: [
     LoginComponent,
     LoginMobileComponent,
+    LoginDesctopComponent,
     RegisterComponent,
     RegisterSmartComponent,
-    RegisterMobileSmartComponent,
     RegisterMobileComponent
   ],
   providers: [

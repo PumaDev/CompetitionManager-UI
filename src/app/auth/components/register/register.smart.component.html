@@ -1,6 +1,12 @@
-<app-register
+<app-register *ngIf="!isMobile()"
   [createdUser]="createdUser$ | async"
   [userCreationState]="userCreationState$ | async"
   [error]="userCreationError$ | async"
   (onCreateUser)="createUser($event)">
 </app-register>
+<app-register-mobile *ngIf="isMobile()"
+[createdUser]="createdUser$ | async"
+  [userCreationState]="userCreationState$ | async"
+  [error]="userCreationError$ | async"
+  (onCreateUser)="createUser($event)">>
+</app-register-mobile>
