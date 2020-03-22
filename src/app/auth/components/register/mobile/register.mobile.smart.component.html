@@ -1,0 +1,6 @@
+<app-register-mobile
+  [createdUser]="createdUser$ | async"
+  [userCreationState]="userCreationState$ | async"
+  [error]="userCreationError$ | async"
+  (onCreateUser)="createUser($event)">
+</app-register-mobile>

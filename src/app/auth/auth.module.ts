@@ -21,6 +21,9 @@ import {Store} from '@ngrx/store';
 import {State} from '../app.reducers';
 import {IAccessToken} from '../shared/permissions/models/permission.models';
 import {RouterModule} from '@angular/router';
+import { LoginMobileComponent } from './components/login/login.mobile.component';
+import { RegisterMobileSmartComponent } from './components/register/mobile/register.mobile.smart.component';
+import { RegisterMobileComponent } from './components/register/mobile/register.mobile.component';
 
 @NgModule({
   imports: [
@@ -39,8 +42,11 @@ import {RouterModule} from '@angular/router';
   ],
   declarations: [
     LoginComponent,
+    LoginMobileComponent,
     RegisterComponent,
-    RegisterSmartComponent
+    RegisterSmartComponent,
+    RegisterMobileSmartComponent,
+    RegisterMobileComponent
   ],
   providers: [
     AuthService,

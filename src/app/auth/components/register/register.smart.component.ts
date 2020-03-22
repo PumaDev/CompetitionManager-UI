@@ -11,6 +11,7 @@ import {
 } from '../../actions/register/registrate.selector';
 import { ActionState } from '../../../shared/general/general.models';
 import { ICreateUserView } from '../../model/registration.models';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-register-smart',
