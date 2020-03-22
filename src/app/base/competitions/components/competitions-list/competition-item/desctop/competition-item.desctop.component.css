@@ -11,6 +11,9 @@
 
 .CompetitionItem-competitionName {
   font-size: 28px;
+  padding: 10px;
+  line-height: 1em;
+  height: max-content;
 }
 
 a {

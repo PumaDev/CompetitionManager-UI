@@ -1,0 +1,22 @@
+.CompetitionItem-container div {
+  display: inline-block;
+  margin: 0 5px;
+  text-align: center;
+  color: #434441;
+}
+
+.CompetitionItem-competitionDates {
+  font-size: 20px;
+ }
+
+.CompetitionItem-competitionName {
+  font-size: 28px;
+  padding: 10px;
+  line-height: 0.9em;
+  height: max-content;
+}
+
+a {
+  color: #434441;
+  text-decoration: none;
+}

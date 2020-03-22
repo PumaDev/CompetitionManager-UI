@@ -57,6 +57,8 @@ import { AttachmentsSectionSmartComponent } from './components/attachments/attac
 import { AttachmentItemComponent } from './components/attachments/attachment-item/attachment-item.component';
 import { CreateAttachmentModalComponent } from './components/attachments/create-attachment-modal/create-attachment-modal.component';
 import {CreateAttachmentModalSmartComponent} from './components/attachments/create-attachment-modal/create-attachment-modal.smart.component';
+import { CompetitionItemDesctopComponent } from './components/competitions-list/competition-item/desctop/competition-item.desctop.component';
+import { CompetitionItemMobileComponent } from './components/competitions-list/competition-item/mobile/competition-item.mobile.component';
 
 @NgModule({
   imports: [
@@ -99,6 +101,8 @@ import {CreateAttachmentModalSmartComponent} from './components/attachments/crea
     // Components
     CompetitionsListComponent,
     CompetitionItemComponent,
+    CompetitionItemDesctopComponent,
+    CompetitionItemMobileComponent,
     CompetitionsPageComponent,
     NewCompetitionsComponent,
     NewCompetitionSmartComponent,

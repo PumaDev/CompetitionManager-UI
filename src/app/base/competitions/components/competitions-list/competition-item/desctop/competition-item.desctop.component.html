@@ -1,0 +1,48 @@
+<mat-card class="CompetitionItem-container">
+  <!-- Dates -->
+  <mat-grid-list cols="12">
+    <mat-grid-tile [colspan]="1" class="CompetitionItem-competitionDates">
+      <ng-container *ngIf="isOneDateCompetition(); else severalDaysCompetition">
+        <p>{{competition.startDate}}</p>
+      </ng-container>
+      <ng-template #severalDaysCompetition>
+        <p>{{competition.startDate}} - {{competition.endDate}}</p>
+      </ng-template>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" class="CompetitionItem-competitionName">
+      <a routerLink="/competition/{{competition.id}}"><p>{{ competition.name }}</p></a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" class="CompetitionItem-registrationStatus">
+      <mat-chip-list>
+        <ng-container *ngIf="isRegistrationOpen(); else closedRegistration">
+          <mat-chip color="primary" [selected]="true">Регистрация открыта</mat-chip>
+        </ng-container>
+        <ng-template #closedRegistration>
+          <mat-chip color="warn" [selected]="true">Регистрация закрыта</mat-chip>
+        </ng-template>
+      </mat-chip-list>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+      <app-competition-registration-status-manager-smart
+        [competition]="competition"
+        [canManageRegistrationStatus]="canManageRegistrationStatus">
+      </app-competition-registration-status-manager-smart>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalInfo">
+      <ul>
+        <li>Всего категорий: {{competition.competitionMeta.totalCategoriesSize}}</li>
+        <li *ngIf="competition.competitionMeta.minAgeCategory !== null">Минимальный
+          возраст: {{competition.competitionMeta.minAgeCategory}}</li>
+        <li *ngIf="competition.competitionMeta.maxAgeCategory !== null">Максимальный
+          возраст: {{competition.competitionMeta.maxAgeCategory}}</li>
+      </ul>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" class="CompetitionItem-additionalClubInfo">
+      <ul>
+        <li>Участников: {{competition.competitionMeta.totalSportsmenCount}}</li>
+        <li *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount !== null">Вашего
+          клуба: {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}</li>
+      </ul>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
