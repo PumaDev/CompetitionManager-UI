@@ -1,4 +1,4 @@
-<app-competition-details
+<app-competition-details *ngIf="!isMobile()"
   [competition]="competition$ | async"
   [userRole]="userRole"
   [generatedCompetitionGrid]="generatedCompetitionGrid$ | async"
@@ -8,3 +8,14 @@
   (deleteCompetition)="deleteCompetition($event)"
   (updateCompetition)="updateCompetition($event)">
 </app-competition-details>
+
+<app-competition-details-mobile *ngIf="isMobile()"
+  [competition]="competition$ | async"
+  [userRole]="userRole"
+  [generatedCompetitionGrid]="generatedCompetitionGrid$ | async"
+  [generateGridState]="generateGridState$ | async"
+  [updateCompetitionState]="updateCompetitionActionState$ | async"
+  (generateGridEvent)="onGenerateGrid($event)"
+  (deleteCompetition)="deleteCompetition($event)"
+  (updateCompetition)="updateCompetition($event)">
+</app-competition-details-mobile>

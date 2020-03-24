@@ -1,6 +1,6 @@
 .AttachmentItem-container {
   border-radius: 3px;
-  width: max-content;
+  max-width: 300px;
   padding: 5px;
   display: inline-block;
   margin: 5px;

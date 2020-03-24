@@ -1,0 +1,123 @@
+<div class="SportsmenSection-container">
+  <div class="SportsmenSection-newSportsmanSection">
+    <div *ngIf="isSportsmanSaveFailed()" class="Common-errorMessage">
+      <ng-container *ngIf="errorCode === 4">
+        <p>Ни одна категрия не подходит. К сожалению этот спорстмен не сможет принять участвие в данных
+          соревнованиях</p>
+      </ng-container>
+    </div>
+    <form [formGroup]="sportsmanForm" *ngIf="canRegistrateSportsman()">
+      <mat-form-field class="SportsmanSection-input">
+        <input id="new-sportsman-name"
+               formControlName="name"
+               matInput
+               placeholder="Имя"
+               [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input">
+        <input id="new-sportsman-last-name"
+               formControlName="lastName"
+               matInput
+               placeholder="Фамилия"
+               [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input">
+        <mat-select formControlName="section" placeholder="Раздел">
+          <mat-option *ngFor="let section of sections"
+            [value]="section">{{section}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input SportsmanSection-ageInput">
+        <input id="new-sportsman-age"
+               formControlName="age"
+               size="5"
+               matInput
+               placeholder="Возраст"e
+               [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input SportsmanSection-weightInput">
+        <input id="new-sportsman-weight"
+               formControlName="weight"
+               size="5"
+               matInput
+               placeholder="Вес"
+               [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input SportsmanSection-maleInput">
+        <mat-select formControlName="male" placeholder="Пол">
+          <mat-option [value]="male">М</mat-option>
+          <mat-option [value]="female">Ж</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input">
+        <input id="new-sportsman-experience"
+               formControlName="experience"
+               size="5"
+               matInput
+               placeholder="Сколько занимается (в годах)"
+               [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <mat-form-field class="SportsmanSection-input">
+        <input id="new-sportsman-coach"
+               formControlName="coach"
+               matInput
+               placeholder="Тренер"
+               [disabled]="isSportsmanSaveInProgress()">
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addSportsman()"
+        [disabled]="isAddButtonDisabled()">Заявить
+      </button>
+    </form>
+    <p *ngIf="isRegistrationClosed()" class="SportsmanSection-registrationIsClose">Регистрация закрыта</p>
+  </div>
+  <div class="SportsmenSection-registratedSportsmenSection">
+    <div *ngIf="iSportsmenListLoading()">
+      Идёт загрузка
+    </div>
+
+    <div *ngIf="isSportsmanListEmpty()"
+         class="SportsmenSection-emptySportsmenList">
+      {{getEmptySportsmanListMessage()}}
+    </div>
+
+    <mat-card *ngFor="let sportsman of sportsmen" class="SportsmanSection-sportsmanInfo">
+      <mat-grid-list cols="2" rowHeight="25px">
+        <mat-grid-tile colspan="2" rowspan="2">
+          <p>{{sportsman.name}} {{sportsman.lastName}}
+          <p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <p>Возраст: {{sportsman.age}}
+          <p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <p>Вес: {{sportsman.weight}}</p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <p>Опыт: {{sportsman.experience}}</p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <p>Пол: {{ sportsman.male | malePipe }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <p>Тренер: {{sportsman.coach}}</p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2" class="SportsmanSection-clubInfo">
+          <p>Клуб: {{sportsman.clubName}}</p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="4" class="SportsmanSection-categoryName">
+          <p>Катеогрия: {{sportsman.competitionCategory.displayName}}</p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="2">
+          <button mat-raised-button color="warn"
+                  (click)="deleteSportsman(sportsman)"
+                  class="SportsmanSection-deleteButton">Удалить
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
+</div>

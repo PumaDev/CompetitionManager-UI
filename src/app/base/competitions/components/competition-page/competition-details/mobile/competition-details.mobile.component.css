@@ -1,8 +1,8 @@
 .CompetitionDetails-competitionName {
   font-size: 26px;
-  line-height: 0.9em;
   text-align: center;
   color: #272727;
+  line-height: 1em;
 }
 
 .CompetitionDetails-competitionInfo {
@@ -14,20 +14,11 @@
 }
 
 .CompetitionDetails-competitionInfoSection {
-  float: left;
-  width: 45%;
   padding: 20px;
 }
 
 .CompetitionDetails-competitionInfoDescription {
-  float: right;
-  width: 45%;
   padding: 20px;
-}
-
-.CompetitionDetails-competitionRegistrationStatusManager {
-  float: right;
-  width: 45%;
 }
 
 .CompetitionDetails-label {
@@ -37,4 +28,8 @@
 
 .CompetitionDetails-manageItem {
   margin: 5px;
+}
+
+mat-form-field {
+  width: 100%;
 }

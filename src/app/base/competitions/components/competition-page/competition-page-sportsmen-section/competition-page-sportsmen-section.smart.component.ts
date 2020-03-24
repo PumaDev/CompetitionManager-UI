@@ -16,6 +16,7 @@ import { getRegistrationStatusSelector } from '../../../reducers/competitions.se
 import { RegistrationStatus } from '../../../models/competitions.models';
 import { UserRole } from '../../../../../shared/permissions/models/permission.models';
 import { getSectionsSelector } from '../../../reducers/sections.selector';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-competition-page-sportsmen-section-smart',
@@ -51,5 +52,9 @@ export class CompetitionPageSportsmenSectionSmartComponent implements OnInit {
 
   deleteSportsman(sportsmanId: number) {
     this.store.dispatch(this.sportsmanActions.deleteSportsman(sportsmanId));
+  }
+
+  isMobile(): boolean {
+    return isMobileVersion();
   }
 }

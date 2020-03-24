@@ -22,7 +22,7 @@
         </ng-template>
       </mat-chip-list>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalInfo">
+    <mat-grid-tile [colspan]="2" [rowspan]="2" class="CompetitionItem-additionalInfo">
       <ul>
         <li>Всего категорий: {{competition.competitionMeta.totalCategoriesSize}}</li>
         <li *ngIf="competition.competitionMeta.minAgeCategory !== null">Минимальный
@@ -31,7 +31,7 @@
           возраст: {{competition.competitionMeta.maxAgeCategory}}</li>
       </ul>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" class="CompetitionItem-additionalClubInfo">
+    <mat-grid-tile [colspan]="2" [rowspan]="2" class="CompetitionItem-additionalClubInfo">
       <ul>
         <li>Участников: {{competition.competitionMeta.totalSportsmenCount}}</li>
         <li *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount !== null">Вашего

@@ -1,0 +1,123 @@
+<ng-container *ngIf="competition">
+  <form [formGroup]="updateCompetitionFormGroup">
+    <div class="CompetitionDetails-competitionName">
+      <ng-container *ngIf="isViewState()">
+        <h4>{{competition.name}}</h4>
+      </ng-container>
+      <ng-container *ngIf="isEditState()">
+        <mat-form-field>
+          <input matInput
+                 formControlName="name"
+                 [value]="competition.name"
+                 placeholder="Название">
+        </mat-form-field>
+      </ng-container>
+    </div>
+    <div class="CompetitionDetails-competitionInfoContainer">
+      <div class="CompetitionDetails-competitionInfoSection">
+        <p class="CompetitionDetails-competitionInfo">
+          <ng-container *ngIf="isViewState()">
+            <span class="CompetitionDetails-label">Даты:</span>
+            {{competition.startDate}}
+            <ng-container *ngIf="competition.endDate !== competition.startDate">
+              - {{competition.endDate}}
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="isEditState()">
+            <mat-form-field>
+              <input id="new-competition-start-date"
+                     formControlName="startDate"
+                     matInput
+                     [matDatepicker]="startDatePicker"
+                     [value]="competition.startDate"
+                     placeholder="Дата первого дня соревнований">
+              <mat-datepicker-toggle matSuffix
+                                     [for]="startDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input id="new-competition-end-date"
+                     formControlName="endDate"
+                     matInput
+                     [matDatepicker]="endDatePicker"
+                     [value]="competition.endDate"
+                     placeholder="Дата послднего дня соревнований">
+              <mat-datepicker-toggle matSuffix
+                                     [for]="endDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatePicker></mat-datepicker>
+            </mat-form-field>
+          </ng-container>
+        </p>
+        <p class="CompetitionDetails-competitionInfo">
+          <span class="CompetitionDetails-label">Всего участников:</span>
+          {{competition.competitionMeta.totalSportsmenCount}}
+        </p>
+        <p *ngIf="competition.competitionMeta.totalSportsmenOfCoachClubCount"
+           class="CompetitionDetails-competitionInfo">
+          <span class="CompetitionDetails-label">От вашего клуба:</span>
+          {{competition.competitionMeta.totalSportsmenOfCoachClubCount}}
+        </p>
+        <div class="CompetitionDetails-competitionInfo" *ngIf="isViewState()">
+          <button *ngIf="showGenerateGridButton()"
+                  mat-raised-button
+                  color="primary"
+                  (click)="generateGrid()">
+            Сгенерировать сетку
+          </button>
+          <div *ngIf="isGridGenerationInProcess()">
+            <p>Сетка генерируется</p>
+          </div>
+          <div *ngIf="isGridGenerationComplete()">
+            <a [href]="buildArchiveLink()">Нажмите, чтобы скачать архив с сетками</a>
+          </div>
+        </div>
+      </div>
+      <div class="CompetitionDetails-competitionInfoDescription">
+        <ng-container *ngIf="isViewState()">
+          <p class="CompetitionDetails-label">Описание:</p>
+          <p class="CompetitionDetails-competitionInfo">
+            <markdown [data]="competition.description"></markdown>
+          </p>
+        </ng-container>
+        <ng-container *ngIf="isEditState()">
+          <mat-form-field>
+          <textarea [value]="competition.description"
+                    formControlName="description"
+                    style="min-width: 400px"
+                    rows="10"
+                    placeholder="Описание"
+                    matInput></textarea>
+          </mat-form-field>
+        </ng-container>
+
+        <app-competition-registration-status-manager-smart *ngIf="isViewState()"
+                                                           [competition]="competition"
+                                                           [canManageRegistrationStatus]="canManageCompetitionRegistrationStatus()">
+        </app-competition-registration-status-manager-smart>
+
+        <ng-container>
+          <br>
+          <button *ngIf="canShowDeleteButton()"
+                  class="CompetitionDetails-manageItem"
+                  mat-raised-button
+                  (click)="onDeleteCompetition()"
+                  color="warn">Удалить
+          </button>
+          <button *ngIf="canShowEditButton()"
+                  class="CompetitionDetails-manageItem"
+                  mat-raised-button
+                  color="primary"
+                  (click)="updateToEditState()">Изменить
+          </button>
+          <button *ngIf="isEditState()"
+                  class="CompetitionDetails-manageItem"
+                  mat-raised-button
+                  color="primary"
+                  (click)="saveUpdates()">Сохранить
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </form>
+</ng-container>

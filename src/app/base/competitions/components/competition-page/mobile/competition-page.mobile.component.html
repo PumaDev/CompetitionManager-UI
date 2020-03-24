@@ -1,0 +1,47 @@
+<div class="CompetitionPage-container">
+  <mat-accordion [multi]="true">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Главная информация
+        </mat-panel-title>    
+      </mat-expansion-panel-header>
+      <app-competition-details-smart
+      [competitionId]="competitionId">
+    </app-competition-details-smart>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Вложения
+        </mat-panel-title>    
+      </mat-expansion-panel-header>
+      <app-attachments-section-smart
+        [competitionId]="competitionId">
+      </app-attachments-section-smart>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Категории
+        </mat-panel-title>    
+      </mat-expansion-panel-header>
+      <app-competition-page-categories-list-smart
+        [competitionId]="competitionId">
+      </app-competition-page-categories-list-smart>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Спорстмены
+        </mat-panel-title>    
+      </mat-expansion-panel-header>
+      <app-competition-page-sportsmen-section-smart
+        [competitionId]="competitionId">
+      </app-competition-page-sportsmen-section-smart>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

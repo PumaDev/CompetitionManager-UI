@@ -1,0 +1,20 @@
+<div class="CompetitionPage-container">
+  <div class="CompetitionPage-competitionCategories">
+    <app-competition-page-categories-list-smart
+      [competitionId]="competitionId">
+    </app-competition-page-categories-list-smart>
+  </div>
+  <div class="CompetitionPage-competitionInfo">
+    <app-competition-details-smart
+      [competitionId]="competitionId">
+    </app-competition-details-smart>
+  </div>
+  <app-attachments-section-smart
+    [competitionId]="competitionId">
+  </app-attachments-section-smart>
+  <div class="CompetitionPage-sportsmen">
+    <app-competition-page-sportsmen-section-smart
+      [competitionId]="competitionId">
+    </app-competition-page-sportsmen-section-smart>
+  </div>
+</div>

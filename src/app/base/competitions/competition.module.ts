@@ -18,7 +18,9 @@ import {
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatSelectModule, MatSnackBarModule,
-  MatTabsModule
+  MatTabsModule,
+  MatDividerModule,
+  MatExpansionModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NewCompetitionsComponent} from './components/new-competition/new-competitions.component';
@@ -59,6 +61,10 @@ import { CreateAttachmentModalComponent } from './components/attachments/create-
 import {CreateAttachmentModalSmartComponent} from './components/attachments/create-attachment-modal/create-attachment-modal.smart.component';
 import { CompetitionItemDesctopComponent } from './components/competitions-list/competition-item/desctop/competition-item.desctop.component';
 import { CompetitionItemMobileComponent } from './components/competitions-list/competition-item/mobile/competition-item.mobile.component';
+import { CompetitionPageDesctopComponent } from './components/competition-page/desctop/competition-page.desctop.component';
+import { CompetitionPageMobileComponent } from './components/competition-page/mobile/competition-page.mobile.component';
+import { CompetitionDetailsMobileComponent } from './components/competition-page/competition-details/mobile/competition-details.mobile.component';
+import { CompetitionPageSportsmenSectionMobileComponent } from './components/competition-page/competition-page-sportsmen-section/mobile/competition-page-sportsmen-section.mobile.component';
 
 @NgModule({
   imports: [
@@ -88,7 +94,8 @@ import { CompetitionItemMobileComponent } from './components/competitions-list/c
     MatSelectModule,
     MatSnackBarModule,
     RouterModule,
-
+    MatDividerModule,
+    MatExpansionModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -115,9 +122,13 @@ import { CompetitionItemMobileComponent } from './components/competitions-list/c
     CompetitionPageSportsmenSectionSmartComponent,
     CreateCategoryPageComponent,
     CompetitionDetailsComponent,
+    CompetitionDetailsMobileComponent,
     CompetitionPageComponent,
+    CompetitionPageDesctopComponent,
+    CompetitionPageMobileComponent,
     CompetitionPageCategoriesListComponent,
     CompetitionPageSportsmenSectionComponent,
+    CompetitionPageSportsmenSectionMobileComponent,
     CompetitionPageCategoriesListSmartComponent,
     CompetitionRegistrationStatusManagerComponent,
     CompetitionRegistrationStatusManagerSmartComponent,

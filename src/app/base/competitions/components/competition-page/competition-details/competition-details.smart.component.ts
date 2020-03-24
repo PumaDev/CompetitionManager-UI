@@ -11,6 +11,7 @@ import {UserRole} from '../../../../../shared/permissions/models/permission.mode
 import {Observable} from 'rxjs';
 import {ActionState} from '../../../../../shared/general/general.models';
 import {GeneratedCompetitionGrid, ICompetition} from '../../../models/competitions.models';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-competition-details-smart',
@@ -46,5 +47,9 @@ export class CompetitionDetailsSmartComponent implements OnInit {
 
   updateCompetition(competition: ICompetition): void {
     this.store.dispatch(this.competitionActions.updateCompetition(competition));
+  }
+
+  isMobile(): boolean {
+    return isMobileVersion();
   }
 }
