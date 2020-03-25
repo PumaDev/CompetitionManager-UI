@@ -1,5 +1,13 @@
 <app-profile-page
+  *ngIf="!isMobile()"
   [user]="user$ | async"
   (updateUser)="updateUser($event)"
   (updateUserPassword)="updateUserPassword($event)">
 </app-profile-page>
+
+<app-profile-page-mobile
+  *ngIf="isMobile()"
+  [user]="user$ | async"
+  (updateUser)="updateUser($event)"
+  (updateUserPassword)="updateUserPassword($event)">
+</app-profile-page-mobile>

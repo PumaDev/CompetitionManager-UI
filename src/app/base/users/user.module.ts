@@ -19,6 +19,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UsersListSmartComponent } from './components/users-list/users-list.smart.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ProfilePageSmartComponent } from './components/profile-page/profile-page.smart.component';
+import { ProfilePageMobileComponent } from './components/profile-page/mobile/profile-page.mobile.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { ProfilePageSmartComponent } from './components/profile-page/profile-pag
     UsersListComponent,
     UsersListSmartComponent,
     ProfilePageComponent,
+    ProfilePageMobileComponent,
     ProfilePageSmartComponent
   ]
 })

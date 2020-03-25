@@ -6,6 +6,7 @@ import {IUpdateUserPasswordView, IUser} from '../../models/users.model';
 import {Observable} from 'rxjs';
 import {getUsersActionStateSelector, getUserSelector} from '../../selectors/users.selector';
 import {ActionState} from '../../../../shared/general/general.models';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-profile-page-smart',
@@ -33,5 +34,9 @@ export class ProfilePageSmartComponent implements OnInit {
 
   updateUserPassword(updateUserPasswordView: IUpdateUserPasswordView): void {
     this.store.dispatch(this.userActions.updateUserPassword(this.userId, updateUserPasswordView));
+  }
+
+  isMobile(): boolean {
+    return isMobileVersion();
   }
 }
