@@ -1,4 +1,11 @@
 <app-new-competition
+  *ngIf="!isMobile()"
   [state]="actionState$ | async"
   (onSave)="save($event)">
 </app-new-competition>
+
+<app-new-competition-mobile
+  *ngIf="isMobile()"
+  [state]="actionState$ | async"
+  (onSave)="save($event)">
+</app-new-competition-mobile>

@@ -6,6 +6,7 @@ import {State} from '../../../../app.reducers';
 import {getCreateCompetitionActionState} from '../../reducers/competitions.selector';
 import {ICompetition} from '../../models/competitions.models';
 import {CompetitionsActions} from '../../actions';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-new-competition-smart',
@@ -25,5 +26,9 @@ export class NewCompetitionSmartComponent implements OnInit {
 
   save(competition: ICompetition) {
     this.store.dispatch(this.competitionActions.createCompetition(competition));
+  }
+
+  isMobile() {
+    return isMobileVersion();
   }
 }

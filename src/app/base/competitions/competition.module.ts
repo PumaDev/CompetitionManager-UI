@@ -65,6 +65,7 @@ import { CompetitionPageDesctopComponent } from './components/competition-page/d
 import { CompetitionPageMobileComponent } from './components/competition-page/mobile/competition-page.mobile.component';
 import { CompetitionDetailsMobileComponent } from './components/competition-page/competition-details/mobile/competition-details.mobile.component';
 import { CompetitionPageSportsmenSectionMobileComponent } from './components/competition-page/competition-page-sportsmen-section/mobile/competition-page-sportsmen-section.mobile.component';
+import { NewCompetitionsMobileComponent } from './components/new-competition/mobile/new-competitions.mobile.component';
 
 @NgModule({
   imports: [
@@ -112,6 +113,7 @@ import { CompetitionPageSportsmenSectionMobileComponent } from './components/com
     CompetitionItemMobileComponent,
     CompetitionsPageComponent,
     NewCompetitionsComponent,
+    NewCompetitionsMobileComponent,
     NewCompetitionSmartComponent,
     AddCategoriesModalComponent,
     CategoriesManagerComponent,
