@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActiveStatus, IUser } from '../../models/users.model';
 import { ActionState } from '../../../../shared/general/general.models';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-users-list',
@@ -54,5 +55,13 @@ export class UsersListComponent implements OnInit {
       id: userId,
       activateStatus: newStatus
     });
+  }
+
+  getCollsInLineCount(): number {
+    return isMobileVersion() ? 3 : 9;
+  }
+
+  getCollsLengthOfTextFields(): number {
+    return isMobileVersion() ? 3 : 1;
   }
 }

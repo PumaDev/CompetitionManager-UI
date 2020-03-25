@@ -1,13 +1,13 @@
 <div class="Users-listContainer">
   <mat-card *ngFor="let user of users" class="Users-user">
-    <mat-grid-list cols="9" rowHeight="50px">
-      <mat-grid-tile colspan="1" rowspan="1">
+    <mat-grid-list [cols]="getCollsInLineCount()" rowHeight="50px">
+      <mat-grid-tile [colspan]="getCollsLengthOfTextFields()" rowspan="1">
         <p>Логин: {{user.login}}</p>
       </mat-grid-tile>
-      <mat-grid-tile colspan="1" rowspan="1">
+      <mat-grid-tile [colspan]="getCollsLengthOfTextFields()" rowspan="1">
         <p>Почта: {{user.mail}}</p>
       </mat-grid-tile>
-      <mat-grid-tile colspan="1" rowspan="1">
+      <mat-grid-tile [colspan]="getCollsLengthOfTextFields()" rowspan="1">
         <p>Имя клуба: {{user.clubName}}</p>
       </mat-grid-tile>
       <mat-grid-tile colspan="3" rowspan="1">
