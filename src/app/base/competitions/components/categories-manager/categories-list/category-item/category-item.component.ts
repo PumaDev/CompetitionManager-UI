@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICompetitionCategory } from '../../../../models/category.model';
+import { isMobileVersion } from 'src/app/shared/screen-state/mobile.state';
 
 @Component({
   selector: 'app-category-item',
@@ -13,5 +14,9 @@ export class CategoryItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getCellsCount(): number {
+    return isMobileVersion() ? 1 : 4;
   }
 }

@@ -1,6 +1,6 @@
 <mat-card class="CategoryItem-container">
-  <mat-grid-list [cols]="4" rowHeight="60px">
-    <mat-grid-tile [colspan]="1">
+  <mat-grid-list [cols]="getCellsCount()" rowHeight="50px">
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
       {{category.displayName}}
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
